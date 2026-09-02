@@ -348,6 +348,19 @@
   .foldbody{padding:1.4rem 1.4rem .6rem}
   details.fold .roster,details.fold .rows{padding:0 1.4rem}
 
+  /* 第一部 遠景 ── 本線から一段下げた三枚 */
+  .lead-in{margin:2.8rem 0 0}
+  details.fold.deep{margin:1.1rem 0 0}
+  details.fold.deep>summary{padding:1.3rem 1.4rem;font-size:1.02rem;font-family:var(--mincho);font-weight:600}
+  .far{padding:2.2rem 1.4rem 1.6rem;border-top:1px solid var(--hairline)}
+  .far:first-of-type{border-top:none}
+  .far .rule-label{font-size:.82rem;letter-spacing:.24em;color:var(--tone-ink);margin:0 0 .7rem}
+  .far .rule-label:after{content:"";display:block;width:2.2rem;height:2px;background:var(--tone);border-radius:1px;margin-top:.7rem}
+  .far h3.scale{font-size:clamp(1.45rem,3.8vw,1.9rem);line-height:1.35;margin:0 0 .8rem;max-width:15em}
+  .far .sub{font-size:.98rem;line-height:1.85;color:var(--body);margin:0 0 1.6rem;max-width:34rem}
+  .far figure.chart,.far details.fold{background:var(--canvas)}
+  .far>p:last-child{margin-bottom:0}
+
   /* ---------- chips ---------- */
   .chip{display:inline-block;font-size:.75rem;font-weight:500;line-height:1.7;padding:.15rem .6rem;margin:0 .35rem .3rem 0;
     border-radius:2px;background:var(--surface);border:1px solid var(--hairline);color:var(--body)}
@@ -572,241 +585,13 @@
   <div class="wrap">
     <div class="opener lead">
       <p class="part">第一部</p>
-      <p class="rule-label">ものさし 一</p>
-      <h2>46億年 ── 五度の氷室期</h2>
-      <p class="sub">地球の標準状態は、極に氷のない「温室期」のほうである。</p>
-    </div>
-
-    <figure class="chart">
-      <svg viewBox="0 0 340 162" role="img" aria-label="上段は地球46億年の気候帯で氷室期は5回のみ。下段はその右端40分の1にあたる顕生代5億4100万年の拡大。両者は破線の補助線でつながっている。">
-        <text x="0" y="9" font-size="8.5" fill="#827E74">46億年前・地球誕生</text>
-        <text x="340" y="9" font-size="8.5" fill="#827E74" text-anchor="end">現在</text>
-        <rect x="0" y="15" width="340" height="18" fill="#DCA07E"/>
-        <rect x="162.6" y="15" width="22.2" height="18" fill="#92AFD0"/>
-        <rect x="286.8" y="15" width="6.3" height="18" fill="#92AFD0"/>
-        <rect x="306.7" y="15" width="2.3" height="18" fill="#92AFD0"/>
-        <rect x="313.4" y="15" width="7.4" height="18" fill="#92AFD0"/>
-        <rect x="337.5" y="15" width="2.5" height="18" fill="#92AFD0"/>
-        <text x="173.7" y="28" font-size="9" fill="#26251E" text-anchor="middle" font-weight="600">1</text>
-        <text x="290" y="28" font-size="7" fill="#26251E" text-anchor="middle" font-weight="600">2</text>
-        <rect x="299.1" y="13" width="40.9" height="22" fill="none" stroke="#26251E" stroke-width="1" stroke-dasharray="2.5 2.5"/>
-
-        <path d="M299.1,35 L340,35 L340,70 L0,70 Z" fill="#26251E" fill-opacity=".06"/>
-        <line x1="299.1" y1="35" x2="0" y2="70" stroke="#26251E" stroke-width=".9" stroke-dasharray="3 3" opacity=".6"/>
-        <line x1="340" y1="35" x2="340" y2="70" stroke="#26251E" stroke-width=".9" stroke-dasharray="3 3" opacity=".6"/>
-        <text x="0" y="44" font-size="8" fill="#26251E">この右端 ── 顕生代 5億4100万年を</text>
-        <text x="0" y="55" font-size="8" fill="#827E74">下で40倍に拡大</text>
-
-        <rect x="0" y="70" width="340" height="22" fill="#DCA07E"/>
-        <rect x="57.2" y="70" width="18.8" height="22" fill="#92AFD0"/>
-        <rect x="113.8" y="70" width="62.8" height="22" fill="#92AFD0"/>
-        <rect x="318.6" y="70" width="21.4" height="22" fill="#92AFD0"/>
-        <text x="66.6" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">3</text>
-        <text x="145.2" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">4</text>
-        <text x="329.3" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">5</text>
-        <line x1="25.8" y1="92" x2="25.8" y2="97" stroke="#827E74" stroke-width="1"/>
-        <line x1="88.6" y1="92" x2="88.6" y2="97" stroke="#827E74" stroke-width="1"/>
-        <line x1="151.5" y1="92" x2="151.5" y2="97" stroke="#827E74" stroke-width="1"/>
-        <line x1="214.3" y1="92" x2="214.3" y2="97" stroke="#827E74" stroke-width="1"/>
-        <line x1="277.2" y1="92" x2="277.2" y2="97" stroke="#827E74" stroke-width="1"/>
-        <text x="25.8" y="106" font-size="8" fill="#827E74" text-anchor="middle">5億年前</text>
-        <text x="88.6" y="106" font-size="8" fill="#827E74" text-anchor="middle">4億</text>
-        <text x="151.5" y="106" font-size="8" fill="#827E74" text-anchor="middle">3億</text>
-        <text x="214.3" y="106" font-size="8" fill="#827E74" text-anchor="middle">2億</text>
-        <text x="277.2" y="106" font-size="8" fill="#827E74" text-anchor="middle">1億</text>
-        <text x="340" y="106" font-size="8" fill="#827E74" text-anchor="end">現在</text>
-        <line x1="181.6" y1="118" x2="298.5" y2="118" stroke="#827E74" stroke-width="1"/>
-        <line x1="181.6" y1="114" x2="181.6" y2="118" stroke="#827E74" stroke-width="1"/>
-        <line x1="298.5" y1="114" x2="298.5" y2="118" stroke="#827E74" stroke-width="1"/>
-        <text x="240" y="128" font-size="8.5" fill="#827E74" text-anchor="middle">恐竜の時代 ── すべて温室期</text>
-        <line x1="318.6" y1="92" x2="318.6" y2="138" stroke="#6E8FB6" stroke-width="1"/>
-        <text x="340" y="147" font-size="8.5" fill="#26251E" text-anchor="end">3400万年前 ── 南極に氷床。いまの氷室期</text>
-        <text x="340" y="157" font-size="8" fill="#827E74" text-anchor="end">サピエンス30万年は、この帯の右端の線の内側</text>
-      </svg>
-      <div class="keys">
-        <span><i style="background:#92AFD0"></i>氷室期(極に恒久的な氷がある)</span>
-        <span><i style="background:#DCA07E"></i>温室期(極に氷がない)</span>
-      </div>
-    </figure>
-
-    <details class="fold">
-      <summary>五度の氷河時代 ── それぞれの中身<span class="hint">タップで開く</span></summary>
-      <div class="roster">
-        <div class="row"><div class="n">1</div><div>
-          <h3>ヒューロニアン氷河時代</h3><p class="span">24億〜21億年前 ／ 約3億年</p>
-          <p>大酸化イベントで大気のメタンが失われ、温室効果が急落した。</p></div></div>
-        <div class="row"><div class="n">2</div><div>
-          <h3>クリオジェニアン氷河時代</h3><p class="span">7億2000万〜6億3500万年前 ／ 約8500万年</p>
-          <p>赤道まで凍りついた可能性のあるスノーボールアース。</p></div></div>
-        <div class="row"><div class="n">3</div><div>
-          <h3>アンデス・サハラ氷河時代</h3><p class="span">4億5000万〜4億2000万年前 ／ 約3000万年</p>
-          <p>ゴンドワナ大陸が南極点付近へ。五度のうち最も短い。</p></div></div>
-        <div class="row"><div class="n">4</div><div>
-          <h3>カルー氷河時代</h3><p class="span">3億6000万〜2億6000万年前 ／ 約1億年</p>
-          <p>陸上植物が繁栄して埋没し、二酸化炭素が引き下げられた。石炭はこのときの遺産。</p></div></div>
-        <div class="row"><div class="n">5</div><div>
-          <h3>新生代後期氷河時代 ── 現在</h3><p class="span">3400万年前〜継続中</p>
-          <p>南極大陸の孤立と二酸化炭素の長期的な低下。私たちはこの内側にいる。</p></div></div>
-      </div>
-    </details>
-    <p class="tally" style="margin:0 0 1.2rem">五度を合計しても約5億5000万年。地球史46億年の、およそ12パーセントにすぎない。</p>
-    <p><strong>ここが起点になる。</strong>私たちは氷河時代が終わった世界に住んでいるのではない。3400万年前に始まった氷室期の内側に、いまも入ったままである。</p>
-  </div>
-</section>
-
-<section data-part="1" data-tone="blue">
-  <div class="wrap">
-    <div class="opener">
-      <p class="part">第一部</p>
-      <p class="rule-label">ものさし 二</p>
-      <h2>80万年 ── 氷期と間氷期</h2>
-      <p class="sub">氷室期の内側では、気候がのこぎりの歯のように振動している。</p>
-    </div>
-    <figure class="chart">
-      <svg viewBox="0 0 340 152" role="img" aria-label="過去80万年の氷期・間氷期サイクル。約10万年周期の鋸歯状変動。右端が完新世。">
-        <line x1="0" y1="45" x2="340" y2="45" stroke="#D3CEC4" stroke-width="1" stroke-dasharray="2 3"/>
-        <text x="0" y="41" font-size="8" fill="#827E74">間氷期の水準</text>
-        <rect x="284.7" y="26" width="55.3" height="94" fill="#6E8FB6" opacity=".13"/>
-        <rect x="335" y="30" width="5" height="85" fill="#6E8FB6" opacity=".55"/>
-        <rect x="284.7" y="26" width="55.3" height="94" fill="none" stroke="#26251E" stroke-width="1" stroke-dasharray="2.5 2.5"/>
-        <polyline fill="none" stroke="#26251E" stroke-width="1.6" stroke-linejoin="round"
-          points="0,115 5.5,45 18,62 36.1,115 42.5,45 56,70 72.3,115 80.8,45 96,68 110,92 119,115 127.5,45 140,72 150,95 157.3,115 167.9,45 178,70 186,95 193.4,115 199.8,45 212,68 222,92 231.6,115 238,45 252,64 262,84 272,100 280.5,115 286.9,45 295.4,70 306,85 314.5,95 323,105 329.4,113 331.5,115 335.3,48 340,44"/>
-        <line x1="283" y1="38" x2="288" y2="44" stroke="#6E8FB6" stroke-width="1"/>
-        <text x="280" y="36" font-size="8.5" fill="#827E74" text-anchor="end">前回の間氷期 12万5000年前</text>
-        <text x="240" y="17" font-size="8.5" fill="#C0763C" text-anchor="end">サピエンスの世界拡散 6万〜5万年前</text>
-        <polyline fill="none" stroke="#C0763C" stroke-width="1" points="243,14 316,14 316,90"/>
-        <circle cx="316" cy="97" r="3.4" fill="#C0763C" stroke="#26251E" stroke-width="1"/>
-        <circle cx="331.5" cy="115" r="6" fill="none" stroke="#26251E" stroke-width="1" opacity=".45"/>
-        <circle cx="331.5" cy="115" r="3.4" fill="#FFFDFC" stroke="#26251E" stroke-width="1.2"/>
-        <line x1="0" y1="120" x2="340" y2="120" stroke="#D3CEC4" stroke-width="1"/>
-        <line x1="0" y1="120" x2="0" y2="125" stroke="#827E74" stroke-width="1"/>
-        <line x1="85" y1="120" x2="85" y2="125" stroke="#827E74" stroke-width="1"/>
-        <line x1="170" y1="120" x2="170" y2="125" stroke="#827E74" stroke-width="1"/>
-        <line x1="255" y1="120" x2="255" y2="125" stroke="#827E74" stroke-width="1"/>
-        <line x1="340" y1="120" x2="340" y2="125" stroke="#827E74" stroke-width="1"/>
-        <text x="0" y="135" font-size="8" fill="#827E74">80万年前</text>
-        <text x="85" y="135" font-size="8" fill="#827E74" text-anchor="middle">60万</text>
-        <text x="170" y="135" font-size="8" fill="#827E74" text-anchor="middle">40万</text>
-        <text x="255" y="135" font-size="8" fill="#827E74" text-anchor="middle">20万</text>
-        <text x="340" y="135" font-size="8" fill="#827E74" text-anchor="end">現在</text>
-        <text x="340" y="148" font-size="8" fill="#26251E" text-anchor="end">破線の内側＝13万年 ── 下の図で拡大</text>
-      </svg>
-      <figcaption><strong>白い丸</strong>が最終氷期最盛期(約2万年前＝前18000年頃)、<strong>橙の丸</strong>がサピエンスの世界拡散。いちばん右の細い帯が完新世で、その1万1700年に文明のすべてが入る。ゆっくり冷え、急に暖まる非対称な形は、氷床の成長が遅く崩壊が速いことによる。</figcaption>
-    </figure>
-    <p>のこぎりの歯が8つ並んでいる。1つが約10万年で、これが氷期と間氷期の一周にあたる。<strong>破線で囲った右端の13万年が、次の図で拡大する範囲</strong>になる。前回の間氷期と、今の完新世の両方が入っている。</p>
-  </div>
-</section>
-
-<section data-part="1" data-tone="blue">
-  <div class="wrap">
-    <div class="opener">
-      <p class="part">第一部</p>
-      <p class="rule-label">ものさし 三</p>
-      <h2>13万年 ── 間氷期から、間氷期へ</h2>
-      <p class="sub">前の図で破線に囲まれていた範囲を、そのまま拡大する。ここで分かるのは、氷期が寒かったことではなく、<strong>当てにならなかった</strong>ことである。</p>
-    </div>
-
-    <figure class="chart">
-      <svg viewBox="0 0 340 186" role="img" aria-label="13万年前から現在までの気温変化。前回の間氷期エーミアンのあと氷期に落ち、約10万年にわたって数十年単位の激しい上下を繰り返し、最終氷期最盛期を経て完新世に入る。下段に人類の出来事を1から7の番号で示す。">
-        <rect x="0" y="35" width="39" height="90" fill="#6E8FB6" opacity=".14"/>
-        <rect x="309.6" y="35" width="30.4" height="90" fill="#6E8FB6" opacity=".14"/>
-
-        <text x="190" y="17" font-size="8.5" fill="#2E5F9E" text-anchor="middle">ダンスガード・オシュガー・サイクル</text>
-        <line x1="45" y1="26" x2="295" y2="26" stroke="#6E8FB6" stroke-width=".9"/>
-        <line x1="45" y1="26" x2="45" y2="31" stroke="#6E8FB6" stroke-width=".9"/>
-        <line x1="295" y1="26" x2="295" y2="31" stroke="#6E8FB6" stroke-width=".9"/>
-
-        <polyline fill="none" stroke="#26251E" stroke-width="1.5" stroke-linejoin="round"
-          points="0,46 5,42 13,40 24,42 32,50 39,74 46,62 52,88 60,66 68,92 76,70 84,95 92,72 100,98 108,76 116,100 124,80 132,104 140,84 146,112 152,82 160,105 168,84 176,106 183,86 192,108 200,88 209,104 216,90 222,84 230,108 238,92 246,110 254,94 262,112 270,116 280,118 288,120 291,118 296,114 301,110 301.8,62 304,60 306,66 306.6,102 309,104 309.6,50 316,46 330,44 340,42"/>
-
-        <line x1="18" y1="94" x2="16" y2="46" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="2" y="104" font-size="8.5" fill="#26251E">最終間氷期</text>
-        <text x="2" y="114" font-size="8.5" fill="#827E74">（エーミアン）</text>
-        <text x="2" y="124" font-size="7.5" fill="#827E74">13万年前</text>
-
-        <circle cx="288" cy="120" r="6" fill="none" stroke="#26251E" stroke-width="1" opacity=".45"/>
-        <circle cx="288" cy="120" r="3.4" fill="#FFFDFC" stroke="#26251E" stroke-width="1.2"/>
-        <text x="272" y="131" font-size="8" fill="#26251E" text-anchor="end">最終氷期最盛期</text>
-
-        <line x1="330" y1="37" x2="322" y2="45" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="338" y="34" font-size="8.5" fill="#26251E" text-anchor="end">完新世</text>
-
-        <g stroke="#C0763C" stroke-width=".7" stroke-dasharray="1.5 2" opacity=".55">
-          <line x1="146.5" y1="134" x2="146.5" y2="111"/>
-          <line x1="196" y1="134" x2="196" y2="100"/>
-          <line x1="222" y1="134" x2="222" y2="86"/>
-          <line x1="236" y1="134" x2="236" y2="98"/>
-          <line x1="249" y1="134" x2="249" y2="106"/>
-          <line x1="287.7" y1="134" x2="287.7" y2="128"/>
-          <line x1="309.4" y1="134" x2="309.4" y2="108"/>
-        </g>
-        <rect x="183.1" y="138.5" width="26.1" height="3" fill="#C0763C" opacity=".5"/>
-        <g font-weight="600" text-anchor="middle">
-          <circle cx="146.5" cy="140" r="5.6" fill="#C0763C"/><text x="146.5" y="142.6" font-size="7.5" fill="#26251E">1</text>
-          <circle cx="196" cy="140" r="5.6" fill="#C0763C"/><text x="196" y="142.6" font-size="7.5" fill="#26251E">2</text>
-          <circle cx="222" cy="140" r="5.6" fill="#C0763C"/><text x="222" y="142.6" font-size="7.5" fill="#26251E">3</text>
-          <circle cx="236" cy="140" r="5.6" fill="#C0763C"/><text x="236" y="142.6" font-size="7.5" fill="#26251E">4</text>
-          <circle cx="249" cy="140" r="5.6" fill="#C0763C"/><text x="249" y="142.6" font-size="7.5" fill="#26251E">5</text>
-          <circle cx="287.7" cy="140" r="5.6" fill="#C0763C"/><text x="287.7" y="142.6" font-size="7.5" fill="#26251E">6</text>
-          <circle cx="309.4" cy="140" r="5.6" fill="#C0763C"/><text x="309.4" y="142.6" font-size="7.5" fill="#26251E">7</text>
-        </g>
-
-        <line x1="0" y1="158" x2="340" y2="158" stroke="#D3CEC4" stroke-width="1"/>
-        <line x1="0" y1="158" x2="0" y2="163" stroke="#827E74" stroke-width="1"/>
-        <line x1="78.5" y1="158" x2="78.5" y2="163" stroke="#827E74" stroke-width="1"/>
-        <line x1="143.8" y1="158" x2="143.8" y2="163" stroke="#827E74" stroke-width="1"/>
-        <line x1="209.2" y1="158" x2="209.2" y2="163" stroke="#827E74" stroke-width="1"/>
-        <line x1="274.6" y1="158" x2="274.6" y2="163" stroke="#827E74" stroke-width="1"/>
-        <line x1="340" y1="158" x2="340" y2="163" stroke="#827E74" stroke-width="1"/>
-        <text x="0" y="173" font-size="8" fill="#827E74">13万年前</text>
-        <text x="78.5" y="173" font-size="8" fill="#827E74" text-anchor="middle">10万</text>
-        <text x="143.8" y="173" font-size="8" fill="#827E74" text-anchor="middle">7.5万</text>
-        <text x="209.2" y="173" font-size="8" fill="#827E74" text-anchor="middle">5万</text>
-        <text x="274.6" y="173" font-size="8" fill="#827E74" text-anchor="middle">2.5万</text>
-        <text x="340" y="173" font-size="8" fill="#827E74" text-anchor="end">現在</text>
-        <text x="340" y="185" font-size="7.5" fill="#827E74" text-anchor="end">橙の番号は下の一覧に対応（位置は目安）</text>
-      </svg>
-      <figcaption>両端の淡い帯が間氷期。左が前回のエーミアン、右がいまの完新世。あいだの約10万年は、寒いだけでなく、絶えず揺れている。白い丸が最終氷期最盛期。</figcaption>
-    </figure>
-
-    <details class="fold">
-      <summary>解説 ── エーミアン期と、気候の乱高下<span class="hint">タップで開く</span></summary>
-      <div class="foldbody">
-        <p><strong>13万〜11.5万年前、前回の間氷期。</strong>エーミアン期と呼ばれる。いまより少し暖かく、海面は現在より6〜9メートル高かった。ヨーロッパにはカバやゾウがいた。そして11.5万年前、氷期へ落ちる。</p>
-        <p class="note">図の幅は13万年だが、氷期そのものは11.5万年前から1万1700年前までの<strong>約10万年</strong>である。両端の淡い帯が間氷期で、あいだの暗い部分が氷期だと思えばよい。</p>
-        <p>この一周のうち、<strong>氷期がおよそ9万年から10万年、間氷期はせいぜい1万年から3万年。</strong>寒いのが常態で、暖かいほうが例外である。サピエンスが世界へ拡散したのは、この図のちょうど真ん中あたり──氷期のただなかだった。</p>
-        <p><strong>ここからが本題である。</strong>その約10万年の氷期について覚えておくべきなのは、寒かったことではない。<strong>当てにならなかったこと</strong>だ。</p>
-        <p>グリーンランドの氷床コアには、<strong>数十年のうちに気温が10℃前後も跳ね上がり、そのあと数百年かけてゆっくり冷えていく</strong>という変動が、25回ほど記録されている。ダンスガード・オシュガー・サイクルという。おおよそ1500年前後の間隔だが、その規則性がどこまで確かかは議論が続いている。図のぎざぎざが、それである。</p>
-        <p>これが第一部の結論を一段深くする。氷期にも野生の穀物を小規模に育てた痕跡はある（約2万3000年前のオハロII遺跡など）。だが農耕が社会として定着し広がるには、「来年も同じ気候だ」という前提が要る。種を播いて半年後を待つという賭けは、気候が数十年で別物になる世界では村の暮らしの土台になりにくい。<strong>完新世の安定は、農耕が始まる原因というより、農耕が持続し拡大するための条件だった。</strong></p>
-      </div>
-    </details>
-
-    <details class="fold">
-      <summary>この13万年に人類がしたこと<span class="hint">タップで開く</span></summary>
-      <div class="rows" style="border-top:none">
-        <div class="r"><div class="k"><span class="num">1</span>約7万4000年前</div><div class="v">スマトラの<b>トバ火山</b>が巨大噴火。かつては人類が絶滅寸前まで減ったとされたが、この説はいま疑問視されている</div></div>
-        <div class="r"><div class="k"><span class="num">2</span>約6万〜5万年前</div><div class="v">サピエンスが<b>アフリカの外へ大規模に拡散</b>。氷期のただなかの出来事である</div></div>
-        <div class="r"><div class="k"><span class="num">3</span>約4万5000年前</div><div class="v">ヨーロッパへ到達。約4万年前、<b>ネアンデルタールが姿を消す</b></div></div>
-        <div class="r"><div class="k"><span class="num">4</span>約3万8000年前</div><div class="v"><b>日本列島に到達。</b>後期旧石器時代が始まる</div></div>
-        <div class="r"><div class="k"><span class="num">5</span>約3万6000年前</div><div class="v">ショーヴェ洞窟の壁画。約1万7000年前にラスコー</div></div>
-        <div class="r"><div class="k"><span class="num">6</span>約2万年前</div><div class="v"><b>最終氷期最盛期。</b>海面は現在より120メートルほど低い</div></div>
-        <div class="r"><div class="k"><span class="num">7</span>約1万1700年前</div><div class="v">完新世。次の図がこの右端を拡大したものになる</div></div>
-      </div>
-    </details>
-
-    <p>この氷期のあいだ、人類は洞窟に絵を描き、船で海を渡り、大陸を横断し、日本列島にまで到達している。<strong>能力が足りなかったわけではない。足りなかったのは、気候の側の落ち着きだった。</strong></p>
-    <p class="note">白い丸の最終氷期最盛期には、海面が現在より120メートル前後低かった。ペルシア湾の大半は陸地である。<strong>南メソポタミアの湿地とデルタが今の姿に落ち着くのは、海面上昇が止まったあと</strong>──つまり第二部で見る沖積平野は、この図の右端より後にできた土地ということになる。</p>
-  </div>
-</section>
-
-<section data-part="1" data-tone="blue">
-  <div class="wrap">
-    <div class="opener">
-      <p class="part">第一部</p>
-      <p class="rule-label">ものさし 四</p>
+      <p class="rule-label">時間</p>
       <h2>2万年 ── 氷が退く</h2>
-      <p class="sub">さらにその右端を拡大する。定住と農耕が始まる瞬間が見える。</p>
+      <p class="sub">文明のすべては、この図の右半分に収まっている。定住と農耕が始まる瞬間が見える。</p>
     </div>
+
+    <p><strong>先に、この図の外側にあることを三つだけ言っておく。</strong>地球はいまも、3400万年前に始まった氷室期の内側にいる。その内側で気候は約10万年の周期で氷期と間氷期を往復し、暖かい間氷期のほうが例外である。そして直前の氷期は、寒かった以上に<strong>当てにならなかった</strong>。数十年で気温が別物になる世界では、種を播いて半年後を待つ暮らしは村の土台になりにくい。この三つを自分の目で確かめたい人は、この節の末尾で三段階に引いた図を見てほしい。</p>
+
     <figure class="chart">
       <svg viewBox="0 0 340 176" role="img" aria-label="2万年前から現在までの気温変化。ボーリング＝アレレードの温暖化とヤンガードリアスの寒の戻りを経て完新世へ。">
         <rect x="90.1" y="28" width="30.6" height="107" fill="#22604A" opacity=".4"/>
@@ -849,6 +634,222 @@
     <p><strong>1万2900年前(前10900年)、ヤンガードリアス。</strong>千二百年の寒の戻り。資源が細り、定住集団は移動に戻るか、植物に手を加えるかを迫られる。</p>
     <p><strong>1万1700年前(前9700年)、完新世。</strong>数十年で気温が跳ね上がる。以後一万年、地球はこの穏やかさを保ちつづける。</p>
     <p class="note">ただし、寒くなったから農耕が始まった、と言い切ることはできない。同じ変動を受けた地域のすべてが栽培化に向かったわけではない。気候は舞台を用意するが、台本は書かない。</p>
+    <p class="note">図の左端、約2万年前の最終氷期最盛期には、海面が現在より120メートル前後低かった。ペルシア湾の大半は陸地である。<strong>南メソポタミアの湿地とデルタが今の姿に落ち着くのは、海面上昇が止まったあと</strong>──つまり第二部で見る沖積平野は、この図の右半分に入ってからできた土地ということになる。</p>
+
+    <p class="lead-in">この2万年が、どれほど例外的な窓なのか。<strong>本線はここまでで足りる。</strong>確かめたい人のために、46億年から三段で寄ってくる図を畳んで置いておく。</p>
+    <details class="fold deep">
+      <summary>遠景 ── 46億年・80万年・13万年、三段で寄る<span class="hint">タップで開く</span></summary>
+      <div class="far">
+        <p class="rule-label">遠景 一</p>
+        <h3 class="scale">46億年 ── 五度の氷室期</h3>
+        <p class="sub">地球の標準状態は、極に氷のない「温室期」のほうである。</p>
+        <figure class="chart">
+          <svg viewBox="0 0 340 162" role="img" aria-label="上段は地球46億年の気候帯で氷室期は5回のみ。下段はその右端40分の1にあたる顕生代5億4100万年の拡大。両者は破線の補助線でつながっている。">
+            <text x="0" y="9" font-size="8.5" fill="#827E74">46億年前・地球誕生</text>
+            <text x="340" y="9" font-size="8.5" fill="#827E74" text-anchor="end">現在</text>
+            <rect x="0" y="15" width="340" height="18" fill="#DCA07E"/>
+            <rect x="162.6" y="15" width="22.2" height="18" fill="#92AFD0"/>
+            <rect x="286.8" y="15" width="6.3" height="18" fill="#92AFD0"/>
+            <rect x="306.7" y="15" width="2.3" height="18" fill="#92AFD0"/>
+            <rect x="313.4" y="15" width="7.4" height="18" fill="#92AFD0"/>
+            <rect x="337.5" y="15" width="2.5" height="18" fill="#92AFD0"/>
+            <text x="173.7" y="28" font-size="9" fill="#26251E" text-anchor="middle" font-weight="600">1</text>
+            <text x="290" y="28" font-size="7" fill="#26251E" text-anchor="middle" font-weight="600">2</text>
+            <rect x="299.1" y="13" width="40.9" height="22" fill="none" stroke="#26251E" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+
+            <path d="M299.1,35 L340,35 L340,70 L0,70 Z" fill="#26251E" fill-opacity=".06"/>
+            <line x1="299.1" y1="35" x2="0" y2="70" stroke="#26251E" stroke-width=".9" stroke-dasharray="3 3" opacity=".6"/>
+            <line x1="340" y1="35" x2="340" y2="70" stroke="#26251E" stroke-width=".9" stroke-dasharray="3 3" opacity=".6"/>
+            <text x="0" y="44" font-size="8" fill="#26251E">この右端 ── 顕生代 5億4100万年を</text>
+            <text x="0" y="55" font-size="8" fill="#827E74">下で40倍に拡大</text>
+
+            <rect x="0" y="70" width="340" height="22" fill="#DCA07E"/>
+            <rect x="57.2" y="70" width="18.8" height="22" fill="#92AFD0"/>
+            <rect x="113.8" y="70" width="62.8" height="22" fill="#92AFD0"/>
+            <rect x="318.6" y="70" width="21.4" height="22" fill="#92AFD0"/>
+            <text x="66.6" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">3</text>
+            <text x="145.2" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">4</text>
+            <text x="329.3" y="85" font-size="10" fill="#26251E" text-anchor="middle" font-weight="600">5</text>
+            <line x1="25.8" y1="92" x2="25.8" y2="97" stroke="#827E74" stroke-width="1"/>
+            <line x1="88.6" y1="92" x2="88.6" y2="97" stroke="#827E74" stroke-width="1"/>
+            <line x1="151.5" y1="92" x2="151.5" y2="97" stroke="#827E74" stroke-width="1"/>
+            <line x1="214.3" y1="92" x2="214.3" y2="97" stroke="#827E74" stroke-width="1"/>
+            <line x1="277.2" y1="92" x2="277.2" y2="97" stroke="#827E74" stroke-width="1"/>
+            <text x="25.8" y="106" font-size="8" fill="#827E74" text-anchor="middle">5億年前</text>
+            <text x="88.6" y="106" font-size="8" fill="#827E74" text-anchor="middle">4億</text>
+            <text x="151.5" y="106" font-size="8" fill="#827E74" text-anchor="middle">3億</text>
+            <text x="214.3" y="106" font-size="8" fill="#827E74" text-anchor="middle">2億</text>
+            <text x="277.2" y="106" font-size="8" fill="#827E74" text-anchor="middle">1億</text>
+            <text x="340" y="106" font-size="8" fill="#827E74" text-anchor="end">現在</text>
+            <line x1="181.6" y1="118" x2="298.5" y2="118" stroke="#827E74" stroke-width="1"/>
+            <line x1="181.6" y1="114" x2="181.6" y2="118" stroke="#827E74" stroke-width="1"/>
+            <line x1="298.5" y1="114" x2="298.5" y2="118" stroke="#827E74" stroke-width="1"/>
+            <text x="240" y="128" font-size="8.5" fill="#827E74" text-anchor="middle">恐竜の時代 ── すべて温室期</text>
+            <line x1="318.6" y1="92" x2="318.6" y2="138" stroke="#6E8FB6" stroke-width="1"/>
+            <text x="340" y="147" font-size="8.5" fill="#26251E" text-anchor="end">3400万年前 ── 南極に氷床。いまの氷室期</text>
+            <text x="340" y="157" font-size="8" fill="#827E74" text-anchor="end">サピエンス30万年は、この帯の右端の線の内側</text>
+          </svg>
+          <div class="keys">
+            <span><i style="background:#92AFD0"></i>氷室期(極に恒久的な氷がある)</span>
+            <span><i style="background:#DCA07E"></i>温室期(極に氷がない)</span>
+          </div>
+        </figure>
+
+        <details class="fold">
+          <summary>五度の氷河時代 ── それぞれの中身<span class="hint">タップで開く</span></summary>
+          <div class="roster">
+            <div class="row"><div class="n">1</div><div>
+              <h3>ヒューロニアン氷河時代</h3><p class="span">24億〜21億年前 ／ 約3億年</p>
+              <p>大酸化イベントで大気のメタンが失われ、温室効果が急落した。</p></div></div>
+            <div class="row"><div class="n">2</div><div>
+              <h3>クリオジェニアン氷河時代</h3><p class="span">7億2000万〜6億3500万年前 ／ 約8500万年</p>
+              <p>赤道まで凍りついた可能性のあるスノーボールアース。</p></div></div>
+            <div class="row"><div class="n">3</div><div>
+              <h3>アンデス・サハラ氷河時代</h3><p class="span">4億5000万〜4億2000万年前 ／ 約3000万年</p>
+              <p>ゴンドワナ大陸が南極点付近へ。五度のうち最も短い。</p></div></div>
+            <div class="row"><div class="n">4</div><div>
+              <h3>カルー氷河時代</h3><p class="span">3億6000万〜2億6000万年前 ／ 約1億年</p>
+              <p>陸上植物が繁栄して埋没し、二酸化炭素が引き下げられた。石炭はこのときの遺産。</p></div></div>
+            <div class="row"><div class="n">5</div><div>
+              <h3>新生代後期氷河時代 ── 現在</h3><p class="span">3400万年前〜継続中</p>
+              <p>南極大陸の孤立と二酸化炭素の長期的な低下。私たちはこの内側にいる。</p></div></div>
+          </div>
+        </details>
+        <p class="tally" style="margin:0 0 1.2rem">五度を合計しても約5億5000万年。地球史46億年の、およそ12パーセントにすぎない。</p>
+        <p><strong>ここが起点になる。</strong>私たちは氷河時代が終わった世界に住んでいるのではない。3400万年前に始まった氷室期の内側に、いまも入ったままである。</p>
+      </div>
+      <div class="far">
+        <p class="rule-label">遠景 二</p>
+        <h3 class="scale">80万年 ── 氷期と間氷期</h3>
+        <p class="sub">氷室期の内側では、気候がのこぎりの歯のように振動している。</p>
+        <figure class="chart">
+          <svg viewBox="0 0 340 152" role="img" aria-label="過去80万年の氷期・間氷期サイクル。約10万年周期の鋸歯状変動。右端が完新世。">
+            <line x1="0" y1="45" x2="340" y2="45" stroke="#D3CEC4" stroke-width="1" stroke-dasharray="2 3"/>
+            <text x="0" y="41" font-size="8" fill="#827E74">間氷期の水準</text>
+            <rect x="284.7" y="26" width="55.3" height="94" fill="#6E8FB6" opacity=".13"/>
+            <rect x="335" y="30" width="5" height="85" fill="#6E8FB6" opacity=".55"/>
+            <rect x="284.7" y="26" width="55.3" height="94" fill="none" stroke="#26251E" stroke-width="1" stroke-dasharray="2.5 2.5"/>
+            <polyline fill="none" stroke="#26251E" stroke-width="1.6" stroke-linejoin="round"
+              points="0,115 5.5,45 18,62 36.1,115 42.5,45 56,70 72.3,115 80.8,45 96,68 110,92 119,115 127.5,45 140,72 150,95 157.3,115 167.9,45 178,70 186,95 193.4,115 199.8,45 212,68 222,92 231.6,115 238,45 252,64 262,84 272,100 280.5,115 286.9,45 295.4,70 306,85 314.5,95 323,105 329.4,113 331.5,115 335.3,48 340,44"/>
+            <line x1="283" y1="38" x2="288" y2="44" stroke="#6E8FB6" stroke-width="1"/>
+            <text x="280" y="36" font-size="8.5" fill="#827E74" text-anchor="end">前回の間氷期 12万5000年前</text>
+            <text x="240" y="17" font-size="8.5" fill="#C0763C" text-anchor="end">サピエンスの世界拡散 6万〜5万年前</text>
+            <polyline fill="none" stroke="#C0763C" stroke-width="1" points="243,14 316,14 316,90"/>
+            <circle cx="316" cy="97" r="3.4" fill="#C0763C" stroke="#26251E" stroke-width="1"/>
+            <circle cx="331.5" cy="115" r="6" fill="none" stroke="#26251E" stroke-width="1" opacity=".45"/>
+            <circle cx="331.5" cy="115" r="3.4" fill="#FFFDFC" stroke="#26251E" stroke-width="1.2"/>
+            <line x1="0" y1="120" x2="340" y2="120" stroke="#D3CEC4" stroke-width="1"/>
+            <line x1="0" y1="120" x2="0" y2="125" stroke="#827E74" stroke-width="1"/>
+            <line x1="85" y1="120" x2="85" y2="125" stroke="#827E74" stroke-width="1"/>
+            <line x1="170" y1="120" x2="170" y2="125" stroke="#827E74" stroke-width="1"/>
+            <line x1="255" y1="120" x2="255" y2="125" stroke="#827E74" stroke-width="1"/>
+            <line x1="340" y1="120" x2="340" y2="125" stroke="#827E74" stroke-width="1"/>
+            <text x="0" y="135" font-size="8" fill="#827E74">80万年前</text>
+            <text x="85" y="135" font-size="8" fill="#827E74" text-anchor="middle">60万</text>
+            <text x="170" y="135" font-size="8" fill="#827E74" text-anchor="middle">40万</text>
+            <text x="255" y="135" font-size="8" fill="#827E74" text-anchor="middle">20万</text>
+            <text x="340" y="135" font-size="8" fill="#827E74" text-anchor="end">現在</text>
+            <text x="340" y="148" font-size="8" fill="#26251E" text-anchor="end">破線の内側＝13万年 ── 下の図で拡大</text>
+          </svg>
+          <figcaption><strong>白い丸</strong>が最終氷期最盛期(約2万年前＝前18000年頃)、<strong>橙の丸</strong>がサピエンスの世界拡散。いちばん右の細い帯が完新世で、その1万1700年に文明のすべてが入る。ゆっくり冷え、急に暖まる非対称な形は、氷床の成長が遅く崩壊が速いことによる。</figcaption>
+        </figure>
+        <p>のこぎりの歯が8つ並んでいる。1つが約10万年で、これが氷期と間氷期の一周にあたる。<strong>破線で囲った右端の13万年が、次の図で拡大する範囲</strong>になる。前回の間氷期と、今の完新世の両方が入っている。</p>
+      </div>
+      <div class="far">
+        <p class="rule-label">遠景 三</p>
+        <h3 class="scale">13万年 ── 間氷期から、間氷期へ</h3>
+        <p class="sub">前の図で破線に囲まれていた範囲を、そのまま拡大する。ここで分かるのは、氷期が寒かったことではなく、<strong>当てにならなかった</strong>ことである。</p>
+        <figure class="chart">
+          <svg viewBox="0 0 340 186" role="img" aria-label="13万年前から現在までの気温変化。前回の間氷期エーミアンのあと氷期に落ち、約10万年にわたって数十年単位の激しい上下を繰り返し、最終氷期最盛期を経て完新世に入る。下段に人類の出来事を1から7の番号で示す。">
+            <rect x="0" y="35" width="39" height="90" fill="#6E8FB6" opacity=".14"/>
+            <rect x="309.6" y="35" width="30.4" height="90" fill="#6E8FB6" opacity=".14"/>
+
+            <text x="190" y="17" font-size="8.5" fill="#2E5F9E" text-anchor="middle">ダンスガード・オシュガー・サイクル</text>
+            <line x1="45" y1="26" x2="295" y2="26" stroke="#6E8FB6" stroke-width=".9"/>
+            <line x1="45" y1="26" x2="45" y2="31" stroke="#6E8FB6" stroke-width=".9"/>
+            <line x1="295" y1="26" x2="295" y2="31" stroke="#6E8FB6" stroke-width=".9"/>
+
+            <polyline fill="none" stroke="#26251E" stroke-width="1.5" stroke-linejoin="round"
+              points="0,46 5,42 13,40 24,42 32,50 39,74 46,62 52,88 60,66 68,92 76,70 84,95 92,72 100,98 108,76 116,100 124,80 132,104 140,84 146,112 152,82 160,105 168,84 176,106 183,86 192,108 200,88 209,104 216,90 222,84 230,108 238,92 246,110 254,94 262,112 270,116 280,118 288,120 291,118 296,114 301,110 301.8,62 304,60 306,66 306.6,102 309,104 309.6,50 316,46 330,44 340,42"/>
+
+            <line x1="18" y1="94" x2="16" y2="46" stroke="#6E8FB6" stroke-width=".9"/>
+            <text x="2" y="104" font-size="8.5" fill="#26251E">最終間氷期</text>
+            <text x="2" y="114" font-size="8.5" fill="#827E74">（エーミアン）</text>
+            <text x="2" y="124" font-size="7.5" fill="#827E74">13万年前</text>
+
+            <circle cx="288" cy="120" r="6" fill="none" stroke="#26251E" stroke-width="1" opacity=".45"/>
+            <circle cx="288" cy="120" r="3.4" fill="#FFFDFC" stroke="#26251E" stroke-width="1.2"/>
+            <text x="272" y="131" font-size="8" fill="#26251E" text-anchor="end">最終氷期最盛期</text>
+
+            <line x1="330" y1="37" x2="322" y2="45" stroke="#6E8FB6" stroke-width=".9"/>
+            <text x="338" y="34" font-size="8.5" fill="#26251E" text-anchor="end">完新世</text>
+
+            <g stroke="#C0763C" stroke-width=".7" stroke-dasharray="1.5 2" opacity=".55">
+              <line x1="146.5" y1="134" x2="146.5" y2="111"/>
+              <line x1="196" y1="134" x2="196" y2="100"/>
+              <line x1="222" y1="134" x2="222" y2="86"/>
+              <line x1="236" y1="134" x2="236" y2="98"/>
+              <line x1="249" y1="134" x2="249" y2="106"/>
+              <line x1="287.7" y1="134" x2="287.7" y2="128"/>
+              <line x1="309.4" y1="134" x2="309.4" y2="108"/>
+            </g>
+            <rect x="183.1" y="138.5" width="26.1" height="3" fill="#C0763C" opacity=".5"/>
+            <g font-weight="600" text-anchor="middle">
+              <circle cx="146.5" cy="140" r="5.6" fill="#C0763C"/><text x="146.5" y="142.6" font-size="7.5" fill="#26251E">1</text>
+              <circle cx="196" cy="140" r="5.6" fill="#C0763C"/><text x="196" y="142.6" font-size="7.5" fill="#26251E">2</text>
+              <circle cx="222" cy="140" r="5.6" fill="#C0763C"/><text x="222" y="142.6" font-size="7.5" fill="#26251E">3</text>
+              <circle cx="236" cy="140" r="5.6" fill="#C0763C"/><text x="236" y="142.6" font-size="7.5" fill="#26251E">4</text>
+              <circle cx="249" cy="140" r="5.6" fill="#C0763C"/><text x="249" y="142.6" font-size="7.5" fill="#26251E">5</text>
+              <circle cx="287.7" cy="140" r="5.6" fill="#C0763C"/><text x="287.7" y="142.6" font-size="7.5" fill="#26251E">6</text>
+              <circle cx="309.4" cy="140" r="5.6" fill="#C0763C"/><text x="309.4" y="142.6" font-size="7.5" fill="#26251E">7</text>
+            </g>
+
+            <line x1="0" y1="158" x2="340" y2="158" stroke="#D3CEC4" stroke-width="1"/>
+            <line x1="0" y1="158" x2="0" y2="163" stroke="#827E74" stroke-width="1"/>
+            <line x1="78.5" y1="158" x2="78.5" y2="163" stroke="#827E74" stroke-width="1"/>
+            <line x1="143.8" y1="158" x2="143.8" y2="163" stroke="#827E74" stroke-width="1"/>
+            <line x1="209.2" y1="158" x2="209.2" y2="163" stroke="#827E74" stroke-width="1"/>
+            <line x1="274.6" y1="158" x2="274.6" y2="163" stroke="#827E74" stroke-width="1"/>
+            <line x1="340" y1="158" x2="340" y2="163" stroke="#827E74" stroke-width="1"/>
+            <text x="0" y="173" font-size="8" fill="#827E74">13万年前</text>
+            <text x="78.5" y="173" font-size="8" fill="#827E74" text-anchor="middle">10万</text>
+            <text x="143.8" y="173" font-size="8" fill="#827E74" text-anchor="middle">7.5万</text>
+            <text x="209.2" y="173" font-size="8" fill="#827E74" text-anchor="middle">5万</text>
+            <text x="274.6" y="173" font-size="8" fill="#827E74" text-anchor="middle">2.5万</text>
+            <text x="340" y="173" font-size="8" fill="#827E74" text-anchor="end">現在</text>
+            <text x="340" y="185" font-size="7.5" fill="#827E74" text-anchor="end">橙の番号は下の一覧に対応（位置は目安）</text>
+          </svg>
+          <figcaption>両端の淡い帯が間氷期。左が前回のエーミアン、右がいまの完新世。あいだの約10万年は、寒いだけでなく、絶えず揺れている。白い丸が最終氷期最盛期。</figcaption>
+        </figure>
+
+        <details class="fold">
+          <summary>解説 ── エーミアン期と、気候の乱高下<span class="hint">タップで開く</span></summary>
+          <div class="foldbody">
+            <p><strong>13万〜11.5万年前、前回の間氷期。</strong>エーミアン期と呼ばれる。いまより少し暖かく、海面は現在より6〜9メートル高かった。ヨーロッパにはカバやゾウがいた。そして11.5万年前、氷期へ落ちる。</p>
+            <p class="note">図の幅は13万年だが、氷期そのものは11.5万年前から1万1700年前までの<strong>約10万年</strong>である。両端の淡い帯が間氷期で、あいだの暗い部分が氷期だと思えばよい。</p>
+            <p>この一周のうち、<strong>氷期がおよそ9万年から10万年、間氷期はせいぜい1万年から3万年。</strong>寒いのが常態で、暖かいほうが例外である。サピエンスが世界へ拡散したのは、この図のちょうど真ん中あたり──氷期のただなかだった。</p>
+            <p><strong>ここからが本題である。</strong>その約10万年の氷期について覚えておくべきなのは、寒かったことではない。<strong>当てにならなかったこと</strong>だ。</p>
+            <p>グリーンランドの氷床コアには、<strong>数十年のうちに気温が10℃前後も跳ね上がり、そのあと数百年かけてゆっくり冷えていく</strong>という変動が、25回ほど記録されている。ダンスガード・オシュガー・サイクルという。おおよそ1500年前後の間隔だが、その規則性がどこまで確かかは議論が続いている。図のぎざぎざが、それである。</p>
+            <p>これが第一部の結論を一段深くする。氷期にも野生の穀物を小規模に育てた痕跡はある（約2万3000年前のオハロII遺跡など）。だが農耕が社会として定着し広がるには、「来年も同じ気候だ」という前提が要る。種を播いて半年後を待つという賭けは、気候が数十年で別物になる世界では村の暮らしの土台になりにくい。<strong>完新世の安定は、農耕が始まる原因というより、農耕が持続し拡大するための条件だった。</strong></p>
+          </div>
+        </details>
+
+        <details class="fold">
+          <summary>この13万年に人類がしたこと<span class="hint">タップで開く</span></summary>
+          <div class="rows" style="border-top:none">
+            <div class="r"><div class="k"><span class="num">1</span>約7万4000年前</div><div class="v">スマトラの<b>トバ火山</b>が巨大噴火。かつては人類が絶滅寸前まで減ったとされたが、この説はいま疑問視されている</div></div>
+            <div class="r"><div class="k"><span class="num">2</span>約6万〜5万年前</div><div class="v">サピエンスが<b>アフリカの外へ大規模に拡散</b>。氷期のただなかの出来事である</div></div>
+            <div class="r"><div class="k"><span class="num">3</span>約4万5000年前</div><div class="v">ヨーロッパへ到達。約4万年前、<b>ネアンデルタールが姿を消す</b></div></div>
+            <div class="r"><div class="k"><span class="num">4</span>約3万8000年前</div><div class="v"><b>日本列島に到達。</b>後期旧石器時代が始まる</div></div>
+            <div class="r"><div class="k"><span class="num">5</span>約3万6000年前</div><div class="v">ショーヴェ洞窟の壁画。約1万7000年前にラスコー</div></div>
+            <div class="r"><div class="k"><span class="num">6</span>約2万年前</div><div class="v"><b>最終氷期最盛期。</b>海面は現在より120メートルほど低い</div></div>
+            <div class="r"><div class="k"><span class="num">7</span>約1万1700年前</div><div class="v">完新世。本文の「2万年」の図が、この右端を拡大したものにあたる</div></div>
+          </div>
+        </details>
+
+        <p>この氷期のあいだ、人類は洞窟に絵を描き、船で海を渡り、大陸を横断し、日本列島にまで到達している。<strong>能力が足りなかったわけではない。足りなかったのは、気候の側の落ち着きだった。</strong></p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -949,6 +950,13 @@
         <span class="s"><i style="background:var(--rg-aeg)">12</i>ティリンス<span class="star">★</span></span>
       </div>
     </div>
+    <details class="fold">
+      <summary>「テル」という言葉 ── 遺跡名の「テル」は、人工の丘のこと<span class="hint">タップで開く</span></summary>
+      <div class="foldbody">
+        <p>同じ場所で建物を壊し、均し、その上へ何世代も建て直すと、建材・灰・土器・生活の廃棄物が積み重なって人工の丘になる。これが<strong>テル(遺丘)</strong>で、日干煉瓦を多用した西アジアでとくに発達しやすい。「テル・ルメイラ」「テル・レヘシュ」の「テル」がそれである。地名がそのまま地層の名前になっている。「VI層の住居」という言い方も、この丘を上から掘り下げて数えた層の番号を指す。</p>
+        <p>逆にエジプトは石が豊富だったので、ピラミッドも石造神殿も実物が残った。<strong>建材の差が、残るものの差になっている。</strong>今回メソポタミアが模型で見せられるのは、実物が泥に還ってしまったからでもある。</p>
+      </div>
+    </details>
 
     <h3 class="blk">地形の骨格 ── 文明の配置は、ぜんぶこの地形への返事</h3>
     <p>都市も国も、まず山と川と砂漠の隙間に置かれる。同じ枠から人間の線を消して、自然だけを残すとこうなる。</p>
@@ -1009,44 +1017,78 @@
     <figure class="chart map">
       <svg viewBox="0 0 340 250" role="img" aria-label="古代オリエントの主要都市の位置。五地域ごとに色分け。">
         <rect x="0" y="0" width="340" height="250" fill="#F1EEE6"/>
-        <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#C9D8EA"/>
-        <path d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#C9D8EA"/>
-        <path d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#C9D8EA"/>
-        <path d="M98,143 L112,146 L155,250 L128,250 Z" fill="#C9D8EA"/>
-        <path d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#C9D8EA"/>
-        <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.2"/>
-        <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.2"/>
-        <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
-        <text x="50" y="92" font-size="9" fill="#5A5852">地中海</text>
-        <text x="118" y="31" font-size="8.5" fill="#5A5852" text-anchor="middle">黒海</text>
-        <text x="268" y="54" font-size="8.5" fill="#5A5852" text-anchor="middle">カスピ海</text>
-        <text x="243" y="196" font-size="8.5" fill="#5A5852">ペルシア湾</text>
-        <text x="131" y="224" font-size="8.5" fill="#5A5852" text-anchor="middle">紅海</text>
-        <circle cx="66" cy="44" r="2.2" fill="#22604A"/><text x="62" y="41" font-size="7.5" fill="#26251E" text-anchor="end">トロイ</text>
-        <circle cx="72" cy="58" r="2.2" fill="#22604A"/><text x="68" y="61" font-size="7.5" fill="#26251E" text-anchor="end">サルディス</text>
-        <circle cx="118" cy="52" r="2.2" fill="#22604A"/><text x="122" y="50" font-size="7.5" fill="#26251E" text-anchor="start">ハットゥシャ</text>
-        <circle cx="100" cy="70" r="2.2" fill="#22604A"/><text x="104" y="79" font-size="7.5" fill="#26251E" text-anchor="start">チャタル・ヒュユク</text>
-        <circle cx="150" cy="70" r="2.2" fill="#22604A"/><text x="154" y="68" font-size="7.5" fill="#26251E" text-anchor="start">ギョベクリ・テペ</text>
-        <circle cx="122" cy="86" r="2.2" fill="#2E5F9E"/><text x="118" y="89" font-size="7.5" fill="#26251E" text-anchor="end">ウガリト</text>
-        <circle cx="140" cy="84" r="2.2" fill="#2E5F9E"/><text x="144" y="87" font-size="7.5" fill="#26251E" text-anchor="start">アレッポ</text>
-        <circle cx="121" cy="100" r="2.2" fill="#2E5F9E"/><text x="117" y="103" font-size="7.5" fill="#26251E" text-anchor="end">ビブロス</text>
-        <circle cx="136" cy="110" r="2.2" fill="#2E5F9E"/><text x="140" y="113" font-size="7.5" fill="#26251E" text-anchor="start">ダマスクス</text>
-        <circle cx="152" cy="106" r="2.2" fill="#2E5F9E"/><text x="156" y="104" font-size="7.5" fill="#26251E" text-anchor="start">パルミラ</text>
-        <circle cx="121" cy="114" r="2.2" fill="#2E5F9E"/><text x="117" y="117" font-size="7.5" fill="#26251E" text-anchor="end">ティルス</text>
-        <circle cx="128" cy="127" r="2.2" fill="#2E5F9E"/><text x="132" y="131" font-size="7.5" fill="#26251E" text-anchor="start">エルサレム</text>
-        <circle cx="160" cy="90" r="2.2" fill="#94421C"/><text x="156" y="95" font-size="7.5" fill="#26251E" text-anchor="end">マリ</text>
-        <circle cx="192" cy="78" r="2.2" fill="#94421C"/><text x="196" y="77" font-size="7.5" fill="#26251E" text-anchor="start">ニネヴェ</text>
-        <circle cx="188" cy="88" r="2.2" fill="#94421C"/><text x="192" y="92" font-size="7.5" fill="#26251E" text-anchor="start">アッシュル</text>
-        <circle cx="200" cy="118" r="2.2" fill="#94421C"/><text x="204" y="117" font-size="7.5" fill="#26251E" text-anchor="start">バビロン</text>
-        <circle cx="208" cy="134" r="2.2" fill="#94421C"/><text x="204" y="137" font-size="7.5" fill="#26251E" text-anchor="end">ウルク</text>
-        <circle cx="216" cy="142" r="2.2" fill="#94421C"/><text x="220" y="146" font-size="7.5" fill="#26251E" text-anchor="start">ウル</text>
-        <circle cx="98" cy="140" r="2.2" fill="#7A5C0E"/><text x="94" y="143" font-size="7.5" fill="#26251E" text-anchor="end">メンフィス</text>
-        <circle cx="97" cy="164" r="2.2" fill="#7A5C0E"/><text x="101" y="167" font-size="7.5" fill="#26251E" text-anchor="start">アマルナ</text>
-        <circle cx="99" cy="183" r="2.2" fill="#7A5C0E"/><text x="103" y="186" font-size="7.5" fill="#26251E" text-anchor="start">テーベ</text>
-        <circle cx="240" cy="138" r="2.2" fill="#59418C"/><text x="244" y="137" font-size="7.5" fill="#26251E" text-anchor="start">スーサ</text>
-        <circle cx="252" cy="104" r="2.2" fill="#59418C"/><text x="256" y="107" font-size="7.5" fill="#26251E" text-anchor="start">エクバタナ</text>
-        <circle cx="270" cy="154" r="2.2" fill="#59418C"/><text x="274" y="158" font-size="7.5" fill="#26251E" text-anchor="start">ペルセポリス</text>
-        <circle cx="16" cy="64" r="2.2" fill="#6E6A5E"/><text x="2" y="77" font-size="7.5" fill="#26251E" text-anchor="start">ティリンス</text>
+        <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#CBD8E8"/>
+        <path d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#CBD8E8"/>
+        <path d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#CBD8E8"/>
+        <path d="M98,143 L112,146 L155,250 L128,250 Z" fill="#CBD8E8"/>
+        <path d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#CBD8E8"/>
+        <path d="M62,40 L186,36 L190,72 L150,86 L92,80 L58,66 Z" fill="#22604A" opacity=".09"/>
+        <path d="M118,80 L142,80 L156,104 L154,114 L142,140 L120,140 Z" fill="#2E5F9E" opacity=".09"/>
+        <path d="M152,66 L198,70 L226,120 L222,148 L192,140 L160,104 Z" fill="#94421C" opacity=".09"/>
+        <path d="M80,132 L116,134 L114,216 L84,214 Z" fill="#7A5C0E" opacity=".09"/>
+        <path d="M228,76 L300,84 L304,162 L246,162 L224,120 Z" fill="#59418C" opacity=".09"/>
+        <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#95B1C8" stroke-width="2.2"/>
+        <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#95B1C8" stroke-width="2.2"/>
+        <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#95B1C8" stroke-width="2.4"/>
+        <text x="50" y="92" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="start">地中海</text>
+        <text x="118" y="31" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">黒海</text>
+        <text x="268" y="54" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">カスピ海</text>
+        <text x="243" y="196" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="start">ペルシア湾</text>
+        <text x="131" y="224" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">紅海</text>
+        <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+          <text x="62" y="41" text-anchor="end">トロイ</text>
+          <text x="68" y="61" text-anchor="end">サルディス</text>
+          <text x="122" y="50" text-anchor="start">ハットゥシャ</text>
+          <text x="100" y="80" text-anchor="middle">チャタル・ヒュユク</text>
+          <text x="146" y="64" text-anchor="end">ギョベクリ・テペ</text>
+          <text x="118" y="89" text-anchor="end">ウガリト</text>
+          <text x="144" y="86" text-anchor="start">アレッポ</text>
+          <text x="117" y="103" text-anchor="end">ビブロス</text>
+          <text x="140" y="118" text-anchor="start">ダマスクス</text>
+          <text x="156" y="105" text-anchor="start">パルミラ</text>
+          <text x="117" y="117" text-anchor="end">ティルス</text>
+          <text x="132" y="131" text-anchor="start">エルサレム</text>
+          <text x="164" y="93" text-anchor="start">マリ</text>
+          <text x="196" y="77" text-anchor="start">ニネヴェ</text>
+          <text x="192" y="92" text-anchor="start">アッシュル</text>
+          <text x="204" y="117" text-anchor="start">バビロン</text>
+          <text x="204" y="137" text-anchor="end">ウルク</text>
+          <text x="220" y="146" text-anchor="start">ウル</text>
+          <text x="94" y="143" text-anchor="end">メンフィス</text>
+          <text x="101" y="167" text-anchor="start">アマルナ</text>
+          <text x="103" y="186" text-anchor="start">テーベ</text>
+          <text x="244" y="137" text-anchor="start">スーサ</text>
+          <text x="256" y="107" text-anchor="start">エクバタナ</text>
+          <text x="274" y="158" text-anchor="start">ペルセポリス</text>
+          <text x="2" y="73" text-anchor="start">ティリンス</text>
+        </g>
+        <g stroke="#F1EEE6" stroke-width="1">
+          <circle cx="66" cy="44" r="2.4" fill="#22604A"/>
+          <circle cx="72" cy="58" r="2.4" fill="#22604A"/>
+          <circle cx="118" cy="52" r="2.4" fill="#22604A"/>
+          <circle cx="100" cy="70" r="2.4" fill="#22604A"/>
+          <circle cx="150" cy="70" r="2.4" fill="#22604A"/>
+          <circle cx="122" cy="86" r="2.4" fill="#2E5F9E"/>
+          <circle cx="140" cy="84" r="2.4" fill="#2E5F9E"/>
+          <circle cx="121" cy="100" r="2.4" fill="#2E5F9E"/>
+          <circle cx="136" cy="110" r="2.4" fill="#2E5F9E"/>
+          <circle cx="152" cy="106" r="2.4" fill="#2E5F9E"/>
+          <circle cx="121" cy="114" r="2.4" fill="#2E5F9E"/>
+          <circle cx="128" cy="127" r="2.4" fill="#2E5F9E"/>
+          <circle cx="160" cy="90" r="2.4" fill="#94421C"/>
+          <circle cx="192" cy="78" r="2.4" fill="#94421C"/>
+          <circle cx="188" cy="88" r="2.4" fill="#94421C"/>
+          <circle cx="200" cy="118" r="2.4" fill="#94421C"/>
+          <circle cx="208" cy="134" r="2.4" fill="#94421C"/>
+          <circle cx="216" cy="142" r="2.4" fill="#94421C"/>
+          <circle cx="98" cy="140" r="2.4" fill="#7A5C0E"/>
+          <circle cx="97" cy="164" r="2.4" fill="#7A5C0E"/>
+          <circle cx="99" cy="183" r="2.4" fill="#7A5C0E"/>
+          <circle cx="240" cy="138" r="2.4" fill="#59418C"/>
+          <circle cx="252" cy="104" r="2.4" fill="#59418C"/>
+          <circle cx="270" cy="154" r="2.4" fill="#59418C"/>
+          <circle cx="16" cy="64" r="2.4" fill="#6E6A5E"/>
+        </g>
       </svg>
       <figcaption>本文に登場する主な都市（色は五地域）。位置は模式。同じ都市名が第三部・第六部で繰り返し出てくるので、ここで「どのあたりか」を一度おさえておくと、以後の年表が地図の上で動きだす。</figcaption>
     </figure>
@@ -1060,9 +1102,6 @@
       <div class="r"><div class="k" style="color:var(--rg-lev)">地中海東岸</div><div class="v">シリア・レバノン・イスラエル・ヨルダン。<b>カナン、フェニキア、アラム諸国、古代イスラエル</b>。大帝国に挟まれた回廊で、常に通り道であり戦場だった。今回の展示ではシリアの二遺跡とテル・レヘシュ、パルミラがここ。</div></div>
       <div class="r"><div class="k" style="color:var(--rg-irn)">イラン高原</div><div class="v">現在のイラン。<b>エラム、メディア、アケメネス朝ペルシア</b>。メソポタミアの東隣として最初期から交流があり、最後にその全体を呑み込む。</div></div>
     </div>
-    <h3 class="blk">「テル」という言葉</h3>
-    <p>同じ場所で建物を壊し、均し、その上へ何世代も建て直すと、建材・灰・土器・生活の廃棄物が積み重なって人工の丘になる。これが<strong>テル(遺丘)</strong>で、日干煉瓦を多用した西アジアでとくに発達しやすい。「テル・ルメイラ」「テル・レヘシュ」の「テル」がそれである。地名がそのまま地層の名前になっている。「VI層の住居」という言い方も、この丘を上から掘り下げて数えた層の番号を指す。</p>
-    <p>逆にエジプトは石が豊富だったので、ピラミッドも石造神殿も実物が残った。<strong>建材の差が、残るものの差になっている。</strong>今回メソポタミアが模型で見せられるのは、実物が泥に還ってしまったからでもある。</p>
   </div>
 </section>
 
