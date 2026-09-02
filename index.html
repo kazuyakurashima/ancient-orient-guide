@@ -271,9 +271,9 @@
   figure.chart{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-feat);
     padding:26px 24px 22px}
   figcaption{font-size:.84rem;line-height:1.75;color:var(--muted);margin-top:1rem}
-  /* ---- 地図・写真の拡大表示 ---- */
-  figure.chart.map{position:relative;cursor:zoom-in;padding-top:2.4rem}
-  figure.chart.map:after{content:"⤢ タップで拡大";position:absolute;right:.9rem;top:.7rem;font-size:.68rem;color:var(--muted);
+  /* ---- 地図・図版・写真の拡大表示 ---- */
+  figure.chart.map,figure.chart.zoom{position:relative;cursor:zoom-in;padding-top:2.4rem}
+  figure.chart.map:after,figure.chart.zoom:after{content:"⤢ タップで拡大";position:absolute;right:.9rem;top:.7rem;font-size:.68rem;color:var(--muted);
     background:var(--canvas);padding:.16rem .5rem;border-radius:999px;border:1px solid var(--hairline);pointer-events:none;opacity:.9}
   figure.photo img{cursor:zoom-in}
   #lb{position:fixed;inset:0;z-index:200;background:rgba(20,26,34,.94);display:none;flex-direction:column;
@@ -549,6 +549,8 @@
       padding:1.05rem 1.1rem 1.05rem 3.1rem;text-indent:-2rem}
     details.fold>summary:before{display:inline-flex;vertical-align:.12em;margin-right:.6rem;text-indent:0}
     .foldbody{padding:1.2rem 1.1rem .5rem}
+    /* 折りたたみの中の図版は横幅がとくに苦しいので、左右の余白を詰める */
+    .foldbody figure.chart{padding-left:12px;padding-right:12px}
     details.fold .roster,details.fold .rows{padding:0 1.1rem}
     details.fold>summary .hint{display:block;text-align:right;margin:.3rem 0 0;text-indent:0}
   }
@@ -2901,7 +2903,7 @@
     <details class="fold">
       <summary>図 ── 建材の階段<span class="hint">タップで開く</span></summary>
       <div class="foldbody">
-        <figure class="chart" style="margin-top:.2rem">
+        <figure class="chart zoom" style="margin-top:.2rem">
           <svg viewBox="0 0 680 168" role="img" aria-label="建材の階段。泥と葦から日干煉瓦、焼成煉瓦、釉薬煉瓦へ。別系統としてエジプトの石。">
         <text x="40" y="22" font-size="10.5" fill="#827E74">メソポタミア路線 ── 泥がだんだん硬く、高価になる</text>
         <rect x="40" y="86" width="130" height="30" fill="#EBDCCB"/>
@@ -2939,7 +2941,7 @@
     <details class="fold">
       <summary>図 ── 「積む」の記録、高さくらべ<span class="hint">タップで開く</span></summary>
       <div class="foldbody">
-        <figure class="chart" style="margin-top:.2rem">
+        <figure class="chart zoom" style="margin-top:.2rem">
           <svg viewBox="0 0 680 208" role="img" aria-label="巨大建築の高さの比較。前2560年のクフ王ピラミッド147mが最も高く、以後この展示の時代内では超えられない。">
         <line x1="36" y1="60" x2="644" y2="60" stroke="#94421C" stroke-width="1" stroke-dasharray="3 4"/>
         <text x="644" y="52" font-size="9.5" fill="#94421C" text-anchor="end">この線は、以後およそ3800年間 破られない</text>
@@ -3243,7 +3245,7 @@
     lb.querySelector('.lb-body').scrollTop=0;
   }
   function close(){lb.classList.remove('on');document.body.style.overflow='';stage.innerHTML='';}
-  document.querySelectorAll('figure.chart.map').forEach(function(f){
+  document.querySelectorAll('figure.chart.map,figure.chart.zoom').forEach(function(f){
     var svg=f.querySelector('svg');if(!svg)return;
     f.addEventListener('click',function(e){if(e.target.closest('a'))return;open(f,svg);});
   });
