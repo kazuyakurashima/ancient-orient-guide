@@ -343,6 +343,7 @@
   details.fold[open]>summary:before{content:"−"}
   details.fold>summary .hint{margin-left:auto;font-size:.78rem;font-weight:400;color:var(--muted)}
   details.fold[open]>summary{border-bottom:1px solid var(--hairline)}
+  details.fold[open]>summary .hint{display:none}
   details.fold .roster,details.fold .rows{margin:0;border-top:none}
   details.fold .roster .row:last-child,details.fold .rows .r:last-child{border-bottom:none}
   .foldbody{padding:1.4rem 1.4rem .6rem}
@@ -544,11 +545,12 @@
   details.fold+h3.blk{margin-top:3rem}
   @media (max-width:47.99rem){
     /* 狭い画面では「タップで開く」を次の行へ送り、見出しの幅を確保する */
-    details.fold>summary{display:block;padding:1.05rem 1.1rem;line-height:1.75}
-    details.fold>summary:before{display:inline-flex;vertical-align:.12em;margin-right:.6rem}
+    details.fold>summary{display:block;line-height:1.75;
+      padding:1.05rem 1.1rem 1.05rem 3.1rem;text-indent:-2rem}
+    details.fold>summary:before{display:inline-flex;vertical-align:.12em;margin-right:.6rem;text-indent:0}
     .foldbody{padding:1.2rem 1.1rem .5rem}
     details.fold .roster,details.fold .rows{padding:0 1.1rem}
-    details.fold>summary .hint{display:block;text-align:right;margin:.3rem 0 0}
+    details.fold>summary .hint{display:block;text-align:right;margin:.3rem 0 0;text-indent:0}
   }
 </style>
 </head>
