@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="メソポタミア・エジプト・アナトリア・地中海東岸・イラン高原 ── 五つの世界の一万年を、時間・空間・文明・神・言語・建築の六つの見方でたどる読み物。年表と、博物館で使う四つの問いつき。自作の地図・図版41点。古代オリエント博物館の展示を見る前後の下地として。">
+<meta name="description" content="メソポタミア・エジプト・アナトリア・地中海東岸・イラン高原 ── 五つの世界の一万年を、時間・空間・文明・神・言語・建築の六つの見方でたどる読み物。統合年表つき。自作の地図・図版41点。古代オリエント博物館の展示を見る前後の下地として。">
 <meta name="theme-color" content="#F7F5EF">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
@@ -74,51 +74,17 @@
   [data-part="7"]{--depth:#DBD6C9;--depth-ink:#575243;
     --tone:#C6C0B0;--tone-tint:#F0EEE7;--tone-ink:#575243;--tone-deep:#38342B}
 
-  /* 最深部 ── 釉薬。第七部から末尾までを暗転させる */
-  [data-part="8"]{background:#22384F;
+  /* 結び ── 釉薬。末尾の「この資料について」だけを暗転させる */
+  [data-part="end"]{background:#22384F;
     --depth:#2C4A6C;--depth-ink:#DCE6F0;
     --canvas:#22384F;--surface:#2B4560;--surface-soft:#35506D;
     --ink:#F3F0E6;--body:#CBD8E4;--muted:#94A8BB;
     --hairline:rgba(255,255,255,.15);--hairline-strong:rgba(255,255,255,.28);
     --tone:#D9BFA6;--tone-tint:rgba(255,255,255,.09);--tone-ink:#E3C4A2;--tone-deep:#16283A;
     --star:#9FC0E0}
-  [data-part="8"] .star{color:#9FC0E0}
-  [data-part="8"]+[data-part="8"]{border-top-color:rgba(255,255,255,.12)}
-  [data-part="8"] .caution,[data-part="8"] .worked{box-shadow:none}
-  [data-part="8"] h3.blk{border-top-color:rgba(255,255,255,.16)}
-  [data-part="8"] p strong,[data-part="8"] .caution strong{background:none;color:#F7E6C9}
-
-
-  /* ---------- 第八部: 四問・実例・留保 ---------- */
-  .ask ol.q4{padding-left:0;list-style:none}
-  .ask ol.q4 li{margin-bottom:1.15rem;padding-bottom:1.15rem;border-bottom:1px solid rgba(255,255,255,.12)}
-  .ask ol.q4 li:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-  .ask ol.q4 b{display:block;font-family:var(--serif);font-weight:700;font-size:1.1rem;letter-spacing:.02em;color:#FFFEFB;margin-bottom:.28rem}
-  .ask ol.q4 span{display:block;font-size:.93rem;line-height:1.8;color:#D6D1C4}
-  .cases-lead,.holds-lead{color:var(--muted);font-size:.9rem;margin:1.6rem 0 .8rem}
-  .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  @media (max-width:900px){.cases{grid-template-columns:1fr}}
-  .case{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-card);padding:18px 20px 16px;
-    border-top:3px solid var(--cc)}
-  .case header{margin-bottom:.7rem}
-  .case-tag{display:inline-block;font-size:.68rem;letter-spacing:.06em;color:#F3F0E6;background:var(--cc);
-    padding:.12rem .55rem;border-radius:999px;margin-bottom:.45rem;opacity:.92}
-  .case h4{margin:0;font-family:var(--serif);font-size:1.12rem;font-weight:700;letter-spacing:.02em;color:var(--ink);line-height:1.4}
-  .case dl{margin:0}
-  .case dl>div{display:block;padding:.6rem 0 .65rem;border-top:1px solid var(--hairline)}
-  .case dt{font-size:.7rem;letter-spacing:.06em;color:var(--tone-ink);margin-bottom:.2rem}
-  .case dd{margin:0;font-size:.9rem;line-height:1.7;color:#E6ECF2}
-  .case dd strong{background:none;color:#F7E6C9}
-  .holds{display:block;max-width:68ch}
-  .hold{position:relative;padding:1.3rem 0 1.4rem 3.4rem;border-top:1px solid rgba(255,255,255,.16)}
-  .hold:last-child{border-bottom:1px solid rgba(255,255,255,.16)}
-  .hold-n{position:absolute;left:.2rem;top:1.05rem;font-family:var(--serif);font-size:1.9rem;line-height:1;color:var(--tone-ink);opacity:.9}
-  .hold h4{margin:0 0 .55rem;font-family:var(--serif);font-size:1.16rem;font-weight:700;letter-spacing:.02em;color:var(--ink);line-height:1.45}
-  .hold p{margin:0;font-size:.93rem;line-height:1.85;color:#CBD8E4;max-width:none}
-  .hold p strong{background:none;color:#F7E6C9}
-  [data-part="8"] a{color:#9FC0E0;text-decoration-color:rgba(159,192,224,.5)}
-  [data-part="8"] dl.info dt{color:var(--tone-ink)}
-  [data-part="8"] dl.info dd{color:#E6ECF2}
+  [data-part="end"] a{color:#9FC0E0;text-decoration-color:rgba(159,192,224,.5)}
+  [data-part="end"] dl.info dt{color:var(--tone-ink)}
+  [data-part="end"] dl.info dd{color:#E6ECF2}
 
   /* 部の扉 ── 全幅の深度バンド */
   html,body{overflow-x:clip}
@@ -565,7 +531,7 @@
 <div id="topnav">
   <div class="pill">
     <span class="brand">古代オリエントを立体で読む</span>
-    <a href="#p1">時間</a><a href="#p2">空間</a><a href="#p3">文明</a><a href="#p4">神</a><a href="#p5">言語</a><a href="#p6">年表</a><a href="#p7">建築</a><a href="#p8">四問</a>
+    <a href="#p1">時間</a><a href="#p2">空間</a><a href="#p3">文明</a><a href="#p4">神</a><a href="#p5">言語</a><a href="#p6">年表</a><a href="#p7">建築</a>
   </div>
 </div>
 
@@ -577,7 +543,6 @@
   <button data-go="p5" style="--seg:#D2B69B" title="第五部 言語" aria-label="第五部 言語"></button>
   <button data-go="p6" style="--seg:#C0A183" title="第六部 年表" aria-label="第六部 年表"></button>
   <button data-go="p7" style="--seg:#C6C0B0" title="第七部 建築" aria-label="第七部 建築"></button>
-  <button data-go="p8" style="--seg:#2C4A6C" title="第八部 四問" aria-label="第八部 四問"></button>
 </nav>
 
 <header class="hero" data-tone="sand">
@@ -598,7 +563,6 @@
         <li><a href="#p5"><span class="pt">第五部</span><span class="ti">言語</span><span class="ds">文字と言語は別物だ。支配者が何度代わっても、文字と古い言葉は残った。だから文化は消えなかった。</span></a></li>
         <li><a href="#p6"><span class="pt">第六部</span><span class="ti">年表</span><span class="ds">ここまでの話を、一本の時間の上に並べる。全36項目。2026年夏の特別展で模型になった建築10件も、その上に置く。</span></a></li>
         <li><a href="#p7"><span class="pt">第七部</span><span class="ti">建築</span><span class="ds">たてものと、まちづくり。素材は土地が決め、たてものの文法は三つ、まちの骨格は三点セット。</span></a></li>
-        <li><a href="#p8"><span class="pt">第八部</span><span class="ti">四問</span><span class="ds">博物館で使うチェックリスト。展示品の前で毎回あてはめる。いつ、どこ、どの文明、何のための建物か。</span></a></li>
       </ol>
     </div>
     <p class="convention">年代は「紀元前」と「何年前」の両方で書く。<strong>何年前＝紀元前の年数＋2000</strong>。たとえば紀元前9700年は、1万1700年前。気候の話は「何年前」、遺跡の話は「紀元前」で語られることが多い。この二つを行き来できるようにするのも、この資料の目的の一つである。<br>本筋からそれる補足や細かい話は、「＋」の欄にたたんである。必要なときだけ、タップして開けばよい。</p>
@@ -3086,95 +3050,11 @@
         <li><b>④ まちは「育つ」が基本、そこに「つくる」が増えていく。</b>ただし泥の文明は、育った丘（テル）の中にしか残っていない。だから模型がある。</li>
       </ol>
     </div>
-    <p>博物館では、第八部の四問にこの部の一問を足すといい。<strong>「これは何で建てられ、三つの文法のどれで、まちの三点セットのどこにあたるか。」</strong></p>
+    <p>博物館で模型や遺構を見るときは、この一問を当ててみるといい。<strong>「これは何で建てられ、三つの文法のどれで、まちの三点セットのどこにあたるか。」</strong></p>
   </div>
 </section>
 
-<section data-part="8" data-tone="mint" id="p8" class="lead-part">
-  <div class="wrap">
-    <div class="opener lead">
-      <p class="part">第八部</p>
-      <h2>展示品の前で四問</h2>
-      <p class="sub">博物館の展示ケースの前で、毎回これを当てはめる。</p>
-    </div>
-    <div class="ask">
-      <ol class="q4">
-        <li><b>① いつ？</b><span>紀元前と「何年前」の両方で。気候のどの局面か。</span></li>
-        <li><b>② どこ？</b><span>五地域のどれか。川と海からの距離は。</span></li>
-        <li><b>③ どの文明？</b><span>支配者は誰で、何語を話し、何語で書いたか。</span></li>
-        <li><b>④ 何のための建物（もの）で、神とどう関わるか？</b><span>住むためか、祈るためか、守るためか、死ぬためか。</span></li>
-      </ol>
-    </div>
-
-    <p class="cases-lead">四問を当てると、こうなる。三つだけ例を置く。</p>
-    <div class="cases">
-      <article class="case" style="--cc:var(--rg-meso)">
-        <header><span class="case-tag">メソポタミア</span><h4>ウルクの都市模型 <span class="star">★</span></h4></header>
-        <dl>
-          <div><dt>① いつ</dt><dd>前2500年頃 ／ 約4500年前 ── 完新世の安定期</dd></div>
-          <div><dt>② どこ</dt><dd>メソポタミア南部、ユーフラテス川沿い</dd></div>
-          <div><dt>③ どの文明</dt><dd>シュメールの都市国家。シュメール語を、楔形文字で</dd></div>
-          <div><dt>④ 何のため</dt><dd>都市そのもの。イナンナの聖域を核に、<strong>宗教と経済と権力が一体</strong>になっている</dd></div>
-        </dl>
-      </article>
-      <article class="case" style="--cc:var(--rg-ana)">
-        <header><span class="case-tag">アナトリア</span><h4>ギョベクリ・テペ <span class="star">★</span></h4></header>
-        <dl>
-          <div><dt>① いつ</dt><dd>前8500年頃 ／ 約1万500年前 ── 完新世が始まった直後</dd></div>
-          <div><dt>② どこ</dt><dd>アナトリア南東部</dd></div>
-          <div><dt>③ どの文明</dt><dd>土器をまだ持たない、新石器時代の文化。<strong>言語も民族も不明</strong></dd></div>
-          <div><dt>④ 何のため</dt><dd>共同の儀式の場と考えられる。だが<strong>「○○神を祀った」とは言えない</strong>。文字がないから</dd></div>
-        </dl>
-      </article>
-      <article class="case" style="--cc:var(--rg-egy)">
-        <header><span class="case-tag">エジプト</span><h4>センネジェム墓 <span class="star">★</span></h4></header>
-        <dl>
-          <div><dt>① いつ</dt><dd>前1300年頃 ／ 約3300年前</dd></div>
-          <div><dt>② どこ</dt><dd>エジプト、ナイル西岸（テーベの対岸）</dd></div>
-          <div><dt>③ どの文明</dt><dd>新王国・第19王朝。エジプト語を、ヒエログリフで</dd></div>
-          <div><dt>④ 何のため</dt><dd>死後の住まい。<strong>王ではなく職人の墓</strong>で、来世観が壁一面に描かれている</dd></div>
-        </dl>
-      </article>
-    </div>
-
-    <h3 class="blk">持っていく三つの問い</h3>
-    <div class="ask">
-      <ol class="q4">
-        <li><b>なぜ神殿が先で、宮殿が後なのか。</b><span>ウバイドからウルク期までの中心は神殿で、王の宮殿がはっきりするのは初期王朝以降。模型の中心に何があるかを確かめる。</span></li>
-        <li><b>ウルク（4500年前）とバビロン（2600年前）は、何が重なったか。</b><span>片方の核は聖域。もう片方は、聖域の上に行列道路と門が重なる。同じ「都市模型」でも、設計の目的が違う。</span></li>
-        <li><b>どの模型が「水」を描いているか。</b><span>灌漑の水路、川岸、井戸、貯水槽。気候の話は、模型のなかでは水路の形をして現れる。</span></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section data-part="8" data-tone="sand">
-  <div class="wrap">
-    <div class="opener bare">
-      <h2>三つの留保</h2>
-    </div>
-    <p class="holds-lead">この資料の「鮮やかな一言」を、法則として持ち帰らないための三つ。</p>
-    <div class="holds">
-      <div class="hold">
-        <span class="hold-n">一</span>
-        <h4>階段は、必然ではない</h4>
-        <p>村が育てば都市になり、都市が育てば国家になる、という順序は当たり前ではない。ウクライナのトリピリエの巨大集落は、6000年前ごろに数千人の規模でありながら、王も神殿も持たなかった。<strong>都市であることと、支配されることは、別の問題でありうる。</strong>グレーバーとウェングロウの『万物の黎明』が扱っているのが、この論点である。</p>
-      </div>
-      <div class="hold">
-        <span class="hold-n">二</span>
-        <h4>気候は、原因ではない</h4>
-        <p>4200年前の乾燥と帝国の崩壊が重なっていても、それだけでは原因と結果にならない。同じ干ばつを受けて滅びた社会と、灌漑を広げて生き延びた社会がある。<strong>気候は選択肢の幅を変えるだけで、どれを選ぶかは社会の側にある。</strong></p>
-      </div>
-      <div class="hold">
-        <span class="hold-n">三</span>
-        <h4>宗教は、進化しない</h4>
-        <p>多神教から一神教へ、という一本道の進歩は存在しない。並行し、混ざり、分かれる。<strong>「原始的な信仰」と「発達した宗教」を時間の軸に並べたくなったら、それは近代の物差しを当てているサインである。</strong></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section data-part="8" data-tone="peach">
+<section data-part="end" data-tone="peach" id="about">
   <div class="wrap">
     <div class="opener bare">
       <h2>この資料について</h2>
@@ -3182,7 +3062,6 @@
     <dl class="info">
       <div><dt>きっかけ</dt><dd>古代オリエント博物館の夏の特別展「古代オリエントのたてものとまちづくり ── 模型で探検！」（2026年7月4日〜9月6日）の予習用として書いた。会期のあとも、博物館の展示を見る前後の下地として読めるように整えてある。</dd></div>
       <div><dt>博物館</dt><dd>古代オリエント博物館（池袋サンシャインシティ 文化会館ビル7階）。開館時間や入館料は<a href="https://aom-tokyo.com/">公式サイト</a>で確認を。</dd></div>
-      <div><dt>図録</dt><dd>特別展の図録（B5判32頁オールカラー）は<a href="https://aomtokyo.thebase.in/items/149409338">ウェブショップ</a>に掲載されている（取り扱いは変わることがある）。</dd></div>
     </dl>
   </div>
 </section>
