@@ -524,6 +524,120 @@
     details.fold .roster,details.fold .rows{padding:0 1.1rem}
     details.fold>summary .hint{display:block;text-align:right;margin:.3rem 0 0;text-indent:0}
   }
+  /* ================= 回遊のための仕掛け ================= */
+  /* 博物館ページの配色 ── 展示室の壁のような青灰 */
+  [data-part="museum"]{--depth:#DCE3E9;--depth-ink:#2C4A6C;
+    --tone:#B7C8DB;--tone-tint:#EDF1F5;--tone-ink:#3F5E82;--tone-deep:#2C4A6C}
+  [data-part="museum"] .opener h2{max-width:none}
+
+  /* ---- 問いと答え合わせ ---- */
+  .qa{position:relative;border-radius:var(--r-feat);padding:24px 26px 22px;margin:0;overflow:hidden}
+  .qa:after{position:absolute;right:16px;top:2px;font-family:var(--mincho);font-size:4.6rem;font-weight:600;
+    line-height:1;pointer-events:none;color:var(--depth-ink);opacity:.10}
+  .qa.q{margin-top:1.7rem;background:rgba(255,254,251,.62);border:1px solid rgba(38,37,30,.10)}
+  .qa.q:after{content:"Q"}
+  .qa .qa-label{display:flex;align-items:center;gap:.6rem;font-family:var(--mincho);font-size:.74rem;font-weight:600;
+    letter-spacing:.24em;color:var(--depth-ink);margin:0 0 .75rem}
+  .qa .qa-label:before{content:"";width:7px;height:7px;background:var(--depth-ink);opacity:.85;flex:none}
+  .qa .qa-text{font-family:var(--mincho);font-feature-settings:"palt";font-size:1.12rem;line-height:1.95;
+    letter-spacing:.03em;color:var(--ink);margin:0;max-width:none}
+  .qa-note{margin:.9rem 0 0;font-size:.82rem}
+  .qa-note a{color:var(--depth-ink);text-decoration-color:rgba(38,37,30,.25)}
+  .qa.a{margin-top:3.8rem;background:var(--tone-deep);color:#EDE9DE;padding:30px 30px 26px}
+  .qa.a:after{content:"A";color:#FFFEFB;opacity:.08}
+  .qa.a .qa-label{color:rgba(255,254,251,.78)}
+  .qa.a .qa-label:before{background:rgba(255,254,251,.78)}
+  .qa.a .qa-q{font-size:.9rem;line-height:1.8;color:rgba(255,254,251,.72);margin:0 0 .8rem;max-width:none}
+  .qa.a .qa-text{color:#FFFEFB}
+  .qa-next{margin:1.5rem 0 0}
+  .qa-next a{display:block;text-decoration:none;color:#FFFEFB;background:rgba(255,254,251,.10);
+    border:1px solid rgba(255,254,251,.24);border-radius:var(--r-card);padding:.95rem 1.15rem;
+    transition:background .18s ease,transform .18s ease}
+  .qa-next a:hover{background:rgba(255,254,251,.18)}
+  .qa-next a:active{transform:translateY(1px)}
+  .qa-next b{display:block;font-size:.84rem;letter-spacing:.08em;margin-bottom:.3rem;font-weight:600}
+  .qa-next span{display:block;font-family:var(--mincho);font-feature-settings:"palt";font-size:1rem;line-height:1.8}
+  .qa-links{margin:1.1rem 0 0;font-size:.8rem;line-height:2.2;color:rgba(255,254,251,.68);max-width:none}
+  .qa-links>span{margin-right:.7rem;letter-spacing:.12em}
+  .qa-links a{color:#FFFEFB;text-decoration-color:rgba(255,254,251,.35);margin-right:1.1rem;white-space:nowrap}
+
+  /* ---- ヒーローのボタン ---- */
+  [hidden]{display:none!important}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin:-1.7rem 0 1.4rem}
+  .btn{appearance:none;display:inline-flex;align-items:center;gap:.5rem;font:inherit;font-size:.9rem;font-weight:500;
+    line-height:1.3;padding:.72rem 1.15rem;border-radius:var(--r-pill);border:1px solid var(--hairline-strong);
+    background:var(--surface);color:var(--ink);text-decoration:none;cursor:pointer;
+    transition:background .18s ease,transform .18s ease,border-color .18s ease}
+  .btn:hover{background:var(--surface-soft)}
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:var(--ink);color:var(--canvas);border-color:var(--ink)}
+  .btn.primary:hover{background:#3a3930}
+  .btn.resume{background:var(--tone-tint);border-color:var(--tone-ink);color:var(--tone-ink)}
+  .hero-progress{font-size:.84rem;line-height:1.8;color:var(--muted);margin:0 0 2.2rem;max-width:none}
+  .hero-progress b{font-weight:600;color:var(--ink)}
+
+  /* ---- 目次の読了状態 ---- */
+  .digest .meta{grid-column:2;grid-row:3;display:flex;flex-wrap:wrap;align-items:center;gap:.35rem .9rem;
+    font-size:.76rem;color:var(--muted);margin-top:.25rem}
+  .digest .meta .st{display:inline-flex;align-items:center;gap:.4rem}
+  .digest .meta .st:before{content:"";width:9px;height:9px;border-radius:50%;box-sizing:border-box;
+    border:1.5px solid var(--hairline-strong);background:transparent}
+  .digest li.is-part .meta .st:before{border-color:var(--tone-ink);
+    background:linear-gradient(90deg,var(--tone-ink) 50%,transparent 50%)}
+  .digest li.is-done .meta .st:before{border-color:var(--tone-ink);background:var(--tone-ink)}
+  .digest li.is-done .meta .st{color:var(--tone-ink)}
+  .digest .meta .mini{flex:0 0 5.5rem;height:4px;border-radius:2px;background:var(--hairline);overflow:hidden}
+  .digest .meta .mini i{display:block;height:100%;width:0;background:var(--tone-ink);transition:width .5s ease}
+
+  /* ---- 左レール ── 読了の印と、部の名前 ---- */
+  #rail button{position:relative}
+  #rail button.is-read:before{content:"";position:absolute;left:-7px;top:2px;bottom:2px;width:2px;border-radius:1px;
+    background:var(--ink);opacity:.4}
+  #rail button:after{content:attr(title);position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);
+    white-space:nowrap;font-family:var(--mincho);font-size:.74rem;letter-spacing:.06em;color:var(--ink);
+    background:var(--surface);border:1px solid var(--hairline);border-radius:999px;padding:.22rem .65rem;
+    opacity:0;pointer-events:none;transition:opacity .15s ease}
+  #rail button:hover:after,#rail button:focus-visible:after{opacity:1}
+
+  /* ---- 博物館で ---- */
+  .ask.four a{color:#FFFEFB;text-decoration-color:rgba(255,254,251,.4)}
+  .ask.four ol{list-style:none;padding-left:0}
+  .finds,.models{list-style:none;margin:1.2rem 0 0;padding:0}
+  .finds{display:grid;gap:.7rem}
+  .finds li{display:grid;grid-template-columns:5.2rem 1fr auto;gap:1rem;align-items:center;
+    background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-card);padding:.75rem .9rem .75rem .75rem;
+    transition:background .25s ease}
+  .finds li.found{background:var(--tone-tint);border-color:var(--tone)}
+  .finds img{width:5.2rem;height:5.2rem;object-fit:cover;border-radius:8px;cursor:zoom-in;background:var(--surface-soft);display:block}
+  .finds .t{font-family:var(--mincho);font-feature-settings:"palt";font-weight:600;font-size:1rem;line-height:1.5;
+    color:var(--ink);text-decoration:none;cursor:pointer}
+  .finds .t:hover{text-decoration:underline;text-decoration-color:var(--hairline-strong)}
+  .finds .w{display:block;font-size:.76rem;color:var(--muted);margin-top:.25rem;font-family:var(--sans);font-weight:400}
+  .finds label{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--body);cursor:pointer;white-space:nowrap}
+  .finds input{width:18px;height:18px;margin:0;accent-color:var(--tone-ink)}
+  .finds-count{font-size:.86rem;color:var(--tone-ink);margin:.8rem 0 0}
+  .models li a{display:grid;grid-template-columns:2.2rem 1fr;gap:.6rem;align-items:baseline;text-decoration:none;
+    padding:.75rem .2rem;border-bottom:1px solid var(--hairline);color:var(--ink);transition:background .18s ease}
+  .models li:first-child a{border-top:1px solid var(--hairline)}
+  .models li a:hover{background:var(--surface)}
+  .models .n{font-family:var(--mincho);font-size:.78rem;color:var(--tone-ink);letter-spacing:.08em}
+  .models .t{font-family:var(--mincho);font-feature-settings:"palt";font-weight:600;line-height:1.5}
+  .models .w{display:block;font-family:var(--sans);font-weight:400;font-size:.76rem;color:var(--muted);margin-top:.15rem}
+  @media (max-width:520px){
+    .finds li{grid-template-columns:4.4rem 1fr;gap:.7rem .9rem}
+    .finds img{width:4.4rem;height:4.4rem}
+    .finds label{grid-column:2}
+    .qa{padding:20px 20px 18px}
+    .qa.a{padding:24px 22px 22px}
+    .qa:after{font-size:3.8rem;right:12px}
+  }
+
+  /* ---- 現れる・描かれる ---- */
+  @media (prefers-reduced-motion:no-preference){
+    .rv{opacity:0;transform:translateY(16px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
+    .rv.in{opacity:1;transform:none}
+    .draw{transition:stroke-dashoffset 1.7s cubic-bezier(.3,.6,.2,1)}
+  }
 </style>
 </head>
 <body data-mode="all">
@@ -531,7 +645,7 @@
 <div id="topnav">
   <div class="pill">
     <span class="brand">古代オリエントを立体で読む</span>
-    <a href="#p1">時間</a><a href="#p2">空間</a><a href="#p3">文明</a><a href="#p4">神</a><a href="#p5">言語</a><a href="#p6">年表</a><a href="#p7">建築</a>
+    <a href="#p1">時間</a><a href="#p2">空間</a><a href="#p3">文明</a><a href="#p4">神</a><a href="#p5">言語</a><a href="#p6">年表</a><a href="#p7">建築</a><a href="#museum" class="nav-museum">博物館で</a>
   </div>
 </div>
 
@@ -543,6 +657,7 @@
   <button data-go="p5" style="--seg:#D2B69B" title="第五部 言語" aria-label="第五部 言語"></button>
   <button data-go="p6" style="--seg:#C0A183" title="第六部 年表" aria-label="第六部 年表"></button>
   <button data-go="p7" style="--seg:#C6C0B0" title="第七部 建築" aria-label="第七部 建築"></button>
+  <button data-go="museum" style="--seg:#2C4A6C" title="博物館で" aria-label="博物館で"></button>
 </nav>
 
 <header class="hero" data-tone="sand">
@@ -554,6 +669,13 @@
     <div class="thesis">
       <p>文明のすべては、ひとつの暖かい時期のなかで起きた。そしてその内側では、五つの世界が同時に、別々に動いていた。</p>
     </div>
+    <div class="hero-actions" id="hero-actions">
+      <a class="btn primary" href="#p1">はじめから読む</a>
+      <button class="btn resume" type="button" id="btn-resume" hidden>続きから読む</button>
+      <a class="btn" href="#museum">博物館で使う</a>
+      <button class="btn" type="button" id="btn-draw">図版をひとつ引く</button>
+    </div>
+    <p class="hero-progress" id="hero-progress" hidden></p>
     <div class="digest">
       <ol>
         <li><a href="#p1"><span class="pt">第一部</span><span class="ti">時間</span><span class="ds">地球には、寒い時期と暖かい時期が交互にやってくる。いまの暖かい時期が始まったのは、1万1700年前。文明のすべては、この暖かい時期の中で起きている。</span></a></li>
@@ -576,6 +698,11 @@
       <p class="rule-label">時間</p>
       <h2>2万年 ── 氷が退く</h2>
       <p class="sub">2万年前、世界はまだ氷の底にいた。氷が退いて暖かさが落ち着くのが、1万1700年前。文明のすべては、その後に起きている。</p>
+      <div class="qa q" data-qa="p1">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">人類は氷期のあいだに洞窟に絵を描き、海を渡り、日本列島まで来ていた。それなのに、なぜ農耕だけは1万2000年ほど前まで始まらなかったのか。</p>
+        <p class="qa-note"><a href="#p1-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <p>下の図は、2万年前から現在までの気温の動きである。2万年前は、最後の氷期がいちばん寒かったころにあたる。<strong>ただし、この図には描かれていない前提が三つある。</strong></p>
@@ -928,6 +1055,13 @@
         </details>
       </div>
     </details>
+    <div class="qa a" id="p1-end" data-qa-end="p1">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">人類は氷期のあいだに洞窟に絵を描き、海を渡り、日本列島まで来ていた。それなのに、なぜ農耕だけは1万2000年ほど前まで始まらなかったのか。</p>
+      <p class="qa-text">寒かったからではない。気候が当てにならなかったからだ。数十年で気温が10℃も動く世界では、種をまいて半年待つ賭けは、村の暮らしの土台になれない。1万1700年前に気候が落ち着き、文明のすべてはその後に起きた。</p>
+      <p class="qa-next"><a href="#p2"><b>次の問いへ ── 第二部 空間</b><span>同じ年に、五つの世界はそれぞれ何をしていたのか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#ev-natuf">第六部 年表の冒頭 ── ナトゥーフから完新世へ</a></p>
+    </div>
   </div>
 </section>
 
@@ -939,6 +1073,11 @@
       <p class="rule-label">軸 一</p>
       <h2>空間 ── 五つの世界</h2>
       <p class="sub">シュメール、エジプト、ペルシアと、順番に栄えたのではない。同じ時代に、違う場所で、別々の文明が動いている。</p>
+      <div class="qa q" data-qa="p2">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">シュメール、エジプト、ペルシア。教科書では順番に出てくる。では同じ年に、五つの世界はそれぞれ何をしていたのか。</p>
+        <p class="qa-note"><a href="#p2-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <figure class="chart">
@@ -1190,6 +1329,13 @@
       <div class="r"><div class="k" style="color:var(--rg-lev)">地中海東岸</div><div class="v">シリア、レバノン、イスラエル、ヨルダン。この資料では「レヴァント」とも呼ぶ。<b>カナン、フェニキア、アラム諸国、古代イスラエル</b>。大帝国に挟まれた細長い通り道で、いつも交易路であり、戦場だった。年表の最後の二点、テル・レヘシュとパルミラも、ここにある。</div></div>
       <div class="r"><div class="k" style="color:var(--rg-irn)">イラン高原</div><div class="v">現在のイラン。<b>エラム、メディア、アケメネス朝ペルシア</b>。メソポタミアの東隣として最初期から交流があり、最後にその全体を呑み込む。</div></div>
     </div>
+    <div class="qa a" id="p2-end" data-qa-end="p2">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">シュメール、エジプト、ペルシア。教科書では順番に出てくる。では同じ年に、五つの世界はそれぞれ何をしていたのか。</p>
+      <p class="qa-text">順番ではなく、同時だった。山と川と砂漠の隙間に五つの世界が置かれ、それぞれ別々に動いていた。地形が決めたその枠は、西暦2000年の国境にもまだ残っている。</p>
+      <p class="qa-next"><a href="#p3"><b>次の問いへ ── 第三部 文明</b><span>支配者が何度も代わったメソポタミアと、三千年変わらなかったエジプト。この違いはどこから来るのか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p3-maps">第三部 四つの時代の地図</a><a href="#p7-material">第七部 素材は、土地の答案</a></p>
+    </div>
   </div>
 </section>
 
@@ -1201,6 +1347,11 @@
       <p class="rule-label">軸 二</p>
       <h2>文明 ── 五つの地域は、性格が違う</h2>
       <p class="sub">同じ「文明」という言葉で並べても、中身の段階がそろっていない。まずそこを分けておく。</p>
+      <div class="qa q" data-qa="p3">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">メソポタミアでは支配者が何度も入れ替わった。エジプトでは三千年、王朝が代わっても顔の描き方さえ変わらなかった。この違いはどこから来るのか。</p>
+        <p class="qa-note"><a href="#p3-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <h3 class="blk">二種類のものが混ざっている</h3>
@@ -1237,7 +1388,7 @@
       </div>
     </div>
 
-    <h3 class="blk">四つの時代の地図 ── 前3000・前2000・前1000・紀元前後</h3>
+    <h3 id="p3-maps" class="blk">四つの時代の地図 ── 前3000・前2000・前1000・紀元前後</h3>
     <p>地域ごとの話に入る前に、五地域全体を四つの時点で止めて見ておく。同じ四つの時点の拡大図を、各地域の冒頭にも置いた。<strong>地図はタップすると拡大できる。</strong></p>
 
     <figure class="chart map">
@@ -1256,7 +1407,7 @@
       </div>
     </details>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-meso)">メソポタミア ── 南と北</h3>
+    <h3 id="p3-meso" class="blk rg" style="--rgc:var(--rg-meso)">メソポタミア ── 南と北</h3>
     <div class="tracks rg" style="--rgc:var(--rg-meso)">
       <div class="h y"></div><div class="h">南メソポタミア</div><div class="h">北メソポタミア</div>
 
@@ -1329,7 +1480,7 @@
       </div>
     </details>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-meso)">覇権のリズム ── 分裂と統一の繰り返し</h3>
+    <h3 id="p3-rhythm" class="blk rg" style="--rgc:var(--rg-meso)">覇権のリズム ── 分裂と統一の繰り返し</h3>
     <p>上の表を縦に眺めると、一つのリズムが見えてくる。<strong>ふだんは、都市国家がばらばらに並び立っている。ときどき大帝国がそれを束ね、崩れて、また分立に戻る。</strong>この往復である。そして長い目で見ると、束ねられる範囲がしだいに大きくなっていく。</p>
 
     <figure class="chart">
@@ -2241,7 +2392,7 @@
       </div>
     </details>
 
-    <h3 class="blk">五地域を横に並べる</h3>
+    <h3 id="p3-table" class="blk">五地域を横に並べる</h3>
     <div class="xwrap">
       <table class="xtab">
         <thead><tr>
@@ -2273,6 +2424,13 @@
 
     <p><strong>表全体が一色になる瞬間がある。</strong>ただし、それは前550年ではない。キュロス2世がメディアを倒したのが前550年。リディアが前546年、バビロンが前539年。そしてエジプトが息子カンビュセス2世に落とされたのが<strong>前525年</strong>。ここではじめて、五つの世界が一つの帝国の内側に入る。1万年以上ばらばらに動いてきた地域が、25年ほどで束ねられた計算になる。</p>
     <p class="note">なぜ支配者が代わっても文化が残るのか。その答えは、第五部の言語の軸にある。</p>
+    <div class="qa a" id="p3-end" data-qa-end="p3">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">メソポタミアでは支配者が何度も入れ替わった。エジプトでは三千年、王朝が代わっても顔の描き方さえ変わらなかった。この違いはどこから来るのか。</p>
+      <p class="qa-text">地形が性格を決めた。都市が主役のメソポタミアは、分裂と統一を振り子のように繰り返す。川一本のエジプトは、統一がふつうで分裂が例外。挟まれたレヴァントは自前の山を立てず、アナトリアは一度だけ山を立て、イランが最後に全部を呑んだ。</p>
+      <p class="qa-next"><a href="#p4"><b>次の問いへ ── 第四部 神</b><span>なぜ征服者は、相手の神を壊さずに残したのか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p3-rhythm">覇権のリズム</a><a href="#p3-table">五地域を横に並べる</a><a href="#p5">第五部 ── なぜ支配者が代わっても文化は残るのか</a></p>
+    </div>
   </div>
 </section>
 
@@ -2284,6 +2442,11 @@
       <p class="rule-label">軸 三</p>
       <h2>神 ── 五つの答え方</h2>
       <p class="sub">神をどう扱ったかは、そのまま建物の形になる。だから建築を読むことは、宗教を読むことでもある。</p>
+      <div class="qa q" data-qa="p4">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">神殿は、なぜ倉庫であり役所でもあったのか。そして征服者は、なぜ相手の神を壊さずに残したのか。</p>
+        <p class="qa-note"><a href="#p4-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <h3 class="blk">どの地域も、同じ三つの問いに答えている</h3>
@@ -2323,7 +2486,7 @@
       </div>
     </div>
 
-    <h3 class="blk">建築に出る三つの形</h3>
+    <h3 id="p4-forms" class="blk">建築に出る三つの形</h3>
     <p>三つの問いへの答えの違いは、最終的にこの三通りの形になる。</p>
     <figure class="chart">
       <svg viewBox="0 0 340 158" role="img" aria-label="ジッグラトのように高く積む形、エジプト神殿のように奥へ進むほど狭く暗くなる形、ペルシアのように屋外の聖所や祭壇を用いる形の比較図。">
@@ -2460,6 +2623,13 @@
     <div class="caution" style="margin-top:1.4rem">
       <p style="margin:0"><strong>「多神教から一神教へ」と一本道で考えない。</strong>ギョベクリ・テペ → シュメール → バビロニア → エジプト → ユダヤ教 → キリスト教、という進化の階段ではない。同じ時代に違う答えが並び、互いに征服し、交易し、神を借り、神を同一視し、ときに神を壊した。宗教の歴史とは、<strong>「神と人との距離をどう設計するか」という複数の実験が、並行して走った歴史</strong>である。上の二つの試みを「進歩の到達点」と読むと、アテンが取り消された事実を説明できなくなる。</p>
     </div>
+    <div class="qa a" id="p4-end" data-qa-end="p4">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">神殿は、なぜ倉庫であり役所でもあったのか。そして征服者は、なぜ相手の神を壊さずに残したのか。</p>
+      <p class="qa-text">神は都市の持ち主で、神殿は法の上でも土地と財産の持ち主だったからだ。残して従わせれば、税も労働も集まる。神と神殿そのものが政治だった。だから、神をどこに住まわせるかの答えが、そのまま建物の形になる。</p>
+      <p class="qa-next"><a href="#p5"><b>次の問いへ ── 第五部 言語</b><span>アッカド帝国になったのに、なぜシュメールの文化は消えなかったのか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p4-forms">建築に出る三つの形</a><a href="#p7-grammar">第七部 積む・囲う・絞る</a><a href="#ev-rehesh">第六部 テル・レヘシュの集会室</a></p>
+    </div>
   </div>
 </section>
 
@@ -2471,6 +2641,11 @@
       <p class="rule-label">軸 四</p>
       <h2>言語 ── 文字と言葉は別物</h2>
       <p class="sub">これが分かると、「アッカド帝国になったのに、なぜシュメール文化が消えないのか」が解ける。</p>
+      <div class="qa q" data-qa="p5">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">アッカド帝国になったのに、なぜシュメールの文化は消えなかったのか。</p>
+        <p class="qa-note"><a href="#p5-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <p><strong>楔形（くさびがた）文字は文字であって、言語ではない。</strong>もともとはシュメール語を書くために発達した記号の体系だ。それがそのまま、アッカド語、エラム語、フルリ語、ヒッタイト語など、系統のまったく違う十数の言語を書くために使い回された。ちょうどラテン文字（ローマ字）が、英語にもベトナム語にも使われるのと同じである。</p>
@@ -2624,6 +2799,13 @@
 
     <p>この軸は、年表の最後の二点で効いてくる。<strong>テル・レヘシュ</strong>の1〜2世紀の村は、アラム語を中心に、ヘブライ語やギリシア語も重なる多言語の世界だった。<strong>パルミラ</strong>の碑文は、アラム語（パルミラ方言）とギリシア語の二言語で刻まれている。三千年かけて、粘土板の楔形文字は、皮や石に書くアルファベットへゆっくり主役を譲った。ただし一斉に交代したのではない。バビロニアの神殿では、<strong>西暦1世紀まで楔形文字が書かれ続けた</strong>（年の記された最後の粘土板は西暦75年）。<strong>建物の材料が変わったのと同じように、記録の材料も変わっている。</strong></p>
     <p><strong>王朝も、言語も、文字も入れ替わる。それでも文化は、乗り換えながら生き続ける。</strong>五地域の五千年をつないでいるのは、民族や帝国ではなく、この受け継ぎの仕組みである。</p>
+    <div class="qa a" id="p5-end" data-qa-end="p5">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">アッカド帝国になったのに、なぜシュメールの文化は消えなかったのか。</p>
+      <p class="qa-text">文字と言語は別物だからだ。楔形文字という乗り物は、十数の言語という乗客を乗せ換えながら三千年走った。器としての文字と、知識の倉庫としての古い言葉が、政治の交替をまたいで残った。</p>
+      <p class="qa-next"><a href="#p6"><b>次の問いへ ── 第六部 年表</b><span>都市を思いつくまでに、人類はどれだけの時間をかけたのか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p3-meso">第三部 メソポタミア ── 土台は受け継がれる</a><a href="#ev-palmyra">第六部 パルミラ ── 二言語の碑文</a></p>
+    </div>
   </div>
 </section>
 
@@ -2634,6 +2816,11 @@
       <p class="part">第六部</p>
       <h2>統合年表</h2>
       <p class="sub">ここまでの五本の軸を、一本の時間の上に重ねる。1万5000年前（前13000年）から、1750年前（西暦3世紀）まで。</p>
+      <div class="qa q" data-qa="p6">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">ギョベクリ・テペの石柱を建てた人々は、都市を一度も見ずに死んだ。都市を思いつくまでに、人類はどれだけの時間をかけたのか。</p>
+        <p class="qa-note"><a href="#p6-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <div class="bar"><b>約6,000年 ── 最初期の巨大建築から、最初の都市まで</b><i style="width:100%"></i></div>
@@ -2659,7 +2846,7 @@
 
     <ol class="tl">
 
-      <li class="ev" data-kind="era" style="--gap:0">
+      <li class="ev" id="ev-natuf" data-kind="era" style="--gap:0">
         <p class="yr">前13000 — 前9700<span class="ago">1万5000〜1万1700年前</span></p>
         <h3>ナトゥーフ文化</h3>
         <p class="tags"><span class="chip c-lev">地中海東岸</span><span class="chip civ">先土器新石器以前</span></p>
@@ -2745,7 +2932,7 @@
         <p class="d">ウル、ウルク、ラガシュ、キシュ。城壁を持つ都市国家が並び立ち、水と土地をめぐって争う。神殿とは別に、王のための宮殿がはっきりしてくるのもこの時期。</p>
       </li>
 
-      <li class="ev" data-kind="exhibit" style="--gap:28px">
+      <li class="ev" id="ev-uruk" data-kind="exhibit" style="--gap:28px">
         <p class="yr">前2500年頃<span class="ago">約4500年前</span></p>
         <h3>ウルクの都市模型</h3>
         <p class="tags"><span class="chip c-meso">メソポタミア</span><span class="chip civ">シュメール都市国家</span><span class="chip god">イナンナ</span></p>
@@ -2859,7 +3046,7 @@
         <p class="d">メディアと新バビロニアの連合軍が首都を焼き、帝国は数年で消える。以後、新バビロニア、メディア、リディア、エジプトなどの大国が並び立つ。大統一の直前の並立期。イラン高原のメディアが、ここで初めて西アジア政治の主役に躍り出る。</p>
       </li>
 
-      <li class="ev" data-kind="exhibit" style="--gap:28px">
+      <li class="ev" id="ev-babylon" data-kind="exhibit" style="--gap:28px">
         <p class="yr">前600年頃<span class="ago">約2600年前</span></p>
         <h3>バビロン都市復元模型</h3>
         <p class="tags"><span class="chip c-meso">メソポタミア(南)</span><span class="chip civ">新バビロニア</span><span class="chip god">マルドゥク</span></p>
@@ -2900,7 +3087,7 @@
         <p class="d">地中海の過去の気候の記録に、ローマ時代を中心とする比較的暖かい数百年が認められる（時期や程度には地域差がある）。人口と交易が広がった時代と重なるが、繁栄を気候だけで説明することはできない。以下の二つの遺跡は、この窓のなかにある。</p>
       </li>
 
-      <li class="ev" data-kind="exhibit" style="--gap:20px">
+      <li class="ev" id="ev-rehesh" data-kind="exhibit" style="--gap:20px">
         <p class="yr">西暦1〜2世紀<span class="ago">約1950年前</span></p>
         <h3>テル・レヘシュの集会室（シナゴーグ？）</h3>
         <p class="tags"><span class="chip c-lev">地中海東岸</span><span class="chip civ">ローマ期のガリラヤ（多言語世界）</span><span class="chip god">ユダヤ教</span></p>
@@ -2908,7 +3095,7 @@
         <p class="d">ナザレに近いユダヤ人の農場から見つかった、壁沿いにベンチを備えた集会室。シナゴーグとする説が有力だが、発掘者自身も疑問符つきで示している。特別展での「イエスが訪れた？」という題も、ナザレに近いことからの想像で、証拠はない。それでも、<strong>神殿から始まった年表が、神像を持たない小さな集会の部屋で終わる</strong>のは示唆的だ。日本の調査隊が発見。</p>
       </li>
 
-      <li class="ev" data-kind="exhibit" style="--gap:23px">
+      <li class="ev" id="ev-palmyra" data-kind="exhibit" style="--gap:23px">
         <p class="yr">西暦3世紀<span class="ago">約1750年前</span></p>
         <h3>パルミラ遺跡現状模型</h3>
         <p class="tags"><span class="chip c-lev">地中海東岸</span><span class="chip civ">パルミラ／アラム語＋ギリシア語</span><span class="chip god">ベル神殿</span></p>
@@ -2917,6 +3104,13 @@
       </li>
 
     </ol>
+    <div class="qa a" id="p6-end" data-qa-end="p6">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">ギョベクリ・テペの石柱を建てた人々は、都市を一度も見ずに死んだ。都市を思いつくまでに、人類はどれだけの時間をかけたのか。</p>
+      <p class="qa-text">約6000年。都市とともに過ごした全期間より長い。そしてジッグラトで始まったこの年表は、神像を持たない小さな集会室で終わる。</p>
+      <p class="qa-next"><a href="#p7"><b>次の問いへ ── 第七部 建築</b><span>ピラミッドは石で立っている。メソポタミアの都市は模型でしか見られない。なぜか。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p1">第一部 気温の図 ── 年表の左端</a><a href="#p3-rhythm">第三部 覇権のリズム</a></p>
+    </div>
   </div>
 </section>
 
@@ -2928,6 +3122,11 @@
       <p class="rule-label">軸 五</p>
       <h2>建築 ── たてものと、まちづくり</h2>
       <p class="sub">特別展の題名「たてものとまちづくり」を、そのまま二つの窓として借りる。「たてもの」は一棟の設計、「まちづくり」は棟と棟の関係。五地域の一万年から、様式の違いではなく、<strong>共通する少数の原理</strong>を取り出す。</p>
+      <div class="qa q" data-qa="p7">
+        <p class="qa-label">この部の問い</p>
+        <p class="qa-text">エジプトのピラミッドは、いまも石で立っている。メソポタミアの都市は、模型でしか全体を見られない。なぜか。</p>
+        <p class="qa-note"><a href="#p7-end">答えは、この部の終わりに</a></p>
+      </div>
     </div>
 
     <figure class="chart map">
@@ -2950,7 +3149,7 @@
       <figcaption>最初の巨大建築と最初の村は、雨が降り、野生の麦が生える<strong>山のふもと</strong>（タウロス山脈とザグロス山脈のふもと、地中海東岸）に現れた。最初の都市は、雨が降らず、川だけがある<strong>沖積平野</strong>に現れた。第六部の冒頭の二本の帯は、時間の差であると同時に、この地図の上の移動でもある。</figcaption>
     </figure>
 
-    <h3 class="blk">前提 ── 素材は、土地の答案</h3>
+    <h3 id="p7-material" class="blk">前提 ── 素材は、土地の答案</h3>
     <p>設計の思想より先に、材料がある。五地域の見た目の違いは、まず地面の在庫の違いである。</p>
     <div class="rows rg" style="--rgc:var(--rg-meso)">
       <div class="r"><div class="k" style="color:var(--rg-meso)">メソポタミア</div><div class="v"><b>泥</b>。石も木もない沖積平野。日干煉瓦が主役で、火で焼いた煉瓦とうわぐすりは、門と聖域だけのぜいたく品（イシュタル門、前575頃）</div></div>
@@ -2998,7 +3197,7 @@
       </div>
     </details>
 
-    <h3 class="blk">たてもの ── 建物を読むための三つの文法</h3>
+    <h3 id="p7-grammar" class="blk">たてもの ── 建物を読むための三つの文法</h3>
     <p>一万年ぶんの建物を、三つの操作で読んでみる。<strong>積む、囲う、絞る。</strong>歴史の法則ではなく、模型の前で使う観察のレンズである。だが、五地域のたいていの建物は、この三語で読める。</p>
     <div class="rows">
       <div class="r"><div class="k">積む</div><div class="v">高さで、権威や聖なるものを目に見える形にする。T字柱（前9600）、高い土台の上の神殿（ウバイド）、ジッグラト（前2100）、ピラミッド（前2560）。用途も意味も違う（ジッグラトは神殿の塔、ピラミッドは王の墓）。だが<b>「縦に語る」という操作は、五地域に共通する</b></div></div>
@@ -3118,6 +3317,41 @@
       </ol>
     </div>
     <p>博物館で模型や遺構を見るときは、この一問を当ててみるといい。<strong>「これは何で建てられ、三つの文法のどれで、まちの三点セットのどこにあたるか。」</strong></p>
+    <div class="qa a" id="p7-end" data-qa-end="p7">
+      <p class="qa-label">答え合わせ</p>
+      <p class="qa-q">エジプトのピラミッドは、いまも石で立っている。メソポタミアの都市は、模型でしか全体を見られない。なぜか。</p>
+      <p class="qa-text">素材は土地の答案だからだ。石の建築は地上に残り、泥の建築は丘（テル）の中に眠る。だから模型がある。建物は積む・囲う・絞るの三つの文法で、まちは中心・境界・道の三点で読める。</p>
+      <p class="qa-next"><a href="#museum"><b>次の問いへ ── 博物館で</b><span>展示ケースの前で使う、四つの問い。</span></a></p>
+      <p class="qa-links"><span>つながり</span><a href="#p4-forms">第四部 建築に出る三つの形</a><a href="#ev-uruk">第六部 ウルクの都市模型</a><a href="#ev-babylon">第六部 バビロン都市復元模型</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 博物館で ========== -->
+<section data-part="museum" data-tone="sand" id="museum" class="lead-part">
+  <div class="wrap">
+    <div class="opener lead">
+      <p class="part">博物館で</p>
+      <p class="rule-label">会場で使うページ</p>
+      <h2>模型の前で、四つの問い</h2>
+      <p class="sub">古代オリエント博物館に着いたら、このページを開く。模型や遺構の前で毎回この四問を当てはめると、目の前の物が、一万年の地図の上に置ける。</p>
+    </div>
+    <div class="ask four">
+      <ol>
+        <li><b>① いつ。</b>紀元前か、何年前か。<a href="#p6">第六部の年表</a>のどのあたりにあるか。</li>
+        <li><b>② どこ。</b>五つの世界のどれか。<a href="#p2">第二部の地図</a>で位置を押さえる。</li>
+        <li><b>③ どの文明、どの神。</b>都市が主役か、川が主役か。神はどこに住むか。<a href="#p3">第三部</a>と<a href="#p4">第四部</a>で確かめる。</li>
+        <li><b>④ 何のための建物か。</b>何で建てられ、積む・囲う・絞るのどれで、まちの三点セットのどこにあたるか。<a href="#p7">第七部</a>で読む。</li>
+      </ol>
+    </div>
+
+    <h3 class="blk" id="finds-head">館で探す実物 ── この資料に出てくる展示品</h3>
+    <p>本文に写真つきで登場する、館の展示品。会場で見つけたら印をつけると、この端末に記録が残る。写真をタップすると拡大、見出しをタップすると本文へ飛ぶ。</p>
+    <ol class="finds" id="finds"></ol>
+
+    <h3 class="blk" id="models-head">特別展で模型になった建築 10件</h3>
+    <p>2026年夏の特別展「古代オリエントのたてものとまちづくり」で模型が展示された建築。タップすると年表のその項目へ飛ぶ。</p>
+    <ol class="models" id="models"></ol>
   </div>
 </section>
 
@@ -3253,6 +3487,246 @@
   document.getElementById('lb-close').addEventListener('click',close);
   lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('lb-body'))close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))close();});
+})();
+</script>
+<script>
+/* ===== 回遊のための仕掛け ── 読んだ記録、問いのカード、図版の引き当て、博物館ページ ===== */
+(function(){
+  var PARTS=['p1','p2','p3','p4','p5','p6','p7'],
+      NAMES={p1:'第一部 時間',p2:'第二部 空間',p3:'第三部 文明',p4:'第四部 神',p5:'第五部 言語',p6:'第六部 年表',p7:'第七部 建築',museum:'博物館で'},
+      KEY='aog.reading.v1',
+      reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- 記録（この端末だけ） ---- */
+  var st={parts:{},figs:{},finds:{},last:null,visits:0};
+  try{var raw=localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);if(o&&typeof o==='object'){st.parts=o.parts||{};st.figs=o.figs||{};st.finds=o.finds||{};st.last=o.last||null;st.visits=o.visits||0;}}}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+  st.visits++;save();
+
+  /* ---- 部ごとの範囲と、本線の分量 ---- */
+  var partEls={};
+  PARTS.forEach(function(id){
+    var el=document.getElementById(id),arr=[el],n=el.nextElementSibling;
+    while(n&&n.tagName==='SECTION'&&n.dataset.part===el.dataset.part){arr.push(n);n=n.nextElementSibling;}
+    var chars=0,all=0;arr.forEach(function(sec){
+      var c=sec.cloneNode(true);c.querySelectorAll('svg,details,script,.qa').forEach(function(x){x.remove();});chars+=c.textContent.replace(/\s+/g,'').length;
+      var d=sec.cloneNode(true);d.querySelectorAll('svg,script,.qa').forEach(function(x){x.remove();});all+=d.textContent.replace(/\s+/g,'').length;});
+    partEls[id]={secs:arr,minutes:Math.max(1,Math.round(chars/450)),minutesAll:Math.max(1,Math.round(all/450))};
+  });
+  function partRange(id){var a=partEls[id].secs,t=a[0].offsetTop,b=a[a.length-1];return {top:t,bottom:b.offsetTop+b.offsetHeight};}
+
+  /* ---- 目次に、所要時間と読んだ印 ---- */
+  var digest=[].slice.call(document.querySelectorAll('.digest li'));
+  digest.forEach(function(li,i){
+    var id=PARTS[i];if(!id)return;
+    var a=li.querySelector('a');if(!a)return;
+    var m=document.createElement('span');m.className='meta';
+    m.innerHTML='<span class="st"></span><span class="mini"><i></i></span><span class="tm">本線 約'+partEls[id].minutes+'分'+(partEls[id].minutesAll-partEls[id].minutes>=2?'　補足まで 約'+partEls[id].minutesAll+'分':'')+'</span>';
+    a.appendChild(m);
+  });
+  function renderDigest(){
+    var done=0;
+    digest.forEach(function(li,i){
+      var id=PARTS[i];if(!id)return;
+      var r=st.parts[id]||{},p=Math.round((r.p||0)*100),d=!!r.done;
+      li.classList.toggle('is-done',d);li.classList.toggle('is-part',!d&&p>0);
+      var stEl=li.querySelector('.st'),bar=li.querySelector('.mini i');
+      if(stEl)stEl.textContent=d?'読了':(p>0?'途中まで':'未読');
+      if(bar)bar.style.width=(d?100:p)+'%';
+      if(d)done++;
+    });
+    document.querySelectorAll('#rail button[data-go]').forEach(function(b){var r=st.parts[b.dataset.go];b.classList.toggle('is-read',!!(r&&r.done));});
+    return done;
+  }
+
+  /* ---- ヒーロー：続きから、進み具合 ---- */
+  var figsAll=[].slice.call(document.querySelectorAll('figure.chart.map,figure.chart.zoom,figure.photo'));
+  figsAll.forEach(function(f,i){f.dataset.fig=String(i);});
+  var findItems=[]; // 後で埋める
+  function renderHero(){
+    var done=renderDigest();
+    var opened=Object.keys(st.figs).length,found=Object.keys(st.finds).filter(function(k){return st.finds[k];}).length;
+    var prog=document.getElementById('hero-progress'),btn=document.getElementById('btn-resume');
+    var any=done>0||opened>0||found>0||(st.last&&st.last.id);
+    if(prog){
+      if(any){
+        prog.hidden=false;
+        prog.innerHTML='ここまでの記録　読了 <b>'+done+'</b>/'+PARTS.length+'部　・　開いた図版 <b>'+opened+'</b>/'+figsAll.length+'点'+(findItems.length?'　・　館で見つけた実物 <b>'+found+'</b>/'+findItems.length+'点':'')+'<br><span style="font-size:.78rem">この端末のブラウザにだけ残る記録。</span>';
+      }else{prog.hidden=true;}
+    }
+    if(btn){
+      if(st.last&&st.last.id&&NAMES[st.last.id]&&!(st.parts[st.last.id]||{}).done){btn.hidden=false;btn.textContent='続きから読む ── '+NAMES[st.last.id];}
+      else if(st.last&&st.last.id&&NAMES[st.last.id]){btn.hidden=false;btn.textContent='前回の場所へ ── '+NAMES[st.last.id];}
+      else btn.hidden=true;
+    }
+  }
+  var resumeBtn=document.getElementById('btn-resume');
+  if(resumeBtn)resumeBtn.addEventListener('click',function(){
+    if(!st.last)return;
+    var y=st.last.y;
+    if(typeof y!=='number'){var t=document.getElementById(st.last.id);if(t)y=t.offsetTop;}
+    window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
+  });
+
+  /* ---- 読み進みの記録 ---- */
+  var ticking=false,lastSave=0,dirty=false;
+  function track(){
+    ticking=false;
+    var y=window.scrollY,vh=window.innerHeight,mid=y+vh*.6,cur=null;
+    PARTS.forEach(function(id){
+      var r=partRange(id);
+      if(mid>=r.top&&mid<r.bottom)cur=id;
+      if(y+vh>r.top&&y<r.bottom){
+        var p=Math.min(1,Math.max(0,(y+vh-r.top)/(r.bottom-r.top)));
+        var rec=st.parts[id]||(st.parts[id]={});
+        if(p>(rec.p||0)){rec.p=Math.round(p*100)/100;dirty=true;}
+      }
+    });
+    if(cur){var l=st.last;if(!l||l.id!==cur||Math.abs((l.y||0)-y)>200){st.last={id:cur,y:Math.max(0,Math.round(y))};dirty=true;}}
+    var now=Date.now();
+    if(dirty&&now-lastSave>1200){lastSave=now;dirty=false;save();renderHero();}
+  }
+  window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(track);}},{passive:true});
+  window.addEventListener('pagehide',function(){if(dirty)save();});
+  document.addEventListener('visibilitychange',function(){if(document.hidden&&dirty){save();dirty=false;}});
+
+  /* 答え合わせの札が見えたら「読了」 */
+  if('IntersectionObserver' in window){
+    var doneIO=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        var id=e.target.dataset.qaEnd,rec=st.parts[id]||(st.parts[id]={});
+        if(!rec.done){rec.done=true;rec.p=1;save();renderHero();}
+        doneIO.unobserve(e.target);
+      });
+    },{threshold:.35});
+    document.querySelectorAll('.qa.a[data-qa-end]').forEach(function(el){doneIO.observe(el);});
+  }
+
+  /* ---- 図版：開いた記録と、ひとつ引く ---- */
+  document.addEventListener('click',function(e){
+    var f=e.target.closest('figure[data-fig]');
+    if(!f)return;
+    if(f.classList.contains('photo')&&!e.target.closest('img'))return;
+    if(e.target.closest('a'))return;
+    if(!st.figs[f.dataset.fig]){st.figs[f.dataset.fig]=1;save();renderHero();}
+    finishDraw(f);
+  },true);
+  function openFig(f){
+    if(f.classList.contains('photo')){var img=f.querySelector('img');if(img)img.click();}
+    else f.click();
+  }
+  var drawBtn=document.getElementById('btn-draw');
+  if(drawBtn)drawBtn.addEventListener('click',function(){
+    var pool=figsAll.filter(function(f){return !st.figs[f.dataset.fig]&&!f.classList.contains('noimg');});
+    if(!pool.length)pool=figsAll.filter(function(f){return !f.classList.contains('noimg');});
+    if(!pool.length)return;
+    var f=pool[Math.floor(Math.random()*pool.length)];
+    openFig(f);
+    drawBtn.textContent='もう一枚引く';
+  });
+
+  /* ---- 現れる・描かれる ---- */
+  function eligibleStrokes(svg){
+    var out=[];
+    [].slice.call(svg.querySelectorAll('path,polyline,line')).forEach(function(el){
+      if(out.length>=80)return;
+      if(el.closest('defs,marker,clipPath,mask'))return;
+      if(el.getAttribute('stroke-dasharray')||(el.style&&el.style.strokeDasharray))return;
+      var cs=getComputedStyle(el);
+      if(cs.stroke==='none'||cs.strokeDasharray!=='none')return;
+      if(el.tagName.toLowerCase()==='path'&&(el.getAttribute('fill')||'').toLowerCase()!=='none'&&cs.fill!=='none')return;
+      var L;try{L=el.getTotalLength();}catch(err){return;}
+      if(!L||L<40)return;
+      out.push({el:el,L:L});
+    });
+    return out;
+  }
+  function finishDraw(fig){
+    fig.querySelectorAll('.draw').forEach(function(el){el.classList.remove('draw');el.style.strokeDasharray='';el.style.strokeDashoffset='';});
+  }
+  function startDraw(fig){
+    if(fig.dataset.drawn)return;fig.dataset.drawn='1';
+    var svg=fig.querySelector('svg');if(!svg)return;
+    var items=eligibleStrokes(svg);if(!items.length)return;
+    items.forEach(function(it){it.el.style.strokeDasharray=it.L+' '+it.L;it.el.style.strokeDashoffset=String(it.L);});
+    void svg.getBoundingClientRect();
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      items.forEach(function(it){
+        it.el.classList.add('draw');it.el.style.strokeDashoffset='0';
+        it.el.addEventListener('transitionend',function h(){it.el.removeEventListener('transitionend',h);it.el.classList.remove('draw');it.el.style.strokeDasharray='';it.el.style.strokeDashoffset='';});
+      });
+      setTimeout(function(){finishDraw(fig);},2600);
+    });});
+  }
+  if(!reduce&&'IntersectionObserver' in window){
+    var rv=[].slice.call(document.querySelectorAll('figure.chart,figure.photo,.qa,.ask,.bar,.hero-actions'));
+    rv.forEach(function(el){el.classList.add('rv');});
+    var rvIO=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        e.target.classList.add('in');
+        if(e.target.matches('figure.chart'))startDraw(e.target);
+        rvIO.unobserve(e.target);
+      });
+    },{rootMargin:'0px 0px -6% 0px',threshold:.08});
+    rv.forEach(function(el){rvIO.observe(el);});
+    /* 画面内にあるものは即表示（初期表示で空白にしない） */
+    requestAnimationFrame(function(){rv.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<window.innerHeight&&r.bottom>0)el.classList.add('in');});});
+  }
+
+  /* ---- 博物館で：館で探す実物、特別展の模型 ---- */
+  var finds=document.getElementById('finds'),models=document.getElementById('models');
+  if(finds){
+    [].slice.call(document.querySelectorAll('figure.photo')).forEach(function(f){
+      var cap=f.querySelector('figcaption');if(!cap)return;
+      var t=cap.textContent;
+      if(t.indexOf('撮影')<0||t.indexOf('古代オリエント博物館')<0)return;
+      var img=f.querySelector('img');if(!img)return;
+      var det0=f.closest('details');
+      if(det0&&findItems.some(function(x){return x.closest('details')===det0;}))return;
+      findItems.push(f);
+    });
+    findItems.forEach(function(f,i){
+      var key='f'+i,img=f.querySelector('img'),cap=f.querySelector('figcaption');
+      var strong=cap.querySelector('strong'),det=f.closest('details'),sum=det?det.querySelector('summary'):null;
+      var sTitle=sum?sum.textContent.replace(/実物を見る ── |会場で見る ── |タップで開く/g,'').replace(/[「」『』]/g,'').trim():'';
+      var title=(strong&&strong.textContent.length<=18&&strong.textContent.indexOf('、')<0)?strong.textContent:(sTitle||'展示品');
+      title=title.replace(/[（(].*$/,'').trim();
+      var sec=f.closest('section[data-part]'),where=sec?(NAMES['p'+sec.dataset.part]||''):'';
+      var h3=null,n=f;while(n&&n!==sec){n=n.previousElementSibling||n.parentElement;if(n&&n.matches&&n.matches('h3'))
+        {h3=n;break;}}
+      var li=document.createElement('li');
+      var th=document.createElement('img');th.src=img.getAttribute('src');th.alt=img.alt||title;th.loading='lazy';
+      var body=document.createElement('div');
+      var a=document.createElement('a');a.className='t';a.textContent=title;a.setAttribute('role','link');a.tabIndex=0;
+      var w=document.createElement('span');w.className='w';w.textContent=where+(h3?' ── '+h3.textContent.replace(/\s+/g,' ').trim():'')+'　本文で読む →';
+      body.appendChild(a);body.appendChild(w);
+      var lab=document.createElement('label'),cb=document.createElement('input');cb.type='checkbox';cb.checked=!!st.finds[key];
+      lab.appendChild(cb);lab.appendChild(document.createTextNode('見つけた'));
+      li.appendChild(th);li.appendChild(body);li.appendChild(lab);
+      li.classList.toggle('found',cb.checked);
+      cb.addEventListener('change',function(){st.finds[key]=cb.checked;li.classList.toggle('found',cb.checked);save();renderHero();renderCount();});
+      th.addEventListener('click',function(){img.click();});
+      function goto(){if(det)det.open=true;setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
+      a.addEventListener('click',goto);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();goto();}});
+      finds.appendChild(li);
+    });
+    var cnt=document.createElement('p');cnt.className='finds-count';finds.parentNode.insertBefore(cnt,finds.nextSibling);
+    function renderCount(){var n=Object.keys(st.finds).filter(function(k){return st.finds[k];}).length;cnt.textContent=n?('見つけた実物 '+n+'／'+findItems.length+'点'+(n===findItems.length?'　── 全部見つけた。':'')):'まだ印はない。会場で見つけたら、ここに付ける。';}
+    renderCount();
+  }
+  if(models){
+    [].slice.call(document.querySelectorAll('.ev[data-kind="exhibit"]')).forEach(function(ev,i){
+      if(!ev.id)ev.id='ex-'+(i+1);
+      var h=ev.querySelector('h3'),pl=ev.querySelector('.place'),q=ev.querySelector('.quote'),chip=ev.querySelector('.chip');
+      var li=document.createElement('li'),a=document.createElement('a');a.dataset.go=ev.id;a.setAttribute('role','link');a.tabIndex=0;a.style.cursor='pointer';
+      a.innerHTML='<span class="n">'+String(i+1).padStart(2,'0')+'</span><span class="t">'+(h?h.textContent:'')+'<span class="w">'+[(chip?chip.textContent:''),(pl?pl.textContent:''),(q?'「'+q.textContent+'」':'')].filter(Boolean).join('　')+'</span></span>';
+      li.appendChild(a);models.appendChild(li);
+    });
+  }
+
+  renderHero();
 })();
 </script>
 </body>
