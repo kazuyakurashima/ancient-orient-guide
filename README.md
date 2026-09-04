@@ -60,6 +60,7 @@
 
 - `robots.txt`・`sitemap.xml`（写真14点の一覧つき）・`manifest.webmanifest`・`og.png`（SNS共有用の画像）をリポジトリ直下に置いてある。`index.html` の `<head>` に canonical、OGP、構造化データ（JSON-LD の `Article`。`about` に古代オリエント博物館）がある
 - `og.png` は `python3 tools/make-og.py` で作り直せる（Pillow と macOS のヒラギノ明朝が必要）。題や副題を変えたら実行する
+- 構造化データの `dateModified` と `sitemap.xml` の `lastmod` は、`index.html` か `sitemap.xml` を commit するたびに `tools/stamp-dates.sh` が今日の日付にそろえる（`.git/hooks/pre-commit` から呼ぶ。clone し直したときは `printf '#!/bin/sh\ntools/stamp-dates.sh --staged\n' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit` で入れ直す）
 - Google Search Console: 「URLプレフィックス」で公開URLを登録し、所有権確認の「HTMLタグ」のトークンを `<head>` のコメントにある `google-site-verification` に入れて公開する。その後 `sitemap.xml` を送信し、URL検査から「インデックス登録をリクエスト」する
 - Vercel Web Analytics: ダッシュボードの Analytics で Enable にしてから、`</body>` 直前の計測スクリプトを有効にする（Hobby プランは月5万イベントまで無料、超過は収集が止まるだけ）
 
