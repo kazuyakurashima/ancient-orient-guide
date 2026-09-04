@@ -113,7 +113,10 @@
   }
 
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  /* 飛び先が上部の固定ナビ（ピルの下端67px）に隠れないよう、スクロール位置を下げる。
+     scroll-padding はスクロール容器側の指定なので、節・見出し・年表の項目・答え合わせの札など
+     すべての飛び先に一度で効く */
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;--navh:82px;scroll-padding-top:var(--navh)}
   body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--sans);
     font-size:16px;line-height:1.9;letter-spacing:.02em;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -486,7 +489,6 @@
   footer .wrap{max-width:46rem}
   footer p{max-width:none;margin:0 0 1rem}
 
-  section[id]{scroll-margin-top:78px}
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
@@ -3535,6 +3537,24 @@
     go(a);
   },true);
 
+  /* 共有リンク（#付きのURL）で開いたとき。埋め込み画像が読み込まれるまで版面の高さが変わり、
+     ブラウザの初回の飛び先がずれる。位置が落ち着くまで合わせ直し、読者が触ったらやめる */
+  (function(){
+    var id=(location.hash||'').slice(1);
+    if(!id||!document.getElementById(id)) return;
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+    var stop=false,n=0,iv;
+    function fix(){
+      var t=document.getElementById(id);
+      if(!t||stop) return;
+      if(Math.abs(t.getBoundingClientRect().top-82)>2) t.scrollIntoView({behavior:'instant',block:'start'});
+    }
+    function done(){stop=true;clearInterval(iv);}
+    ['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,done,{once:true,passive:true});});
+    iv=setInterval(function(){fix();if(++n>26)done();},120);
+    window.addEventListener('load',function(){fix();});
+  })();
+
   // 現在いる部を上部ナビで示す
   var navLinks=[].slice.call(document.querySelectorAll('#topnav a[data-go]')),
       railBtns=[].slice.call(document.querySelectorAll('#rail button[data-go]')),
@@ -3693,7 +3713,8 @@
   if(resumeBtn)resumeBtn.addEventListener('click',function(){
     if(!st.last)return;
     var y=st.last.y;
-    if(typeof y!=='number'){var t=document.getElementById(st.last.id);if(t)y=t.offsetTop;}
+    if(typeof y!=='number'){var t=document.getElementById(st.last.id);
+      if(t)y=Math.max(0,t.getBoundingClientRect().top+window.scrollY-(parseInt(getComputedStyle(document.documentElement).scrollPaddingTop,10)||0));}
     window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
   });
 
