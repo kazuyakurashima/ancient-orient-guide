@@ -58,8 +58,10 @@
 
 ## 検索エンジンと計測
 
-- `robots.txt`・`sitemap.xml`（写真14点の一覧つき）・`manifest.webmanifest`・`og.png`（SNS共有用の画像）をリポジトリ直下に置いてある。`index.html` の `<head>` に canonical、OGP、構造化データ（JSON-LD の `Article`。`about` に古代オリエント博物館）がある
-- `og.png` は `python3 tools/make-og.py` で作り直せる（Pillow と macOS のヒラギノ明朝が必要）。題や副題を変えたら実行する
+- `robots.txt`・`sitemap.xml`（写真14点の一覧つき）・`manifest.webmanifest`・`og-relief.png`（SNS共有用の画像）をリポジトリ直下に置いてある。`index.html` の `<head>` に canonical、OGP、構造化データ（JSON-LD の `Article`。`about` に古代オリエント博物館）がある
+- SNS共有用の画像は `og-relief.png`（1200×630）。エジプトの男性頭部の浮彫（`img/05-egyptian-relief-head.jpg` と同じ、館内で2026年9月3日に撮影したもの）を右に置いた手作りの一枚
+- `og.png` は旧版（ジッグラトの印だけの図）で、いまはどこからも参照していない。`python3 tools/make-og.py` はこの旧版を作り直すスクリプトなので、実行しても `og-relief.png` は変わらない
+- 共有画像を差し替えるときは、**ファイル名も変える**。X や Slack は画像をURL単位で保存するので、同じ名前のまま中身を変えても古い絵が出続ける
 - 構造化データの `dateModified` と `sitemap.xml` の `lastmod` は、`index.html` か `sitemap.xml` を commit するたびに `tools/stamp-dates.sh` が今日の日付にそろえる（`.git/hooks/pre-commit` から呼ぶ。clone し直したときは `printf '#!/bin/sh\ntools/stamp-dates.sh --staged\n' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit` で入れ直す）
 - Google Search Console: 「URLプレフィックス」で公開URLを登録し、所有権確認の「HTMLタグ」のトークンを `<head>` のコメントにある `google-site-verification` に入れて公開する。その後 `sitemap.xml` を送信し、URL検査から「インデックス登録をリクエスト」する
 - Vercel Web Analytics: ダッシュボードの Analytics で Enable にしてから、`</body>` 直前の計測スクリプトを有効にする（Hobby プランは月5万イベントまで無料、超過は収集が止まるだけ）
