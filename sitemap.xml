@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://ancient-orient-guide.vercel.app/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/01-museum-map-screen.jpg</image:loc>
+      <image:title>古代オリエント博物館の大型画面 ── 地図と年表</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/02-tell-asmar-worshipper.jpg</image:loc>
+      <image:title>立像の礼拝者（テル・アスマル出土、初期王朝時代）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/03-babylon-striding-lion.jpg</image:loc>
+      <image:title>歩むライオン（バビロンの行列道路、釉薬煉瓦）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/04-meketre-garden-model.jpg</image:loc>
+      <image:title>柱廊と庭の模型（メケトラー墓出土、中王国）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/05-egyptian-relief-head.jpg</image:loc>
+      <image:title>男性頭部の浮彫断片（エジプト、彩色石灰岩）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/06-peacock-mosaic.jpg</image:loc>
+      <image:title>孔雀のモザイク（レバノン、4〜6世紀）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/07-peacock-mosaic-detail.jpg</image:loc>
+      <image:title>孔雀のモザイクの拡大</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/08-zebu-figurines.jpg</image:loc>
+      <image:title>コブウシ土偶（バローチスターン、前2200〜前2000年頃）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/09-alexander-tetradrachm.jpg</image:loc>
+      <image:title>アレクサンドロス3世タイプの銀貨（マケドニア王国）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/10-ur-ziggurat.jpg</image:loc>
+      <image:title>ウルのジッグラト（前2100年頃）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/11-sennedjem-tomb.jpg</image:loc>
+      <image:title>センネジェムの墓の壁画 ── イアルの野</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/12-cuneiform-tablet-barley.jpg</image:loc>
+      <image:title>麦芽と大麦の勘定を記した粘土板（前3000年頃）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/13-ur-ziggurat-front.jpg</image:loc>
+      <image:title>ウルのジッグラト（正面の階段）</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ancient-orient-guide.vercel.app/img/14-cuneiform-tablet-nippur.jpg</image:loc>
+      <image:title>勘定の粘土板の破片（ニップル出土）</image:title>
+    </image:image>
+  </url>
+</urlset>

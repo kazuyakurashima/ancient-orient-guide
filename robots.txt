@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ancient-orient-guide.vercel.app/sitemap.xml

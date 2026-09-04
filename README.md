@@ -30,7 +30,7 @@
 
 ## 特徴
 
-- 単一のHTMLファイルで完結（画像・地図はすべて埋め込み済み、オフラインで動作）
+- HTMLは一枚（約0.55MB）。地図41点のSVGは埋め込み、写真14点は `img/` から配信（検索エンジンの速度評価と初回表示のため、2026年9月4日に埋め込みから分離）
 - 地図41点はすべて自作のSVG、写真14点（パブリックドメイン等の素材8点と、館内で撮影した6点）を埋め込み
 - 地図・写真はタップで拡大表示
 - 第二部の「五つの世界の玄関」で地域を選ぶと、その地域の話が各部のどこにあるか一覧になり、そこへ飛べる
@@ -55,6 +55,13 @@
 3. Framework Preset は **Other**、Build Command と Output Directory は空のままでDeploy
 
 `index.html` がそのままトップページとして配信されます。以降はGitHubにpushするたび自動で再デプロイされます。
+
+## 検索エンジンと計測
+
+- `robots.txt`・`sitemap.xml`（写真14点の一覧つき）・`manifest.webmanifest`・`og.png`（SNS共有用の画像）をリポジトリ直下に置いてある。`index.html` の `<head>` に canonical、OGP、構造化データ（JSON-LD の `Article`。`about` に古代オリエント博物館）がある
+- `og.png` は `python3 tools/make-og.py` で作り直せる（Pillow と macOS のヒラギノ明朝が必要）。題や副題を変えたら実行する
+- Google Search Console: 「URLプレフィックス」で公開URLを登録し、所有権確認の「HTMLタグ」のトークンを `<head>` のコメントにある `google-site-verification` に入れて公開する。その後 `sitemap.xml` を送信し、URL検査から「インデックス登録をリクエスト」する
+- Vercel Web Analytics: ダッシュボードの Analytics で Enable にしてから、`</body>` 直前の計測スクリプトを有効にする（Hobby プランは月5万イベントまで無料、超過は収集が止まるだけ）
 
 ## ライセンス
 
