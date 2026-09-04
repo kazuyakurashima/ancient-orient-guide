@@ -4375,6 +4375,43 @@
   renderHero();
 })();
 </script>
+<!-- URLの # つきで開いたときに、その見出しへ着地させる。
+     html に scroll-behavior:smooth があるため、ブラウザ既定の飛び先移動もなめらかスクロールになり、
+     読み込み中の描画や版面の変化で中断されると先頭に取り残される。
+     また飛び先が閉じた折りたたみの中にあると、高さを持たないのでブラウザは飛べない。
+     ここでは折りたたみを開いてから、瞬間移動で位置を合わせ直す。
+     読者が自分で動かしたら、それ以降は手を出さない。 -->
+<script>
+(function(){
+  var hash=location.hash.slice(1);
+  if(!hash) return;
+  var id;
+  try{ id=decodeURIComponent(hash); }catch(e){ id=hash; }
+  if(!document.getElementById(id)) return;
+  var root=document.documentElement, stopped=false;
+  function halt(){ stopped=true; }
+  ['wheel','touchstart','keydown','pointerdown'].forEach(function(ev){
+    window.addEventListener(ev,halt,{passive:true,once:true});
+  });
+  function land(){
+    if(stopped) return;
+    var el=document.getElementById(id);
+    if(!el) return;
+    // 飛び先を包む折りたたみを、外側までさかのぼって開く
+    for(var d=el.closest('details'); d; d=d.parentElement&&d.parentElement.closest('details')){ d.open=true; }
+    var pad=parseInt(getComputedStyle(root).scrollPaddingTop,10)||0,
+        y=Math.max(0,el.getBoundingClientRect().top+window.scrollY-pad);
+    if(Math.abs(window.scrollY-y)<2) return;  // すでに合っていれば触らない
+    var prev=root.style.scrollBehavior;
+    root.style.scrollBehavior='auto';         // CSSのなめらかスクロールを一時的に外す
+    window.scrollTo(0,y);
+    root.style.scrollBehavior=prev;
+  }
+  land();
+  window.addEventListener('load',land);
+  [100,400,900,1800].forEach(function(ms){ setTimeout(land,ms); });
+})();
+</script>
 <!-- Vercel Web Analytics（Cookieなし。ページビューと参照元だけ） -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
