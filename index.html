@@ -766,16 +766,75 @@
   .era-play{appearance:none;flex:none;font:inherit;font-size:.84rem;font-weight:500;padding:.5rem .95rem;border-radius:var(--r-pill);
     border:1px solid var(--ink);background:var(--ink);color:var(--canvas);cursor:pointer}
   .era-play[aria-pressed="true"]{background:var(--surface);color:var(--ink)}
-  #era-range{flex:1;min-width:0;accent-color:var(--tone-ink);height:28px;margin:0;cursor:pointer}
+  #era-range,#p2m-range,#p2c-range{flex:1;min-width:0;accent-color:var(--tone-ink);height:28px;margin:0;cursor:pointer}
   .era-ticks{list-style:none;margin:0 0 .7rem;padding:0 58px 0 46px;display:flex;justify-content:space-between;font-size:.74rem;color:var(--muted)}
   .era-ticks li{flex:1;text-align:center}
   .era-ticks li:first-child{text-align:left}
   .era-ticks li:last-child{text-align:right}
   .era-cap{margin:0;font-size:.9rem;line-height:1.8;color:var(--body);max-width:none;min-height:3.2em}
+  /* ---- 第二部の地図を、三枚重ねで ---- */
+  .p2m .era-stage{aspect-ratio:340/250}
+  .p2m .L{transition:opacity .55s ease}
+  .p2m .T,.p2m .LT,.p2m .Z,.p2m .ZL1,.p2m .ZL3,.p2m .S,.p2m .B{opacity:0;pointer-events:none}
+  .p2m[data-step="0"] .Z,.p2m[data-step="0"] .ZL1,.p2m[data-step="2"] .Z,.p2m[data-step="2"] .ZL3,.p2m[data-step="3"] .Z,.p2m[data-step="3"] .B{opacity:1}
+  .p2m .ZL1 text,.p2m .ZL3 text{paint-order:stroke;stroke:#F1EEE6;stroke-width:3px;stroke-linejoin:round}
+  .p2m[data-step="1"] .T,.p2m[data-step="1"] .LT,.p2m[data-step="1"] .LM{opacity:1}
+  .p2m .LM{opacity:0;pointer-events:none}
+  .p2m[data-step="2"] .LM,.p2m[data-step="3"] .LM{opacity:.6}
+  .p2m[data-step="2"] .lm-t{opacity:0}
+  .p2m[data-step="2"] .T,.p2m[data-step="3"] .T{opacity:.5}
+  .p2m[data-step="1"] .RL,.p2m[data-step="3"] .RL{opacity:0}
+  /* 二枚目: 床に触れると、囲む壁と海が浮かび、少し遅れてその床に色が流れ込む */
+  .p2m .RL,.p2m .SL{pointer-events:none}
+  .p2m .bar,.p2m .sea{transition:filter .4s ease,fill .4s ease}
+  .p2m .bar.hi{filter:brightness(.72) saturate(1.3)}
+  .p2m .sea.hi{fill:#A3BEDD}
+  .p2m .Z [data-r],.p2m .ZL1 [data-r]{transition:opacity .35s ease}
+  .p2m .ZL1 [data-r]{opacity:0}
+  .p2m[data-step="0"] .ZL1 [data-r]{opacity:1}
+  .p2m[data-step="1"] .Z,.p2m[data-step="1"] .ZL1{opacity:1}
+  .p2m[data-step="1"] .Z{pointer-events:auto}
+  .p2m[data-step="1"] .Z [data-r]{opacity:1;fill-opacity:0;stroke-opacity:0;cursor:pointer;transition:fill-opacity .4s ease,stroke-opacity .4s ease}
+  .p2m[data-step="1"] .Z [data-r]:hover{stroke-opacity:.6}
+  @keyframes p2m-hint{0%,100%{stroke-opacity:0}50%{stroke-opacity:.55}}
+  .p2m[data-step="1"] .Z [data-r]:not(.lit){animation:p2m-hint 1.3s ease-in-out .5s 2}
+  .p2m-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 .6rem}
+  .p2m-chips button{appearance:none;font:inherit;font-size:.8rem;font-weight:600;line-height:1.2;padding:.32rem .72rem;border-radius:var(--r-pill);
+    border:1.5px solid var(--c);color:var(--c);background:transparent;cursor:pointer;transition:background .2s ease,color .2s ease}
+  .p2m-chips button:hover{background:color-mix(in srgb,var(--c) 12%,transparent)}
+  .p2m-chips button[aria-pressed="true"]{background:var(--c);color:#FFFDFC}
+  .p2m[data-step="1"] .Z [data-r].lit{fill-opacity:.3;stroke-opacity:.7;animation:p2m-pour 1.5s cubic-bezier(.2,.7,.2,1) .45s both}
+  .p2m[data-step="1"] .ZL1 [data-r].lit{opacity:1;transition-delay:1.2s}
+  .p2m .aeg{opacity:0;transition:opacity .55s ease}
+  .p2m[data-step="2"] .aeg{opacity:1}
+  /* 三枚目: 色が床の真ん中から染み出し、壁に当たって止まる */
+  @keyframes p2m-pour{from{clip-path:circle(0 at 50% 50%)}to{clip-path:circle(100% at 50% 50%)}}
+  .p2m[data-step="2"] .Z [data-r]{animation:p2m-pour 1.5s cubic-bezier(.2,.7,.2,1) both}
+  .p2m[data-step="2"] .Z [data-r="lev"]{animation-delay:.3s}
+  .p2m[data-step="2"] .Z [data-r="meso"]{animation-delay:.6s}
+  .p2m[data-step="2"] .Z [data-r="egy"]{animation-delay:.9s}
+  .p2m[data-step="2"] .Z [data-r="irn"]{animation-delay:1.2s}
+  .p2m[data-step="2"] .S,.p2m[data-step="2"] .ZL3{transition-delay:2.2s}
+  @media (prefers-reduced-motion:reduce){.p2m .Z [data-r]{animation:none!important}.p2m[data-step="1"] .Z [data-r]:not(.lit){animation:none!important}.p2m[data-step="2"] .S,.p2m[data-step="2"] .ZL3,.p2m[data-step="1"] .ZL1 [data-r].lit{transition-delay:0s}}
+  .p2m[data-step="2"] .S{opacity:1;pointer-events:auto}
+  .p2m .site{cursor:pointer;outline:none}
+  .p2m .site .nm{font-size:8.5px;fill:#26251E;opacity:0;pointer-events:none;transition:opacity .15s;
+    paint-order:stroke;stroke:#F1EEE6;stroke-width:3px;stroke-linejoin:round}
+  .p2m .site:hover .nm,.p2m .site:focus .nm,.p2m .site.on .nm{opacity:1}
+  .p2m .site:focus-visible circle,.p2m .site.on circle{stroke:#26251E;stroke-width:1.4}
+  /* ---- 主な都市を、全体と地域ごとに。地域の枚では、その土地に寄る ---- */
+  .p2c .era-stage{aspect-ratio:340/250}
+  .p2c .cities,.p2c .tint,.p2c .sea{transition:opacity .45s ease,font-size .45s ease}
+  .p2c .cities.dim{opacity:0}
+  .p2c .tint.hi{opacity:.2}
+  .p2c:not([data-r="all"]) .sea{font-size:5.2px}
+  .p2c .era-ticks li{font-size:.68rem;line-height:1.25}
   @media (max-width:520px){
     .era{padding:14px 14px 12px}
     .era-play{padding:.5rem .7rem;font-size:.8rem}
     .era-ticks{padding:0 42px 0 38px}
+    .p2c .era-ticks{display:none}
+    .p2m .era-ticks{font-size:.66rem;padding:0 34px 0 30px}
   }
 
   /* ---- 五つの世界の玄関 ---- */
@@ -1253,93 +1312,173 @@
       </div>
     </div>
 
-    <figure class="chart">
-      <svg viewBox="0 0 340 250" role="img" aria-label="古代オリエントの模式地図。アナトリア、地中海東岸、メソポタミア、エジプト、イラン高原の五地域と主要遺跡の位置。">
-        <rect x="0" y="0" width="340" height="250" fill="#F1EEE6"/>
-        <!-- water -->
-        <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#C9D8EA"/>
-        <path d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#C9D8EA"/>
-        <path d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#C9D8EA"/>
-        <path d="M98,143 L112,146 L155,250 L128,250 Z" fill="#C9D8EA"/>
-        <path d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#C9D8EA"/>
-        <!-- region zones -->
-        <path d="M62,40 L186,36 L190,72 L150,86 L92,80 L58,66 Z" fill="#22604A" opacity=".26" stroke="#22604A" stroke-opacity=".62"/>
-        <path d="M118,80 L140,80 L142,140 L120,140 Z" fill="#2E5F9E" opacity=".26" stroke="#2E5F9E" stroke-opacity=".62"/>
-        <path d="M148,66 L198,70 L226,120 L222,148 L192,140 L156,100 Z" fill="#94421C" opacity=".26" stroke="#94421C" stroke-opacity=".62"/>
-        <path d="M80,132 L116,134 L114,216 L84,214 Z" fill="#7A5C0E" opacity=".26" stroke="#7A5C0E" stroke-opacity=".62"/>
-        <path d="M228,76 L300,84 L302,150 L246,158 L224,120 Z" fill="#59418C" opacity=".26" stroke="#59418C" stroke-opacity=".62"/>
-        <path d="M4,44 L44,44 L44,80 L4,80 Z" fill="#6E6A5E" opacity=".16" stroke="#6E6A5E" stroke-opacity=".5" stroke-dasharray="3 3"/>
-        <!-- rivers -->
-        <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
-        <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
-        <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#8FAFC6" stroke-width="2.6"/>
-        <!-- river labels -->
-        <line x1="190" y1="172" x2="199" y2="128" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="180" y="182" font-size="10" fill="#2E5F9E" text-anchor="middle" font-weight="600">ユーフラテス川</text>
-        <line x1="193" y1="54" x2="178" y2="66" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="197" y="50" font-size="10" fill="#2E5F9E" text-anchor="end" font-weight="600">ティグリス川</text>
-        <line x1="97" y1="207" x2="80" y2="207" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="77" y="210" font-size="10" fill="#2E5F9E" text-anchor="end" font-weight="600">ナイル川</text>
-        <!-- water labels -->
-        <text x="50" y="92" font-size="9.5" fill="#5A5852">地中海</text>
-        <text x="118" y="31" font-size="9" fill="#5A5852" text-anchor="middle">黒海</text>
-        <text x="268" y="54" font-size="9" fill="#5A5852" text-anchor="middle">カスピ海</text>
-        <line x1="249" y1="186" x2="254" y2="176" stroke="#5A5852" stroke-width=".8"/>
-        <text x="243" y="196" font-size="9" fill="#5A5852">ペルシア湾</text>
-        <text x="131" y="224" font-size="9" fill="#5A5852" text-anchor="middle">紅海</text>
-        <!-- region labels -->
-        <text x="78" y="46" font-size="11.5" fill="#22604A" text-anchor="middle" font-weight="600">アナトリア</text>
-        <text x="206" y="104" font-size="11.5" fill="#94421C" text-anchor="middle" font-weight="600">メソポタミア</text>
-        <text x="96" y="158" font-size="11.5" fill="#7A5C0E" text-anchor="middle" font-weight="600">エジプト</text>
-        <text x="264" y="106" font-size="11.5" fill="#59418C" text-anchor="middle" font-weight="600">イラン高原</text>
-        <line x1="110" y1="110" x2="90" y2="113" stroke="#2E5F9E" stroke-width=".9"/>
-        <text x="86" y="117" font-size="11" fill="#2E5F9E" text-anchor="end" font-weight="600">地中海東岸</text>
-        <text x="22" y="52" font-size="8.5" fill="#827E74" text-anchor="middle">エーゲ海</text>
-        <!-- sites -->
-        <g font-weight="600" text-anchor="middle">
-          <circle cx="101" cy="63" r="6.5" fill="#22604A"/><text x="101" y="66.4" font-size="8.5" fill="#FFFDFC">1</text>
-          <circle cx="152" cy="68" r="6.5" fill="#22604A"/><text x="152" y="71.4" font-size="8.5" fill="#FFFDFC">2</text>
-          <circle cx="117" cy="110" r="6.5" fill="#2E5F9E"/><text x="117" y="113.4" font-size="8.5" fill="#FFFDFC">3</text>
-          <circle cx="127" cy="122" r="6.5" fill="#2E5F9E"/><text x="127" y="125.4" font-size="8.5" fill="#FFFDFC">4</text>
-          <circle cx="147" cy="95" r="6.5" fill="#2E5F9E"/><text x="147" y="98.4" font-size="8.5" fill="#FFFDFC">5</text>
-          <circle cx="159" cy="86" r="6.5" fill="#2E5F9E"/><text x="159" y="89.4" font-size="8.5" fill="#FFFDFC">6</text>
-          <circle cx="189" cy="85" r="6.5" fill="#94421C"/><text x="189" y="88.4" font-size="8.5" fill="#FFFDFC">7</text>
-          <circle cx="199" cy="115" r="6.5" fill="#94421C"/><text x="199" y="118.4" font-size="8.5" fill="#FFFDFC">8</text>
-          <circle cx="211" cy="131" r="6.5" fill="#94421C"/><text x="211" y="134.4" font-size="8.5" fill="#FFFDFC">9</text>
-          <circle cx="99" cy="183" r="7" fill="#7A5C0E"/><text x="99" y="186.2" font-size="8" fill="#FFFDFC">10</text>
-          <circle cx="272" cy="141" r="7" fill="#59418C"/><text x="272" y="144.2" font-size="8" fill="#FFFDFC">11</text>
-          <circle cx="16" cy="64" r="7" fill="#6E6A5E"/><text x="16" y="67.2" font-size="8" fill="#FFFDFC">12</text>
-        </g>
-      </svg>
-    </figure>
-
+    <p>まず五つの世界。次に、人間の引いた線を消して自然だけを残した地形。そこに遺跡を重ね、最後に西暦2000年の国境を重ねる。つまみで一枚ずつ切り替わる。都市も国も、まず山と川と砂漠の隙間に置かれる。文明の配置は、ぜんぶこの地形への返事である。</p>
+    <div class="era p2m" id="p2-map" data-step="0">
+      <div class="era-head"><span class="era-year" id="p2m-title">五つの世界</span><span class="era-step" id="p2m-step">1 / 4</span></div>
+      <div class="era-stage" id="p2m-stage">
+        <svg class="on" viewBox="0 0 340 250" role="img" aria-label="古代オリエントの模式地図。アナトリア、地中海東岸、メソポタミア、エジプト、イラン高原の五地域。">
+          <rect x="0" y="0" width="340" height="250" fill="#F1EEE6"/>
+          <!-- 海 -->
+          <path class="sea" data-s="med" d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#C9D8EA"/>
+          <path class="sea" data-s="black" d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#C9D8EA"/>
+          <path class="sea" data-s="casp" d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#C9D8EA"/>
+          <path class="sea" data-s="red" d="M98,143 L112,146 L155,250 L128,250 Z" fill="#C9D8EA"/>
+          <path class="sea" data-s="gulf" d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#C9D8EA"/>
+          <!-- 二枚目から: 地形。壁（山と砂漠）だけを描き、床は塗らない。壁には触れられる -->
+          <defs>
+            <pattern id="p2m-sand" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(-45)">
+              <rect width="5" height="5" fill="#E6DCC0"/>
+              <line x1="0" y1="0" x2="0" y2="5" stroke="#B9A47E" stroke-width="1.1"/>
+            </pattern>
+          </defs>
+          <g class="L T">
+            <path class="bar" data-k="taurus" d="M92,84 Q120,93 147,84" fill="none" stroke="#A28F72" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+            <path class="bar" data-k="zagros" d="M196,66 Q222,102 250,150" fill="none" stroke="#A28F72" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+            <path class="bar" data-k="taurus" d="M180,40 Q210,48 236,66" fill="none" stroke="#A28F72" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+            <path class="bar" data-k="syr" d="M152,106 L184,121 L196,150 L150,150 L147,122 Z" fill="url(#p2m-sand)" opacity=".9"/>
+            <path class="bar" data-k="sahara" d="M0,130 L84,140 L80,250 L0,250 Z" fill="url(#p2m-sand)" opacity=".9"/>
+            <path class="bar" data-k="arab" d="M160,158 L230,176 L262,250 L156,250 Z" fill="url(#p2m-sand)" opacity=".9"/>
+          </g>
+          <!-- 川 -->
+          <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
+          <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
+          <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#8FAFC6" stroke-width="2.6"/>
+          <!-- 一枚目と三枚目: 五つの世界 -->
+          <g class="L Z">
+            <path data-r="ana" d="M62,40 L170,42 L184,62 L150,80 L92,70 L60,52 Z" fill="#22604A" opacity=".26" stroke="#22604A" stroke-opacity=".62"/>
+            <path data-r="lev" d="M121,94 L148,92 L160,82 L164,92 L150,104 L142,116 L142,138 L121,138 Z" fill="#2E5F9E" opacity=".26" stroke="#2E5F9E" stroke-opacity=".62"/>
+            <path data-r="meso" d="M166,96 L186,74 L195,80 L206,97 L217,114 L228,131 L231,138 L214,134 L198,146 L190,124 L166,104 Z" fill="#94421C" opacity=".26" stroke="#94421C" stroke-opacity=".62"/>
+            <path data-r="egy" d="M86,133 L108,135 L96,148 L102,170 L108,192 L114,214 L86,214 Z" fill="#7A5C0E" opacity=".26" stroke="#7A5C0E" stroke-opacity=".62"/>
+            <path data-r="irn" d="M232,84 L300,88 L302,150 L266,158 L263,150 L252,132 L241,116 L231,100 Z" fill="#59418C" opacity=".26" stroke="#59418C" stroke-opacity=".62"/>
+            <path class="aeg" d="M4,44 L44,44 L44,80 L4,80 Z" fill="none" stroke="#6E6A5E" stroke-opacity=".5" stroke-dasharray="3 3"/>
+          </g>
+          <!-- 川の名前 (四枚目では消す) と海の名前 (全部の枚で) -->
+          <g class="L RL">
+            <line x1="190" y1="172" x2="199" y2="128" stroke="#6E8FB6" stroke-width=".9"/>
+            <text x="180" y="182" font-size="10" fill="#2E5F9E" text-anchor="middle" font-weight="600">ユーフラテス川</text>
+            <line x1="191" y1="60" x2="177" y2="62" stroke="#6E8FB6" stroke-width=".9"/>
+            <text x="193" y="63" font-size="10" fill="#2E5F9E" font-weight="600">ティグリス川</text>
+            <line x1="97" y1="207" x2="80" y2="207" stroke="#6E8FB6" stroke-width=".9"/>
+            <text x="77" y="210" font-size="10" fill="#2E5F9E" text-anchor="end" font-weight="600">ナイル川</text>
+          </g>
+          <g class="SL">
+            <text x="50" y="92" font-size="9.5" fill="#5A5852">地中海</text>
+            <text x="118" y="31" font-size="9" fill="#5A5852" text-anchor="middle">黒海</text>
+            <text x="268" y="54" font-size="9" fill="#5A5852" text-anchor="middle">カスピ海</text>
+            <line x1="249" y1="186" x2="254" y2="176" stroke="#5A5852" stroke-width=".8"/>
+            <text x="243" y="196" font-size="9" fill="#5A5852">ペルシア湾</text>
+            <text x="131" y="224" font-size="9" fill="#5A5852" text-anchor="middle">紅海</text>
+            <text x="22" y="52" font-size="8.5" fill="#827E74" text-anchor="middle">エーゲ海</text>
+          </g>
+          <!-- 山の名前: 地形が見える枚に (三・四枚目は薄く) -->
+          <g class="L LM" font-size="8" fill="#6D5F47" text-anchor="middle">
+            <text class="lm-t" x="124" y="100">タウロス山脈</text>
+            <text x="236" y="104" transform="rotate(52 236 104)">ザグロス山脈</text>
+            <text x="214" y="38">アルメニア高地</text>
+          </g>
+          <!-- 二枚目だけ: 砂漠と高原の名前 -->
+          <g class="L LT">
+            <text x="122" y="58" font-size="9" fill="#827E74" text-anchor="middle">アナトリア高原</text>
+            <text x="288" y="130" font-size="9" fill="#827E74" text-anchor="middle">イラン高原</text>
+            <text x="169" y="132" font-size="8.5" fill="#8A7A56" text-anchor="middle">シリア砂漠</text>
+            <text x="38" y="190" font-size="8.5" fill="#8A7A56" text-anchor="middle">サハラ</text>
+            <text x="204" y="214" font-size="8.5" fill="#8A7A56" text-anchor="middle">アラビア砂漠</text>
+          </g>
+          <!-- 一枚目: 地域の名前を、それぞれの色の中に。細長い地域は縦書き -->
+          <g class="L ZL1" font-size="11.5" font-weight="600" text-anchor="middle">
+            <text data-r="ana" x="128" y="64" fill="#22604A">アナトリア</text>
+            <text data-r="lev" x="131" y="97" fill="#2E5F9E" font-size="8.5" text-anchor="start" style="writing-mode:vertical-rl">地中海東岸</text>
+            <text data-r="meso" x="199" y="110" fill="#94421C" font-size="9.5" transform="rotate(48 199 110)">メソポタミア</text>
+            <text data-r="egy" x="96" y="150" fill="#7A5C0E" text-anchor="start" style="writing-mode:vertical-rl">エジプト</text>
+            <text data-r="irn" x="276" y="126" fill="#59418C" font-size="10.5">イラン高原</text>
+          </g>
+          <!-- 三枚目: 番号を避けた位置に -->
+          <g class="L ZL3" font-size="10.5" font-weight="600">
+            <text x="120" y="52" fill="#22604A" text-anchor="middle">アナトリア</text>
+            <text x="104" y="86" fill="#2E5F9E" style="writing-mode:vertical-rl">地中海東岸</text>
+            <text x="192" y="102" fill="#94421C" font-size="9.5" text-anchor="middle">メソポタミア</text>
+            <line x1="70" y1="160" x2="85" y2="160" stroke="#7A5C0E" stroke-width=".9"/>
+            <text x="46" y="163" fill="#7A5C0E" text-anchor="middle">エジプト</text>
+            <text x="276" y="126" fill="#59418C" text-anchor="middle">イラン高原</text>
+          </g>
+          <!-- 三枚目だけ: 遺跡。触れると名前が出る -->
+          <g class="L S" font-weight="600" text-anchor="middle">
+            <g class="site" tabindex="0"><title>1 チャタル・ヒュユク</title><circle cx="101" cy="63" r="6.5" fill="#22604A"/><text x="101" y="66.4" font-size="8.5" fill="#FFFDFC">1</text><text class="nm" x="101" y="79">チャタル・ヒュユク</text></g>
+            <g class="site" tabindex="0"><title>2 ギョベクリ・テペ</title><circle cx="152" cy="68" r="6.5" fill="#22604A"/><text x="152" y="71.4" font-size="8.5" fill="#FFFDFC">2</text><text class="nm" x="161" y="78" text-anchor="start">ギョベクリ・テペ</text></g>
+            <g class="site" tabindex="0"><title>3 テル・レヘシュ</title><circle cx="122" cy="110" r="6.5" fill="#2E5F9E"/><text x="122" y="113.4" font-size="8.5" fill="#FFFDFC">3</text><text class="nm" x="122" y="100">テル・レヘシュ</text></g>
+            <g class="site" tabindex="0"><title>4 イェリコ</title><circle cx="127" cy="122" r="6.5" fill="#2E5F9E"/><text x="127" y="125.4" font-size="8.5" fill="#FFFDFC">4</text><text class="nm" x="127" y="137">イェリコ</text></g>
+            <g class="site" tabindex="0"><title>5 パルミラ</title><circle cx="147" cy="95" r="6.5" fill="#2E5F9E"/><text x="147" y="98.4" font-size="8.5" fill="#FFFDFC">5</text><text class="nm" x="139" y="98" text-anchor="end">パルミラ</text></g>
+            <g class="site" tabindex="0"><title>6 テル・ルメイラ</title><circle cx="159" cy="86" r="6.5" fill="#2E5F9E"/><text x="159" y="89.4" font-size="8.5" fill="#FFFDFC">6</text><text class="nm" x="167" y="77" text-anchor="start">テル・ルメイラ</text></g>
+            <g class="site" tabindex="0"><title>7 アッシュル</title><circle cx="189" cy="85" r="6.5" fill="#94421C"/><text x="189" y="88.4" font-size="8.5" fill="#FFFDFC">7</text><text class="nm" x="189" y="75">アッシュル</text></g>
+            <g class="site" tabindex="0"><title>8 バビロン</title><circle cx="199" cy="115" r="6.5" fill="#94421C"/><text x="199" y="118.4" font-size="8.5" fill="#FFFDFC">8</text><text class="nm" x="190" y="118" text-anchor="end">バビロン</text></g>
+            <g class="site" tabindex="0"><title>9 ウルク・ウル・エリドゥ</title><circle cx="211" cy="131" r="6.5" fill="#94421C"/><text x="211" y="134.4" font-size="8.5" fill="#FFFDFC">9</text><text class="nm" x="202" y="138" text-anchor="end">ウルク・ウル・エリドゥ</text></g>
+            <g class="site" tabindex="0"><title>10 デル・エル＝メディナ</title><circle cx="99" cy="183" r="7" fill="#7A5C0E"/><text x="99" y="186.2" font-size="8" fill="#FFFDFC">10</text><text class="nm" x="99" y="172">デル・エル＝メディナ</text></g>
+            <g class="site" tabindex="0"><title>11 ペルセポリス</title><circle cx="272" cy="141" r="7" fill="#59418C"/><text x="272" y="144.2" font-size="8" fill="#FFFDFC">11</text><text class="nm" x="272" y="130">ペルセポリス</text></g>
+            <g class="site" tabindex="0"><title>12 ティリンス</title><circle cx="16" cy="64" r="7" fill="#6E6A5E"/><text x="16" y="67.2" font-size="8" fill="#FFFDFC">12</text><text class="nm" x="8" y="81" text-anchor="start">ティリンス</text></g>
+          </g>
+          <!-- 四枚目: 西暦2000年の国境と国名。第三部の西暦2000のコマと同じ線 -->
+          <g class="L B">
+            <g fill="none" stroke="#3E3B35" stroke-width="1.1" stroke-dasharray="4 2.5" stroke-linejoin="round">
+              <path d="M56,38 L190,34 L196,72 L150,88 L92,82 L56,66 Z"/>
+              <path d="M124,80 L170,72 L176,104 L150,116 L128,112 Z"/>
+              <path d="M118,96 L124,96 L124,112 L118,112 Z"/>
+              <path d="M118,112 L128,112 L130,144 L118,144 Z"/>
+              <path d="M128,112 L150,116 L156,144 L130,144 Z"/>
+              <path d="M150,72 L200,66 L226,116 L222,148 L196,144 L176,120 L150,116 Z"/>
+              <path d="M200,60 L300,80 L302,150 L246,158 L226,116 Z"/>
+              <path d="M70,132 L120,134 L118,220 L70,218 Z"/>
+              <path d="M130,146 L200,160 L262,250 L140,250 Z"/>
+            </g>
+            <g font-size="9" font-weight="600" fill="#3E3B35" text-anchor="middle" paint-order="stroke" stroke="#F1EEE6" stroke-width="3" stroke-linejoin="round">
+              <text x="112" y="60">トルコ</text>
+              <text x="150" y="88" font-size="8">シリア</text>
+              <text x="115" y="106" font-size="6.5" text-anchor="end">レバノン</text>
+              <text x="115" y="130" font-size="6.5" text-anchor="end">イスラエル</text>
+              <text x="141" y="134" font-size="7">ヨルダン</text>
+              <text x="194" y="126">イラク</text>
+              <text x="258" y="118">イラン</text>
+              <text x="92" y="172">エジプト</text>
+              <text x="190" y="196" font-size="8">サウジアラビア</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="era-ctl">
+        <button type="button" class="era-btn" id="p2m-prev" aria-label="前の一枚">‹</button>
+        <input type="range" id="p2m-range" min="0" max="3" step="1" value="0" aria-label="重ねる一枚を選ぶ">
+        <button type="button" class="era-btn" id="p2m-next" aria-label="次の一枚">›</button>
+        <button type="button" class="era-play" id="p2m-play">動かす</button>
+      </div>
+      <ol class="era-ticks" aria-hidden="true"><li>五つの世界</li><li>地形</li><li>遺跡</li><li>西暦2000</li></ol>
+      <p class="era-cap" id="p2m-cap">本文で扱う五つの世界。この枠は、なぜこの形で、ここに置かれたのか。人間の引いた線を消して、自然だけを残すと、次の一枚になる。</p>
+    </div>
     <div class="sites">
       <div class="sgrp"><span class="sh" style="color:var(--rg-ana)">アナトリア</span>
         <span class="s"><i style="background:var(--rg-ana)">1</i>チャタル・ヒュユク</span>
-        <span class="s"><i style="background:var(--rg-ana)">2</i>ギョベクリ・テペ<span class="star">★</span></span>
+        <span class="s"><i style="background:var(--rg-ana)">2</i>ギョベクリ・テペ</span>
       </div>
       <div class="sgrp"><span class="sh" style="color:var(--rg-lev)">地中海東岸</span>
-        <span class="s"><i style="background:var(--rg-lev)">3</i>テル・レヘシュ<span class="star">★</span></span>
+        <span class="s"><i style="background:var(--rg-lev)">3</i>テル・レヘシュ</span>
         <span class="s"><i style="background:var(--rg-lev)">4</i>イェリコ</span>
-        <span class="s"><i style="background:var(--rg-lev)">5</i>パルミラ<span class="star">★</span></span>
-        <span class="s"><i style="background:var(--rg-lev)">6</i>テル・ルメイラ<span class="star">★★</span></span>
+        <span class="s"><i style="background:var(--rg-lev)">5</i>パルミラ</span>
+        <span class="s"><i style="background:var(--rg-lev)">6</i>テル・ルメイラ</span>
       </div>
       <div class="sgrp"><span class="sh" style="color:var(--rg-meso)">メソポタミア</span>
         <span class="s"><i style="background:var(--rg-meso)">7</i>アッシュル</span>
-        <span class="s"><i style="background:var(--rg-meso)">8</i>バビロン<span class="star">★</span></span>
-        <span class="s"><i style="background:var(--rg-meso)">9</i>ウルク・ウル・エリドゥ<span class="star">★</span></span>
+        <span class="s"><i style="background:var(--rg-meso)">8</i>バビロン</span>
+        <span class="s"><i style="background:var(--rg-meso)">9</i>ウルク・ウル・エリドゥ</span>
       </div>
       <div class="sgrp"><span class="sh" style="color:var(--rg-egy)">エジプト</span>
-        <span class="s"><i style="background:var(--rg-egy)">10</i>デル・エル＝メディナ<span class="star">★★</span></span>
+        <span class="s"><i style="background:var(--rg-egy)">10</i>デル・エル＝メディナ</span>
       </div>
       <div class="sgrp"><span class="sh" style="color:var(--rg-irn)">イラン高原</span>
         <span class="s"><i style="background:var(--rg-irn)">11</i>ペルセポリス</span>
       </div>
       <div class="sgrp"><span class="sh" style="color:var(--rg-aeg)">エーゲ海（五地域の外）</span>
-        <span class="s"><i style="background:var(--rg-aeg)">12</i>ティリンス<span class="star">★</span></span>
+        <span class="s"><i style="background:var(--rg-aeg)">12</i>ティリンス</span>
       </div>
     </div>
-    <p style="font-size:.83rem;color:var(--ink-soft)">★は2026年夏の特別展で模型が展示された遺跡。10はデル・エル＝メディナの住居とセンネジェム墓の二点、6はルメイラ地区墓地とテル・ルメイラの住居の二点。</p>
+    
     <aside class="tale">
       <p class="tale-label">ひと話</p>
       <h4>テル ── 千年たつと、まちは丘になる</h4>
@@ -1367,147 +1506,138 @@
       <div class="hub-panel" id="hub-panel" hidden></div>
     </div>
 
-    <h3 id="p2-terrain" class="blk">地形の骨格 ── 文明の配置は、ぜんぶこの地形への返事</h3>
-    <p>都市も国も、まず山と川と砂漠の隙間に置かれる。上の地図から人間の引いた線を消して、自然だけを残すとこうなる。</p>
-    <figure class="chart map">
-      <svg viewBox="0 0 340 250" role="img" aria-label="古代オリエントの地形図。山脈、川、砂漠、海と、肥沃な三日月地帯。">
-        <rect x="0" y="0" width="340" height="250" fill="#F1EEE6"/>
-        <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#C9D8EA"/>
-        <path d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#C9D8EA"/>
-        <path d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#C9D8EA"/>
-        <path d="M98,143 L112,146 L155,250 L128,250 Z" fill="#C9D8EA"/>
-        <path d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#C9D8EA"/>
-        <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.2"/>
-        <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#8FAFC6" stroke-width="2.2"/>
-        <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#8FAFC6" stroke-width="2.4"/>
-        <!-- 山脈(帯) -->
-        <path d="M92,84 Q130,94 170,84" fill="none" stroke="#B4A58A" stroke-width="7" stroke-linecap="round" opacity=".75"/>
-        <path d="M196,66 Q222,102 250,150" fill="none" stroke="#B4A58A" stroke-width="8" stroke-linecap="round" opacity=".75"/>
-        <path d="M120,86 L122,128" fill="none" stroke="#B4A58A" stroke-width="4" stroke-linecap="round" opacity=".65"/>
-        <path d="M180,40 Q210,48 236,66" fill="none" stroke="#B4A58A" stroke-width="7" stroke-linecap="round" opacity=".6"/>
-        <!-- 砂漠(点描) -->
-        <path d="M140,100 L182,118 L196,150 L150,150 L130,124 Z" fill="#E4D8B8" opacity=".8"/>
-        <path d="M0,130 L84,140 L80,250 L0,250 Z" fill="#E4D8B8" opacity=".8"/>
-        <path d="M160,158 L230,176 L262,250 L156,250 Z" fill="#E4D8B8" opacity=".8"/>
-        <!-- 肥沃な三日月地帯 -->
-        <path d="M214,146 C204,108 176,74 144,74 C128,76 120,102 118,136" fill="none" stroke="#22604A" stroke-width="2" stroke-dasharray="5 3"/>
-        <line x1="118" y1="112" x2="108" y2="106" stroke="#22604A" stroke-width=".9"/>
-        <text x="30" y="106" font-size="9.5" fill="#22604A" font-weight="600">肥沃な三日月地帯</text>
-        <!-- ラベル: 山と高原 -->
-        <text x="154" y="98" font-size="8" fill="#6D5F47" text-anchor="middle">タウロス山脈</text>
-        <text x="244" y="112" font-size="8" fill="#6D5F47" transform="rotate(52 244 112)" text-anchor="middle">ザグロス山脈</text>
-        <text x="122" y="58" font-size="9" fill="#827E74" text-anchor="middle">アナトリア高原</text>
-        <text x="288" y="130" font-size="9" fill="#827E74" text-anchor="middle">イラン高原</text>
-        <text x="206" y="40" font-size="8" fill="#827E74" text-anchor="middle">アルメニア高地</text>
-        <!-- ラベル: 砂漠と平野 -->
-        <text x="162" y="128" font-size="8.5" fill="#8A7A56" text-anchor="middle">シリア砂漠</text>
-        <text x="38" y="190" font-size="8.5" fill="#8A7A56" text-anchor="middle">サハラ</text>
-        <text x="204" y="214" font-size="8.5" fill="#8A7A56" text-anchor="middle">アラビア砂漠</text>
-        <text x="166" y="158" font-size="7.5" fill="#94421C" text-anchor="start">沖積平野・湿地</text>
-        <line x1="100" y1="139" x2="86" y2="126" stroke="#827E74" stroke-width=".8"/>
-        <text x="84" y="123" font-size="8" fill="#827E74" text-anchor="end">ナイル・デルタ</text>
-        <!-- ラベル: 川と海 -->
-        <text x="180" y="180" font-size="9.5" fill="#2E5F9E" text-anchor="middle" font-weight="600">ユーフラテス川</text>
-        <line x1="190" y1="170" x2="199" y2="128" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="197" y="50" font-size="9.5" fill="#2E5F9E" text-anchor="end" font-weight="600">ティグリス川</text>
-        <line x1="193" y1="54" x2="178" y2="66" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="77" y="210" font-size="9.5" fill="#2E5F9E" text-anchor="end" font-weight="600">ナイル川</text>
-        <line x1="97" y1="207" x2="80" y2="207" stroke="#6E8FB6" stroke-width=".9"/>
-        <text x="50" y="92" font-size="9.5" fill="#5A5852">地中海</text>
-        <text x="118" y="31" font-size="9" fill="#5A5852" text-anchor="middle">黒海</text>
-        <text x="268" y="54" font-size="9" fill="#5A5852" text-anchor="middle">カスピ海</text>
-        <text x="243" y="196" font-size="9" fill="#5A5852">ペルシア湾</text>
-        <text x="131" y="224" font-size="9" fill="#5A5852" text-anchor="middle">紅海</text>
-        <text x="22" y="52" font-size="8.5" fill="#827E74" text-anchor="middle">エーゲ海</text>
-      </svg>
-      <figcaption>山（帯）、砂漠（淡い黄）、川、海。緑の点線が<strong>肥沃な三日月地帯</strong>。ペルシア湾からメソポタミアを北上し、北シリアで折れて地中海東岸を南下する弧で、雨と川のおかげで農耕が成り立つ帯である。五地域のうち四つが、この弧の上か、その端（ナイル）にある。北のタウロス山脈と東のザグロス山脈が高原と平野を分け、東の砂漠が地中海東岸を細い「廊下」にした。</figcaption>
-    </figure>
+    <h3 id="p2-cities" class="blk">主な都市 ── 同じ名前が、年表で何度も出てくる</h3>
 
-    <figure class="chart map">
-      <svg viewBox="0 0 340 250" role="img" aria-label="古代オリエントの主要都市の位置。五地域ごとに色分け。">
+    <p>本文に登場する主な都市。まず全体、次に地域ごとに一枚ずつ。つまみを送ると、その土地に寄って、そこの都市だけが残る。</p>
+    <div class="era p2c" id="p2-cities-map" data-r="all">
+      <div class="era-head"><span class="era-year" id="p2c-title">全体</span><span class="era-step" id="p2c-step">1 / 6</span></div>
+      <div class="era-stage">
+      <svg class="on" viewBox="0 0 340 250" role="img" aria-label="古代オリエントの主要都市の位置。五地域ごとに色分け。">
         <rect x="0" y="0" width="340" height="250" fill="#F1EEE6"/>
         <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#CBD8E8"/>
         <path d="M78,16 L152,13 L188,26 L150,43 L86,38 Z" fill="#CBD8E8"/>
         <path d="M256,14 L282,26 L286,72 L262,82 L249,44 Z" fill="#CBD8E8"/>
         <path d="M98,143 L112,146 L155,250 L128,250 Z" fill="#CBD8E8"/>
         <path d="M212,136 L246,151 L276,180 L286,196 L266,196 L236,170 L206,146 Z" fill="#CBD8E8"/>
-        <path d="M62,40 L186,36 L190,72 L150,86 L92,80 L58,66 Z" fill="#22604A" opacity=".09"/>
-        <path d="M118,80 L142,80 L156,104 L154,114 L142,140 L120,140 Z" fill="#2E5F9E" opacity=".09"/>
-        <path d="M152,66 L198,70 L226,120 L222,148 L192,140 L160,104 Z" fill="#94421C" opacity=".09"/>
-        <path d="M80,132 L116,134 L114,216 L84,214 Z" fill="#7A5C0E" opacity=".09"/>
-        <path d="M228,76 L300,84 L304,162 L246,162 L224,120 Z" fill="#59418C" opacity=".09"/>
+        <path class="tint" data-r="ana" d="M62,40 L186,36 L190,72 L150,86 L92,80 L58,66 Z" fill="#22604A" opacity=".09"/>
+        <path class="tint" data-r="lev" d="M118,80 L142,80 L156,104 L154,114 L142,140 L120,140 Z" fill="#2E5F9E" opacity=".09"/>
+        <path class="tint" data-r="meso" d="M152,66 L198,70 L226,120 L222,148 L192,140 L160,104 Z" fill="#94421C" opacity=".09"/>
+        <path class="tint" data-r="egy" d="M80,132 L116,134 L114,216 L84,214 Z" fill="#7A5C0E" opacity=".09"/>
+        <path class="tint" data-r="irn" d="M228,76 L300,84 L304,162 L246,162 L224,120 Z" fill="#59418C" opacity=".09"/>
         <path d="M152,70 C168,86 180,100 190,116 C198,126 206,134 213,140" fill="none" stroke="#95B1C8" stroke-width="2.2"/>
         <path d="M172,60 C182,78 192,96 202,112 C207,122 210,132 213,140" fill="none" stroke="#95B1C8" stroke-width="2.2"/>
         <path d="M101,240 C99,210 98,180 95,158 C92,144 88,136 85,131" fill="none" stroke="#95B1C8" stroke-width="2.4"/>
-        <text x="50" y="92" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="start">地中海</text>
-        <text x="118" y="31" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">黒海</text>
-        <text x="268" y="54" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">カスピ海</text>
-        <text x="243" y="196" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="start">ペルシア湾</text>
-        <text x="131" y="224" font-size="8" fill="#8A877E" letter-spacing=".08em" text-anchor="middle">紅海</text>
-        <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
-          <text x="62" y="41" text-anchor="end">トロイ</text>
-          <text x="68" y="61" text-anchor="end">サルディス</text>
-          <text x="122" y="50" text-anchor="start">ハットゥシャ</text>
-          <text x="100" y="80" text-anchor="middle">チャタル・ヒュユク</text>
-          <text x="146" y="64" text-anchor="end">ギョベクリ・テペ</text>
-          <text x="118" y="89" text-anchor="end">ウガリト</text>
-          <text x="144" y="86" text-anchor="start">アレッポ</text>
-          <text x="117" y="103" text-anchor="end">ビブロス</text>
-          <text x="140" y="118" text-anchor="start">ダマスクス</text>
-          <text x="156" y="105" text-anchor="start">パルミラ</text>
-          <text x="117" y="117" text-anchor="end">ティルス</text>
-          <text x="132" y="131" text-anchor="start">エルサレム</text>
-          <text x="164" y="93" text-anchor="start">マリ</text>
-          <text x="196" y="77" text-anchor="start">ニネヴェ</text>
-          <text x="192" y="92" text-anchor="start">アッシュル</text>
-          <text x="204" y="117" text-anchor="start">バビロン</text>
-          <text x="204" y="137" text-anchor="end">ウルク</text>
-          <text x="220" y="146" text-anchor="start">ウル</text>
-          <text x="94" y="143" text-anchor="end">メンフィス</text>
-          <text x="101" y="167" text-anchor="start">アマルナ</text>
-          <text x="103" y="186" text-anchor="start">テーベ</text>
-          <text x="244" y="137" text-anchor="start">スーサ</text>
-          <text x="256" y="107" text-anchor="start">エクバタナ</text>
-          <text x="274" y="158" text-anchor="start">ペルセポリス</text>
-          <text x="2" y="73" text-anchor="start">ティリンス</text>
+        <g class="sea" font-size="8" fill="#8A877E" letter-spacing=".08em">
+          <text x="50" y="92" text-anchor="start">地中海</text>
+          <text x="118" y="31" text-anchor="middle">黒海</text>
+          <text x="268" y="54" text-anchor="middle">カスピ海</text>
+          <text x="243" y="196" text-anchor="start">ペルシア湾</text>
+          <text x="131" y="224" text-anchor="middle">紅海</text>
         </g>
-        <g stroke="#F1EEE6" stroke-width="1">
-          <circle cx="66" cy="44" r="2.4" fill="#22604A"/>
-          <circle cx="72" cy="58" r="2.4" fill="#22604A"/>
-          <circle cx="118" cy="52" r="2.4" fill="#22604A"/>
-          <circle cx="100" cy="70" r="2.4" fill="#22604A"/>
-          <circle cx="150" cy="70" r="2.4" fill="#22604A"/>
-          <circle cx="122" cy="86" r="2.4" fill="#2E5F9E"/>
-          <circle cx="140" cy="84" r="2.4" fill="#2E5F9E"/>
-          <circle cx="121" cy="100" r="2.4" fill="#2E5F9E"/>
-          <circle cx="136" cy="110" r="2.4" fill="#2E5F9E"/>
-          <circle cx="152" cy="106" r="2.4" fill="#2E5F9E"/>
-          <circle cx="121" cy="114" r="2.4" fill="#2E5F9E"/>
-          <circle cx="128" cy="127" r="2.4" fill="#2E5F9E"/>
-          <circle cx="160" cy="90" r="2.4" fill="#94421C"/>
-          <circle cx="192" cy="78" r="2.4" fill="#94421C"/>
-          <circle cx="188" cy="88" r="2.4" fill="#94421C"/>
-          <circle cx="200" cy="118" r="2.4" fill="#94421C"/>
-          <circle cx="208" cy="134" r="2.4" fill="#94421C"/>
-          <circle cx="216" cy="142" r="2.4" fill="#94421C"/>
-          <circle cx="98" cy="140" r="2.4" fill="#7A5C0E"/>
-          <circle cx="97" cy="164" r="2.4" fill="#7A5C0E"/>
-          <circle cx="99" cy="183" r="2.4" fill="#7A5C0E"/>
-          <circle cx="240" cy="138" r="2.4" fill="#59418C"/>
-          <circle cx="252" cy="104" r="2.4" fill="#59418C"/>
-          <circle cx="270" cy="154" r="2.4" fill="#59418C"/>
-          <circle cx="16" cy="64" r="2.4" fill="#6E6A5E"/>
+        <g class="cities" data-r="ana">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="62" y="41" text-anchor="end">トロイ</text>
+            <text x="68" y="61" text-anchor="end">サルディス</text>
+            <text x="122" y="50" text-anchor="start">ハットゥシャ</text>
+            <text x="100" y="80" text-anchor="middle">チャタル・ヒュユク</text>
+            <text x="146" y="64" text-anchor="end">ギョベクリ・テペ</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="66" cy="44" r="2.4" fill="#22604A"/>
+            <circle cx="72" cy="58" r="2.4" fill="#22604A"/>
+            <circle cx="118" cy="52" r="2.4" fill="#22604A"/>
+            <circle cx="100" cy="70" r="2.4" fill="#22604A"/>
+            <circle cx="150" cy="70" r="2.4" fill="#22604A"/>
+          </g>
+        </g>
+        <g class="cities" data-r="lev">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="118" y="89" text-anchor="end">ウガリト</text>
+            <text x="144" y="86" text-anchor="start">アレッポ</text>
+            <text x="117" y="103" text-anchor="end">ビブロス</text>
+            <text x="140" y="118" text-anchor="start">ダマスクス</text>
+            <text x="156" y="105" text-anchor="start">パルミラ</text>
+            <text x="117" y="117" text-anchor="end">ティルス</text>
+            <text x="132" y="131" text-anchor="start">エルサレム</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="122" cy="86" r="2.4" fill="#2E5F9E"/>
+            <circle cx="140" cy="84" r="2.4" fill="#2E5F9E"/>
+            <circle cx="121" cy="100" r="2.4" fill="#2E5F9E"/>
+            <circle cx="136" cy="110" r="2.4" fill="#2E5F9E"/>
+            <circle cx="152" cy="106" r="2.4" fill="#2E5F9E"/>
+            <circle cx="121" cy="114" r="2.4" fill="#2E5F9E"/>
+            <circle cx="128" cy="127" r="2.4" fill="#2E5F9E"/>
+          </g>
+        </g>
+        <g class="cities" data-r="meso">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="164" y="93" text-anchor="start">マリ</text>
+            <text x="196" y="77" text-anchor="start">ニネヴェ</text>
+            <text x="192" y="92" text-anchor="start">アッシュル</text>
+            <text x="204" y="117" text-anchor="start">バビロン</text>
+            <text x="204" y="137" text-anchor="end">ウルク</text>
+            <text x="220" y="146" text-anchor="start">ウル</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="160" cy="90" r="2.4" fill="#94421C"/>
+            <circle cx="192" cy="78" r="2.4" fill="#94421C"/>
+            <circle cx="188" cy="88" r="2.4" fill="#94421C"/>
+            <circle cx="200" cy="118" r="2.4" fill="#94421C"/>
+            <circle cx="208" cy="134" r="2.4" fill="#94421C"/>
+            <circle cx="216" cy="142" r="2.4" fill="#94421C"/>
+          </g>
+        </g>
+        <g class="cities" data-r="egy">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="94" y="143" text-anchor="end">メンフィス</text>
+            <text x="101" y="167" text-anchor="start">アマルナ</text>
+            <text x="103" y="186" text-anchor="start">テーベ</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="98" cy="140" r="2.4" fill="#7A5C0E"/>
+            <circle cx="97" cy="164" r="2.4" fill="#7A5C0E"/>
+            <circle cx="99" cy="183" r="2.4" fill="#7A5C0E"/>
+          </g>
+        </g>
+        <g class="cities" data-r="irn">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="244" y="137" text-anchor="start">スーサ</text>
+            <text x="256" y="107" text-anchor="start">エクバタナ</text>
+            <text x="274" y="158" text-anchor="start">ペルセポリス</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="240" cy="138" r="2.4" fill="#59418C"/>
+            <circle cx="252" cy="104" r="2.4" fill="#59418C"/>
+            <circle cx="270" cy="154" r="2.4" fill="#59418C"/>
+          </g>
+        </g>
+        <g class="cities" data-r="aeg">
+          <g font-size="7.4" font-weight="500" fill="#2A2924" paint-order="stroke" stroke="#F1EEE6" stroke-width="2.6" stroke-linejoin="round">
+            <text x="2" y="73" text-anchor="start">ティリンス</text>
+          </g>
+          <g stroke="#F1EEE6" stroke-width="1">
+            <circle cx="16" cy="64" r="2.4" fill="#6E6A5E"/>
+          </g>
         </g>
       </svg>
-      <figcaption>本文に登場する主な都市（色は五地域）。位置は模式。同じ都市名が第三部・第六部で繰り返し出てくる。ここで「どのあたりか」を一度おさえておくと、以後の年表が地図の上で動きだす。</figcaption>
-    </figure>
+      </div>
+      <div class="era-ctl">
+        <button type="button" class="era-btn" id="p2c-prev" aria-label="前の一枚">‹</button>
+        <input type="range" id="p2c-range" min="0" max="5" step="1" value="0" aria-label="地域を選ぶ">
+        <button type="button" class="era-btn" id="p2c-next" aria-label="次の一枚">›</button>
+        <button type="button" class="era-play" id="p2c-play">動かす</button>
+      </div>
+      <ol class="era-ticks" aria-hidden="true"><li>全体</li><li>メソポタミア</li><li>エジプト</li><li>アナトリア</li><li>地中海東岸</li><li>イラン高原</li></ol>
+      <p class="era-cap" id="p2c-cap">色は五地域。位置は模式。同じ都市名が第三部・第六部で繰り返し出てくる。ここで「どのあたりか」を一度おさえておくと、以後の年表が地図の上で動きだす。</p>
+    </div>
 
-    <div class="rows">
-      <div class="r"><div class="k" style="color:var(--rg-meso)">メソポタミア</div><div class="v">現在のイラク。ティグリス川とユーフラテス川に挟まれた<b>沖積平野（ちゅうせきへいや）</b>。川が上流から運んだ土砂が積もってできた、低く平らな土地である。土は肥えているが、石も木もない。だから建材は日干煉瓦になり、川の水を畑に引く灌漑（かんがい）が要る。都市は、ここで始まる。</div></div>
-      <div class="r"><div class="k" style="color:var(--rg-egy)">エジプト</div><div class="v">ナイル川一本に沿った、細長い世界。周りを砂漠と海に守られ、外から入りにくい。石材が豊富で、石の建築が残る。</div></div>
-      <div class="r"><div class="k" style="color:var(--rg-ana)">アナトリア</div><div class="v">現在のトルコ。山に囲まれた高原の国。金属の資源に恵まれ、東西の通り道でもある。</div></div>
-      <div class="r"><div class="k" style="color:var(--rg-lev)">地中海東岸</div><div class="v">シリア、レバノン、イスラエル、ヨルダン。この資料では「レヴァント」とも呼ぶ。海と砂漠に挟まれた細長い通り道で、いつも交易路であり、戦場だった。年表の最後の二点、テル・レヘシュとパルミラも、ここにある。</div></div>
-      <div class="r"><div class="k" style="color:var(--rg-irn)">イラン高原</div><div class="v">現在のイラン。ザグロス山脈の向こうに広がる高原。メソポタミアの東隣で、山脈が両者を分けながら、峠でつないでいる。</div></div>
+    <div class="rows" id="p2c-rows">
+      <div class="r" data-r="meso"><div class="k" style="color:var(--rg-meso)">メソポタミア</div><div class="v">現在のイラク。ティグリス川とユーフラテス川に挟まれた<b>沖積平野（ちゅうせきへいや）</b>。川が上流から運んだ土砂が積もってできた、低く平らな土地である。土は肥えているが、石も木もない。だから建材は日干煉瓦になり、川の水を畑に引く灌漑（かんがい）が要る。都市は、ここで始まる。</div></div>
+      <div class="r" data-r="egy"><div class="k" style="color:var(--rg-egy)">エジプト</div><div class="v">ナイル川一本に沿った、細長い世界。周りを砂漠と海に守られ、外から入りにくい。石材が豊富で、石の建築が残る。</div></div>
+      <div class="r" data-r="ana"><div class="k" style="color:var(--rg-ana)">アナトリア</div><div class="v">現在のトルコ。山に囲まれた高原の国。金属の資源に恵まれ、東西の通り道でもある。</div></div>
+      <div class="r" data-r="lev"><div class="k" style="color:var(--rg-lev)">地中海東岸</div><div class="v">シリア、レバノン、イスラエル、ヨルダン。この資料では「レヴァント」とも呼ぶ。海と砂漠に挟まれた細長い通り道で、いつも交易路であり、戦場だった。年表の最後の二点、テル・レヘシュとパルミラも、ここにある。</div></div>
+      <div class="r" data-r="irn"><div class="k" style="color:var(--rg-irn)">イラン高原</div><div class="v">現在のイラン。ザグロス山脈の向こうに広がる高原。メソポタミアの東隣で、山脈が両者を分けながら、峠でつないでいる。</div></div>
     </div>
     <p>それぞれの土地で、どんな文明が生まれ、消えていったか。それは<a href="#p3">第三部</a>に置いた。ここでは先に、五つの世界の上を国がどう通り過ぎていったかを、四つの時点で見ておく。</p>
 
@@ -3981,6 +4111,134 @@
       li.appendChild(a);models.appendChild(li);
     });
   }
+
+  /* ---- 第二部の地図を、三枚重ねで ---- */
+  (function(){
+    var box=document.getElementById('p2-map');if(!box)return;
+    var range=document.getElementById('p2m-range'),ttl=document.getElementById('p2m-title'),stepEl=document.getElementById('p2m-step'),
+        capEl=document.getElementById('p2m-cap'),svg=box.querySelector('svg'),play=document.getElementById('p2m-play');
+    var F=[
+      {t:'五つの世界',a:'古代オリエントの模式地図。アナトリア、地中海東岸、メソポタミア、エジプト、イラン高原の五地域。',
+       cap:'本文で扱う五つの世界。この枠は、なぜこの形で、ここに置かれたのか。人間の引いた線を消して、自然だけを残すと、次の一枚になる。'},
+      {t:'地形',a:'古代オリエントの地形図。山脈、川、砂漠、海。',
+       cap:'山（帯）と砂漠（斜線）は壁。塗っていない床が、そのまま五つの世界の形になる。名前を押すか床に触れると、囲む壁と海が浮かび、色が流れ込む。五つとも押すと、一枚目に戻る。'},
+      {t:'遺跡',a:'古代オリエントの模式地図。地形の上に五地域と、本文に出てくる主要遺跡の位置。',
+       cap:'地形の上に、五つの世界と、本文に出てくる遺跡を重ねた。番号は下の一覧と対応し、触れると名前が出る。'},
+      {t:'西暦2000',a:'古代オリエントの模式地図。地形と五地域の上に、西暦2000年の国境と国名。',
+       cap:'西暦2000年の国境を、灰色の点線で重ねた。トルコとイラクの境はタウロス山脈の帯の上に、イラクとイランの境はザグロス山脈の帯の上に乗る。エジプトは砂漠と海に囲まれたまま。地中海東岸だけが、シリア、レバノン、イスラエル、ヨルダンに割れている。人が線を引く時代になっても、引ける場所は決まっていた。'}
+    ];
+    var cur=-1,timer=null;
+    function clearOn(){box.querySelectorAll('.site.on').forEach(function(o){o.classList.remove('on');});}
+    function show(i){
+      i=((i%F.length)+F.length)%F.length;if(i===cur)return;cur=i;clearOn();
+      box.querySelectorAll('.hi,.lit').forEach(function(e){e.classList.remove('hi');e.classList.remove('lit');});
+      box.dataset.step=String(i);ttl.textContent=F[i].t;stepEl.textContent=(i+1)+' / '+F.length;capEl.textContent=F[i].cap;
+      if(i===1)cap2(F[1].cap);
+      svg.setAttribute('aria-label',F[i].a);
+      if(range.value!==String(i))range.value=String(i);
+    }
+    function stop(){if(timer){clearInterval(timer);timer=null;}play.textContent='動かす';play.setAttribute('aria-pressed','false');}
+    function start(){if(timer)return;play.textContent='止める';play.setAttribute('aria-pressed','true');timer=setInterval(function(){show(cur+1);},3400);}
+    range.addEventListener('input',function(){stop();show(parseInt(range.value,10));});
+    document.getElementById('p2m-prev').addEventListener('click',function(){stop();show(cur-1);});
+    document.getElementById('p2m-next').addEventListener('click',function(){stop();show(cur+1);});
+    play.addEventListener('click',function(){if(timer)stop();else{show(cur+1);start();}});
+    document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});
+    /* 二枚目: 床に触れると、その床を囲む壁と海が浮かび、少し遅れて色が流れ込む。もう一度触れると消える。五つとも触れると一枚目に戻る */
+    var ROOM={
+      meso:{n:'メソポタミア',t:'メソポタミア ── 北はタウロスの山並み、東はザグロス、西と南は砂漠。二つの川が運んだ土の平野で、都市が始まる。',bars:['taurus','zagros','syr','arab'],seas:['gulf']},
+      egy:{n:'エジプト',t:'エジプト ── 西はサハラ、東も北も海。ナイルは、砂漠と海に挟まれた一本道になった。',bars:['sahara'],seas:['red','med']},
+      ana:{n:'アナトリア',t:'アナトリア ── 三方を海、南をタウロス山脈に囲まれた高原。山の向こうの平野とは、峠でだけつながる。',bars:['taurus'],seas:['black','med']},
+      lev:{n:'地中海東岸',t:'地中海東岸 ── 西は海、東はシリア砂漠。海と砂漠の距離が、そのまま廊下の幅になった。',bars:['syr','arab'],seas:['med']},
+      irn:{n:'イラン高原',t:'イラン高原 ── ザグロス山脈の向こうの高原。北はカスピ海、南はペルシア湾。西の平野とは、峠でつながる。',bars:['zagros'],seas:['casp','gulf']}
+    };
+    var ORDER=['meso','egy','ana','lev','irn'];
+    var CHIPS='<span class="p2m-chips" role="group" aria-label="床を選ぶ">'+ORDER.map(function(k){return '<button type="button" data-r="'+k+'" style="--c:var(--rg-'+k+')" aria-pressed="false">'+ROOM[k].n+'</button>';}).join('')+'</span>';
+    /* 二枚目の説明欄: 五つの名前の札と、一文。札は床に触れるのと同じ働き */
+    function cap2(text){
+      if(!capEl.querySelector('.p2m-chips'))capEl.innerHTML=CHIPS+'<span class="p2m-capline"></span>';
+      capEl.querySelector('.p2m-capline').textContent=text;
+      capEl.querySelectorAll('.p2m-chips button').forEach(function(c){var z=box.querySelector('.Z [data-r="'+c.dataset.r+'"]');c.setAttribute('aria-pressed',z&&z.classList.contains('lit')?'true':'false');});
+    }
+    function walls(r){
+      var m=r&&ROOM[r]?ROOM[r]:{bars:[],seas:[]};
+      box.querySelectorAll('.bar').forEach(function(b){b.classList.toggle('hi',m.bars.indexOf(b.dataset.k)>=0);});
+      box.querySelectorAll('.sea').forEach(function(b){b.classList.toggle('hi',m.seas.indexOf(b.dataset.s)>=0);});
+      if(cur===1)cap2(r&&ROOM[r]?ROOM[r].t:F[1].cap);
+    }
+    function toggleRoom(r){
+      var z=box.querySelector('.Z [data-r="'+r+'"]');if(!z)return;
+      var on=!z.classList.contains('lit');z.classList.toggle('lit',on);
+      var l=box.querySelector('.ZL1 [data-r="'+r+'"]');if(l)l.classList.toggle('lit',on);
+      walls(on?r:null);
+    }
+    box.querySelectorAll('.Z [data-r]').forEach(function(z){
+      z.addEventListener('click',function(e){if(cur!==1)return;e.stopPropagation();toggleRoom(z.dataset.r);});
+    });
+    capEl.addEventListener('click',function(e){var c=e.target.closest('.p2m-chips button');if(!c||cur!==1)return;e.stopPropagation();toggleRoom(c.dataset.r);});
+    svg.addEventListener('click',function(){if(cur===1)walls(null);});
+    /* 番号に触れると名前。指では、押すと出て、もう一度押すか外を押すと消える */
+    box.querySelectorAll('.site').forEach(function(g){
+      g.addEventListener('click',function(e){e.stopPropagation();var on=g.classList.contains('on');clearOn();if(!on)g.classList.add('on');});
+      g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();g.click();}});
+    });
+    document.addEventListener('click',clearOn);
+    show(0);
+  })();
+
+  /* ---- 主な都市を、全体と地域ごとに。地域の枚では viewBox を動かして、その土地に寄る ---- */
+  (function(){
+    var box=document.getElementById('p2-cities-map');if(!box)return;
+    var svg=box.querySelector('svg'),range=document.getElementById('p2c-range'),ttl=document.getElementById('p2c-title'),
+        stepEl=document.getElementById('p2c-step'),capEl=document.getElementById('p2c-cap'),play=document.getElementById('p2c-play'),
+        rows=document.getElementById('p2c-rows');
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var R=[
+      {k:'all',t:'全体',box:[0,0,340,250],col:'',cap:capEl.innerHTML},
+      {k:'meso',t:'メソポタミア',box:[111,45,170,125],col:'var(--rg-meso)'},
+      {k:'egy',t:'エジプト',box:[9,98,170,125],col:'var(--rg-egy)'},
+      {k:'ana',t:'アナトリア',box:[15,0,170,125],col:'var(--rg-ana)'},
+      {k:'lev',t:'地中海東岸',box:[51,42,170,125],col:'var(--rg-lev)'},
+      {k:'irn',t:'イラン高原',box:[170,66,170,125],col:'var(--rg-irn)'}
+    ];
+    /* 地域の説明は下の一覧から借りて、一覧は隠す */
+    if(rows){rows.querySelectorAll('.r[data-r]').forEach(function(r){R.forEach(function(e){if(e.k===r.dataset.r){var v=r.querySelector('.v');e.cap=v?v.innerHTML:'';}});});rows.hidden=true;}
+    R.forEach(function(e){
+      var g=box.querySelector('.cities[data-r="'+e.k+'"]');
+      e.a=e.k==='all'?'古代オリエントの主要都市の位置。五地域ごとに色分け。':e.t+'の主要都市。'+[].map.call(g?g.querySelectorAll('text'):[],function(t){return t.textContent;}).join('、')+'。';
+    });
+    var cur=-1,timer=null,anim=null,vb=[0,0,340,250];
+    function animateTo(target){
+      if(anim){cancelAnimationFrame(anim);anim=null;}
+      var from=vb.slice(),t0=null,D=reduce?0:650;
+      function frame(ts){
+        if(t0===null)t0=ts;
+        var p=D?Math.min(1,(ts-t0)/D):1,e=p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+        vb=from.map(function(v,i){return v+(target[i]-v)*e;});
+        svg.setAttribute('viewBox',vb.join(' '));
+        anim=p<1?requestAnimationFrame(frame):null;
+      }
+      anim=requestAnimationFrame(frame);
+    }
+    function show(i){
+      i=((i%R.length)+R.length)%R.length;if(i===cur)return;cur=i;var r=R[i];
+      box.dataset.r=r.k;
+      box.querySelectorAll('.cities').forEach(function(g){g.classList.toggle('dim',r.k!=='all'&&g.dataset.r!==r.k);});
+      box.querySelectorAll('.tint').forEach(function(t){t.classList.toggle('hi',t.dataset.r===r.k);});
+      ttl.textContent=r.t;ttl.style.color=r.col;stepEl.textContent=(i+1)+' / '+R.length;capEl.innerHTML=r.cap;
+      svg.setAttribute('aria-label',r.a);
+      if(range.value!==String(i))range.value=String(i);
+      animateTo(r.box);
+    }
+    function stop(){if(timer){clearInterval(timer);timer=null;}play.textContent='動かす';play.setAttribute('aria-pressed','false');}
+    function start(){if(timer)return;play.textContent='止める';play.setAttribute('aria-pressed','true');timer=setInterval(function(){show(cur+1);},2200);}
+    range.addEventListener('input',function(){stop();show(parseInt(range.value,10));});
+    document.getElementById('p2c-prev').addEventListener('click',function(){stop();show(cur-1);});
+    document.getElementById('p2c-next').addEventListener('click',function(){stop();show(cur+1);});
+    play.addEventListener('click',function(){if(timer)stop();else{show(cur+1);start();}});
+    document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});
+    show(0);
+  })();
 
   /* ---- 四つの時代を、つまみで ---- */
   (function(){
