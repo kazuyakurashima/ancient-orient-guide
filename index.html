@@ -106,10 +106,10 @@
       transition:width .22s ease,margin .22s ease,opacity .22s ease;opacity:.55}
     #rail button:hover{opacity:1}
     #rail button.is-here{width:19px;margin-left:-5px;opacity:1}
-    /* 幅9pxの親に絶対配置すると縮んで2文字が縦に折り返し、最下段に重なる。1行固定＋バー中心に揃える */
-    #rail:after{content:"深度";position:absolute;bottom:-26px;left:4.5px;transform:translateX(-50%);
-      white-space:nowrap;font-family:var(--mincho);
-      font-size:.64rem;letter-spacing:.14em;color:var(--muted);writing-mode:horizontal-tb}
+    .rail-now{position:absolute;top:100%;margin-top:10px;left:4.5px;transform:translateX(-50%);white-space:nowrap;text-align:center;
+      font-family:var(--mincho);font-size:.64rem;letter-spacing:.14em;color:var(--muted);line-height:1.5}
+    .rail-now b{display:block;font-weight:600;color:var(--ink);opacity:.8}
+    .rail-now i{display:block;font-style:normal;font-size:.6rem;letter-spacing:.06em}
   }
 
   *{box-sizing:border-box}
@@ -682,6 +682,48 @@
     .era-ticks{padding:0 42px 0 38px}
   }
 
+  /* ---- 五つの世界の玄関 ---- */
+  .hub{margin:2.4rem 0 3rem;padding:26px 28px 24px;background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-feat)}
+  .hub-label{font-family:var(--mincho);font-size:.72rem;font-weight:600;letter-spacing:.24em;color:var(--tone-ink);margin:0 0 .5rem}
+  .hub-title{font-family:var(--mincho);font-feature-settings:"palt";font-size:1.5rem;font-weight:600;line-height:1.4;margin:0 0 .5rem;color:var(--ink);padding:0;border:none}
+  .hub-title:before{display:none}
+  .hub-lead{font-size:.92rem;line-height:1.8;color:var(--body);margin:0 0 1.1rem;max-width:none}
+  .hub-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:0 0 1rem}
+  .hub-tile{appearance:none;font:inherit;text-align:left;cursor:pointer;color:var(--ink);
+    background:color-mix(in srgb,var(--rgc) 8%,#FFFEFB);border:1px solid color-mix(in srgb,var(--rgc) 30%,#FFFEFB);border-left:4px solid var(--rgc);
+    border-radius:10px;padding:.65rem .7rem;transition:background .2s ease}
+  .hub-tile b{display:block;font-family:var(--mincho);font-feature-settings:"palt";font-size:.96rem;white-space:nowrap;color:var(--rgc);line-height:1.4}
+  .hub-tile span{display:block;font-size:.76rem;line-height:1.5;color:var(--body);margin-top:.25rem}
+  .hub-tile:hover{background:color-mix(in srgb,var(--rgc) 16%,#FFFEFB)}
+  .hub-tile[aria-selected="true"]{background:var(--rgc);border-color:var(--rgc)}
+  .hub-tile[aria-selected="true"] b,.hub-tile[aria-selected="true"] span{color:#FFFEFB}
+  .hub-panel{border-top:1px solid var(--hairline);padding-top:1rem}
+  .hub-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;margin:0 0 .7rem}
+  .hub-head b{font-family:var(--mincho);font-size:1.2rem;color:var(--rgc)}
+  .hub-head span{font-family:var(--mincho);font-feature-settings:"palt";font-size:.95rem;color:var(--body)}
+  .hub-list{list-style:none;margin:0;padding:0}
+  .hub-list li{display:grid;grid-template-columns:4.2rem 1fr;gap:.6rem;padding:.55rem 0;border-top:1px dashed var(--hairline);font-size:.9rem;line-height:1.8}
+  .hub-list li:first-child{border-top:none}
+  .hub-list .hp{font-family:var(--mincho);font-size:.76rem;font-weight:600;letter-spacing:.1em;color:var(--muted);padding-top:.2em}
+  .hub-list a{color:var(--ink);cursor:pointer;text-decoration:underline;text-decoration-color:var(--hairline-strong);text-underline-offset:.28em}
+  .hub-list .hl a{display:inline-block;margin:0 1.1rem .15rem 0}
+  .hub-list .hl i{font-style:normal;font-size:.76rem;color:var(--muted);margin-right:.35rem}
+  .hub-list .hl i.ex{margin:0 0 0 .4rem;padding:0 .35rem;border:1px solid var(--hairline-strong);border-radius:3px;font-size:.68rem;color:var(--rgc)}
+  .hub-list .hn{display:block;color:var(--muted);font-size:.82rem}
+  @media (max-width:47.99rem){
+    .hub{padding:20px 18px 18px}
+    .hub-tiles{grid-template-columns:1fr 1fr}
+    .hub-tiles .hub-tile:last-child{grid-column:1/-1}
+    .hub-list li{grid-template-columns:3.6rem 1fr}
+  }
+
+  /* ---- 扉：漢数字の透かしと、所要時間 ---- */
+  .opener.lead[data-num]:after{content:attr(data-num);position:absolute;z-index:0;right:-.06em;top:.1em;
+    font-family:var(--mincho);font-weight:600;font-size:clamp(7rem,22vw,13rem);line-height:1;letter-spacing:0;
+    color:var(--depth-ink);opacity:.09;pointer-events:none;user-select:none}
+  .opener-time{display:inline-block;margin:1.1rem 0 0;font-size:.78rem;letter-spacing:.06em;color:var(--depth-ink);
+    border:1px solid color-mix(in srgb,var(--depth-ink) 35%,transparent);border-radius:var(--r-pill);padding:.22rem .8rem}
+
   /* ---- 現れる・描かれる ---- */
   @media (prefers-reduced-motion:no-preference){
     .rv{opacity:0;transform:translateY(16px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1)}
@@ -708,6 +750,7 @@
   <button data-go="p6" style="--seg:#C0A183" title="第六部 年表" aria-label="第六部 年表"></button>
   <button data-go="p7" style="--seg:#C6C0B0" title="第七部 建築" aria-label="第七部 建築"></button>
   <button data-go="museum" style="--seg:#2C4A6C" title="博物館で" aria-label="博物館で"></button>
+  <span class="rail-now" id="rail-now" aria-hidden="true">深度</span>
 </nav>
 
 <header class="hero" data-tone="sand">
@@ -722,6 +765,8 @@
     <div class="hero-actions" id="hero-actions">
       <a class="btn primary" href="#p1">はじめから読む</a>
       <button class="btn resume" type="button" id="btn-resume" hidden>続きから読む</button>
+      <button class="btn resume" type="button" id="btn-unread" hidden>まだ読んでいない部へ</button>
+      <a class="btn" href="#hub">五つの世界から入る</a>
       <a class="btn" href="#museum">博物館で見つける</a>
       <button class="btn" type="button" id="btn-draw">図版をひとつ引く</button>
     </div>
@@ -743,7 +788,7 @@
 <!-- ========== 第一部 ========== -->
 <section data-part="1" data-tone="blue" id="p1" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="一">
       <p class="part">第一部</p>
       <p class="rule-label">時間</p>
       <h2>2万年 ── 氷が退く</h2>
@@ -1122,7 +1167,7 @@
 <!-- ========== 第二部 空間 ========== -->
 <section data-part="2" data-tone="mint" id="p2" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="二">
       <p class="part">第二部</p>
       <p class="rule-label">軸 一</p>
       <h2>空間 ── 五つの世界</h2>
@@ -1240,7 +1285,15 @@
       </div>
     </details>
 
-    <h3 class="blk">地形の骨格 ── 文明の配置は、ぜんぶこの地形への返事</h3>
+    <div class="hub" id="hub">
+      <p class="hub-label">五つの世界の玄関</p>
+      <h3 class="hub-title">地域から入る</h3>
+      <p class="hub-lead">気になる世界を一つ選ぶ。その世界の話が、どの部のどこにあるかが並ぶ。そこから飛んで、戻ってくればいい。</p>
+      <div class="hub-tiles" id="hub-tiles" role="tablist" aria-label="五つの世界"></div>
+      <div class="hub-panel" id="hub-panel" hidden></div>
+    </div>
+
+    <h3 id="p2-terrain" class="blk">地形の骨格 ── 文明の配置は、ぜんぶこの地形への返事</h3>
     <p>都市も国も、まず山と川と砂漠の隙間に置かれる。上の地図から人間の引いた線を消して、自然だけを残すとこうなる。</p>
     <figure class="chart map">
       <svg viewBox="0 0 340 250" role="img" aria-label="古代オリエントの地形図。山脈、川、砂漠、海と、肥沃な三日月地帯。">
@@ -1395,7 +1448,7 @@
 <!-- ========== 第三部 文明 ========== -->
 <section data-part="3" data-tone="sand" id="p3" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="三">
       <p class="part">第三部</p>
       <p class="rule-label">軸 二</p>
       <h2>文明 ── 五つの地域は、性格が違う</h2>
@@ -1666,7 +1719,7 @@
 
     <p>振り子は、ただ往復しているのではない。かといって、一回ごとに必ず大きくなるという法則でもない。<strong>長い目で見ると、一つの政治権力が束ねられる範囲そのものが広がっていく。</strong>その到達点がアケメネス朝である。第六部の年表で個々の事件に出会ったら、いまこのリズムのどこにいるのかを思い出すと、位置がつかみやすい。</p>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-egy)">エジプト ── 南が「上」で、北が「下」</h3>
+    <h3 id="p3-egy" class="blk rg" style="--rgc:var(--rg-egy)">エジプト ── 南が「上」で、北が「下」</h3>
     <p>ナイル川は南から北へ流れる。だから<strong>上流の南が「上エジプト」、河口の北が「下エジプト」</strong>になる。地図の上下ではなく、川の上流と下流で呼ぶ。</p>
 
     <figure class="chart map">
@@ -1886,7 +1939,7 @@
       </div>
     </details>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-lev)">レヴァント ── 一つにならない</h3>
+    <h3 id="p3-lev" class="blk rg" style="--rgc:var(--rg-lev)">レヴァント ── 一つにならない</h3>
     <p>ここには「レヴァント文明」という一つの巨大な国ができない。エジプト、メソポタミア、アナトリアに三方を囲まれた細い通り道で、大国の干渉を受けやすい。それが、一つの大きな国が長く根づきにくかった理由の一つである。<strong>だが、定住と農耕の段階では、むしろここが先発地域だった。</strong>メソポタミア文明ができたあとに通り道として発展した、という順序ではない。</p>
 
     <figure class="chart map">
@@ -2166,7 +2219,7 @@
 
     <p>まとめれば、<strong>メソポタミアは帝国を「作る側」、レヴァントは帝国と帝国に「挟まれる側」</strong>である。エジプト、ヒッタイト、アッシリア、バビロニア、ペルシア、ギリシア、ローマ。この小さな廊下に大国が順番に現れるのは偶然ではない。ここが、地中海とメソポタミアを結ぶ通路そのものだったからだ。</p>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-ana)">アナトリア ── 分立から、ヒッタイトへ</h3>
+    <h3 id="p3-ana" class="blk rg" style="--rgc:var(--rg-ana)">アナトリア ── 分立から、ヒッタイトへ</h3>
     <div class="rows rg" style="--rgc:var(--rg-ana)">
       <div class="r"><div class="k">前9600頃</div><div class="v"><span class="star">★</span><b>ギョベクリ・テペ</b>（南東部）。世界の最先端がここにあった時期</div></div>
       <div class="r"><div class="k">前7400頃</div><div class="v"><b>チャタル・ヒュユク</b>（中央部）。数千人規模の巨大な集落。ただし国家ではない</div></div>
@@ -2312,7 +2365,7 @@
       </div>
     </details>
 
-    <h3 class="blk rg" style="--rgc:var(--rg-irn)">イラン ── ザグロスから、ペルシアへ</h3>
+    <h3 id="p3-irn" class="blk rg" style="--rgc:var(--rg-irn)">イラン ── ザグロスから、ペルシアへ</h3>
     <p>「イラン高原」と一つにまとめると分かりにくい。<strong>最初の主役エラムは、高原の真ん中ではなく、南西のスーサ周辺の低地と、ザグロス山脈のふもと</strong>を中心とする。つまりメソポタミアのすぐ隣である。</p>
 
     <figure class="chart map">
@@ -2502,7 +2555,7 @@
 <!-- ========== 第四部 神 ========== -->
 <section data-part="4" data-tone="lavender" id="p4" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="四">
       <p class="part">第四部</p>
       <p class="rule-label">軸 三</p>
       <h2>神 ── 五つの答え方</h2>
@@ -2522,29 +2575,29 @@
     </div>
     <p>この三つの問いで五地域を並べると、たくさんの神の名前を覚えなくても、輪郭がつかめる。ただし以下は、五地域を五種類の宗教に固定する分類ではない。数千年のあいだに、各地の宗教は大きく変わった。比べているのは、それぞれに特徴的な<strong>傾向</strong>である。</p>
 
-    <h3 class="blk">五つの答え</h3>
+    <h3 id="p4-answers" class="blk">五つの答え</h3>
     <div class="cards">
-      <div class="card" style="--rgc:var(--rg-meso)">
+      <div class="card" id="p4-meso" style="--rgc:var(--rg-meso)">
         <h4 style="color:var(--rg-meso)">メソポタミア ── 神は都市の持ち主</h4>
         <p class="motto">都市の主は、その都市の神</p>
         <p class="f"><b>神は</b>都市の主人。都市には多くの神々がいるが、その都市と特に強く結びついた主神がいる。ウルクにはイナンナ、ウルにはナンナ、バビロンにはマルドゥク。神殿は法の上でも、土地と財産の持ち主だった。<br><b>王は</b>神の代理人であり、執事である。ただし例外もあり、アッカドのナラム・シン王とウル第三王朝のシュルギ王は、自分を神と名乗った。<br><b>建物は</b>神の「家」である神殿を中心に、倉庫、工房、役所が集まる複合体になる。その聖域に、都市によってはジッグラト（階段状の聖塔）がそびえた。</p>
       </div>
-      <div class="card" style="--rgc:var(--rg-egy)">
+      <div class="card" id="p4-egy" style="--rgc:var(--rg-egy)">
         <h4 style="color:var(--rg-egy)">エジプト ── 神は国土の秩序</h4>
         <p class="motto">宇宙の秩序「マアト」を保つ</p>
         <p class="f"><b>神は</b>都市ごとに多数いる。だがその背後に、太陽とナイルと生死のめぐりを貫く宇宙の秩序<b>マアト</b>がある。ラー、オシリス、イシス、ホルス、アメン。王の最大の任務は、マアトを保つこと。<br><b>王は</b>神聖な「王権」を体現する。生きているあいだは神ホルスと、死んだあとは神オシリスと結びつく。神聖なのは王個人というより、王権そのもの。<br><b>建物は</b>神殿が奥へ行くほど狭く暗くなり、入れる人が減っていく。そして墓に、途方もない力が注がれる。</p>
       </div>
-      <div class="card" style="--rgc:var(--rg-lev)">
+      <div class="card" id="p4-lev" style="--rgc:var(--rg-lev)">
         <h4 style="color:var(--rg-lev)">レヴァント ── 小さな神々、そして一つを選ぶ道</h4>
         <p class="motto">まとまらない土地が、まとまった神を生む</p>
         <p class="f"><b>神は</b>都市ごと、集団ごとにいる。カナンではエル、バアル、アシェラ。フェニキアではティルスのメルカルト、シドンのエシュムン。<br><b>王は</b>神のしもべ。国が小さいので、王を神とみなす考えは弱い。<br><b>そして</b>前1千年紀（前1000年からの千年）、イスラエルとユダで<b>ヤハウェ</b>を中心とする信仰が育つ。はじめは他の神々への信仰と共存した。だが王による改革と、バビロン捕囚を経て、ヤハウェだけを礼拝し、像を置かない方向が強まる。やがて<strong>神像も、いけにえの祭壇も持たない集会の建物（シナゴーグ）</strong>が、神殿と並んで現れる。</p>
       </div>
-      <div class="card" style="--rgc:var(--rg-ana)">
+      <div class="card" id="p4-ana" style="--rgc:var(--rg-ana)">
         <h4 style="color:var(--rg-ana)">アナトリア ── 神を集める</h4>
         <p class="motto">「ハッティの千の神々」</p>
         <p class="f"><b>神は</b>とにかく数が多い。ヒッタイトは征服した土地の神を、自分の神々の列に加えていった。条約の文書は、自国の神々を「千の神々」と呼ぶ。<br><b>王は</b>最高位の神官。生きている王は神ではないが、死ぬと「神になった」と言い表される。エジプトときれいに逆。<br><b>建物は</b>両方つくる。首都ハットゥシャには、大神殿をはじめ神殿がひしめく。郊外のヤズルカヤでは、<strong>自然の岩壁そのものに神々の行列を刻んだ</strong>。人工の建築と岩の景観、その両方を聖域にした。</p>
       </div>
-      <div class="card" style="--rgc:var(--rg-irn)">
+      <div class="card" id="p4-irn" style="--rgc:var(--rg-irn)">
         <h4 style="color:var(--rg-irn)">イラン ── 途中で答えが変わる</h4>
         <p class="motto">エラムはメソポタミア型、ペルシアは別物</p>
         <p class="f"><b>前半のエラムは</b>メソポタミアと密に交流し、ジッグラトなど共通の宗教建築を持つ（チョガ・ザンビール、スーサの神インシュシナク）。ただし独自の神々と儀式も保った。<br><b>後半のペルシアは</b>違う。王の碑文は神アフラ・マズダーをたたえ、王権はその恵みによって与えられたと語る。王は神ではない。<br><b>建物は</b>宮殿が主役で、初期には巨大な神殿より、屋外の聖所や祭壇が目立つ。ペルセポリスは神殿ではない。</p>
@@ -2705,7 +2758,7 @@
 <!-- ========== 第五部 言語 ========== -->
 <section data-part="5" data-tone="peach" id="p5" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="五">
       <p class="part">第五部</p>
       <p class="rule-label">軸 四</p>
       <h2>言語 ── 文字と言葉は別物</h2>
@@ -2888,7 +2941,7 @@
 <!-- ========== 第六部 年表 ========== -->
 <section data-part="6" data-tone="blue" id="p6" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="六">
       <p class="part">第六部</p>
       <h2>統合年表</h2>
       <p class="sub">ここまでの五本の軸を、一本の時間の上に重ねる。1万5000年前（前13000年）から、1750年前（西暦3世紀）まで。</p>
@@ -3193,7 +3246,7 @@
 <!-- ========== 第七部 ========== -->
 <section data-part="7" data-tone="mint" id="p7" class="lead-part">
   <div class="wrap">
-    <div class="opener lead">
+    <div class="opener lead" data-num="七">
       <p class="part">第七部</p>
       <p class="rule-label">軸 五</p>
       <h2>建築 ── たてものと、まちづくり</h2>
@@ -3415,7 +3468,7 @@
     <div class="ask four">
       <ol>
         <li><b>① いつ。</b>紀元前か、何年前か。<a href="#p6">第六部の年表</a>のどのあたりにあるか。</li>
-        <li><b>② どこ。</b>五つの世界のどれか。<a href="#p2">第二部の地図</a>で位置を押さえる。</li>
+        <li><b>② どこ。</b>五つの世界のどれか。<a href="#p2">第二部の地図</a>で位置を押さえ、<a href="#hub">五つの世界の玄関</a>からその世界の話をたどる。</li>
         <li><b>③ どの文明、どの神。</b>都市が主役か、川が主役か。神はどこに住むか。<a href="#p3">第三部</a>と<a href="#p4">第四部</a>で確かめる。</li>
         <li><b>④ 何のための建物か。</b>何で建てられ、積む・囲う・絞るのどれで、まちの三点セットのどこにあたるか。<a href="#p7">第七部</a>で読む。</li>
       </ol>
@@ -3736,7 +3789,7 @@
     });});
   }
   if(!reduce&&'IntersectionObserver' in window){
-    var rv=[].slice.call(document.querySelectorAll('figure.chart,figure.photo,.qa,.ask,.bar,.hero-actions,.tale,.era'));
+    var rv=[].slice.call(document.querySelectorAll('figure.chart,figure.photo,.qa,.ask,.bar,.hero-actions,.tale,.era,.hub'));
     rv.forEach(function(el){el.classList.add('rv');});
     var rvIO=new IntersectionObserver(function(es){
       es.forEach(function(e){
@@ -3837,6 +3890,101 @@
     play.addEventListener('click',function(){if(timer)stop();else{show(cur+1);start();}});
     document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});
     box.hidden=false;show(0);
+  })();
+
+  /* ---- 扉に、所要時間 ---- */
+  PARTS.forEach(function(id){
+    var op=document.querySelector('#'+id+' .opener.lead');if(!op)return;
+    var m=partEls[id],el=document.createElement('p');el.className='opener-time';
+    el.textContent='本線 約'+m.minutes+'分'+(m.minutesAll-m.minutes>=2?'　補足まで 約'+m.minutesAll+'分':'');
+    var sub=op.querySelector('.sub');if(sub)sub.insertAdjacentElement('afterend',el);else op.appendChild(el);
+  });
+
+  /* ---- まだ読んでいない部へ ---- */
+  var unreadBtn=document.getElementById('btn-unread');
+  function renderUnread(){
+    if(!unreadBtn)return;
+    var done=PARTS.filter(function(id){return !!(st.parts[id]&&st.parts[id].done);}),
+        todo=PARTS.filter(function(id){return !(st.parts[id]&&st.parts[id].done);});
+    if(!done.length||!todo.length){unreadBtn.hidden=true;return;}
+    var lastIdx=(st.last&&st.last.id)?PARTS.indexOf(st.last.id):-1,pick=null;
+    for(var i=0;i<todo.length;i++){if(PARTS.indexOf(todo[i])>lastIdx){pick=todo[i];break;}}
+    if(!pick)pick=todo[0];
+    unreadBtn.hidden=false;unreadBtn.textContent='まだ読んでいない部へ ── '+NAMES[pick];unreadBtn.dataset.go=pick;
+  }
+  var _renderHero=renderHero;renderHero=function(){_renderHero();renderUnread();};
+
+  /* ---- 五つの世界の玄関 ---- */
+  (function(){
+    var hub=document.getElementById('hub'),tiles=document.getElementById('hub-tiles'),panel=document.getElementById('hub-panel');
+    if(!hub||!tiles||!panel)return;
+    var REG=[{k:'meso',n:'メソポタミア'},{k:'egy',n:'エジプト'},{k:'lev',n:'レヴァント'},{k:'ana',n:'アナトリア'},{k:'irn',n:'イラン'}];
+    var evs=[].slice.call(document.querySelectorAll('.ev'));
+    evs.forEach(function(ev,i){if(!ev.id)ev.id='ev-n'+(i+1);});
+    function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+    function txt(el){return el?el.textContent.replace(/\s+/g,' ').trim():'';}
+    function after(t){var k=t.indexOf('──');return k>=0?t.slice(k+2).trim():t;}
+    function yearOf(ev){var yr=ev.querySelector('.yr');if(!yr||!yr.firstChild)return '';return yr.firstChild.textContent.split('—')[0].trim();}
+    function cardOf(part,name){return [].slice.call(document.querySelectorAll('#'+part+' .card')).filter(function(c){var h=c.querySelector('h4');return h&&txt(h).indexOf(name)===0;})[0]||null;}
+    function regionOf(f){var n=f,h=null;while(n&&!(n.matches&&n.matches('section'))){n=n.previousElementSibling||n.parentElement;if(n&&n.matches&&n.matches('h3.rg')){h=n;break;}}return h?(h.getAttribute('style')||''):'';}
+    function findTitle(f){
+      var cap=f.querySelector('figcaption'),strong=cap?cap.querySelector('strong'):null,det=f.closest('details'),sum=det?det.querySelector('summary'):null;
+      var sTitle=sum?sum.textContent.replace(/実物を見る ── |会場で見る ── |タップで開く/g,'').replace(/[「」『』]/g,'').trim():'';
+      var t=(strong&&strong.textContent.length<=18&&strong.textContent.indexOf('、')<0)?strong.textContent:(sTitle||'展示品');
+      return t.replace(/[（(].*$/,'').trim();
+    }
+    var data=REG.map(function(r){
+      var c3=cardOf('p3',r.n),c4=cardOf('p4',r.n),h3=document.getElementById('p3-'+r.k);
+      return {r:r,
+        tag:c3?after(txt(c3.querySelector('h4'))):'',motto:c3?txt(c3.querySelector('.motto')):'',
+        h3:h3?txt(h3):'',god:c4?after(txt(c4.querySelector('h4'))):'',
+        items:evs.filter(function(ev){return ev.querySelector('.chip.c-'+r.k);}).map(function(ev){return {id:ev.id,y:yearOf(ev),t:txt(ev.querySelector('h3')),ex:ev.dataset.kind==='exhibit'};}),
+        finds:findItems.filter(function(f){return regionOf(f).indexOf('rg-'+r.k)>=0;})};
+    });
+    data.forEach(function(d,i){
+      var b=document.createElement('button');b.type='button';b.className='hub-tile';b.style.setProperty('--rgc','var(--rg-'+d.r.k+')');
+      b.setAttribute('role','tab');b.setAttribute('aria-selected','false');
+      b.innerHTML='<b>'+esc(d.r.n)+'</b><span>'+esc(d.tag)+'</span>';
+      b.addEventListener('click',function(){select(i);});
+      tiles.appendChild(b);
+    });
+    function select(i){
+      var d=data[i];
+      [].slice.call(tiles.children).forEach(function(b,k){b.setAttribute('aria-selected',String(k===i));});
+      panel.style.setProperty('--rgc','var(--rg-'+d.r.k+')');
+      var h='<div class="hub-head"><b>'+esc(d.r.n)+'</b><span>'+esc(d.motto)+'</span></div><ul class="hub-list">';
+      if(d.h3)h+='<li><span class="hp">第三部</span><div><a data-go="p3-'+d.r.k+'" role="link" tabindex="0">'+esc(d.h3)+'</a></div></li>';
+      if(d.god)h+='<li><span class="hp">第四部</span><div><a data-go="p4-'+d.r.k+'" role="link" tabindex="0">'+esc(d.god)+'</a></div></li>';
+      if(d.items.length)h+='<li><span class="hp">第六部</span><div class="hl">'+d.items.map(function(it){return '<a data-go="'+esc(it.id)+'" role="link" tabindex="0"><i>'+esc(it.y)+'</i>'+esc(it.t)+(it.ex?'<i class="ex">模型</i>':'')+'</a>';}).join('')+'</div></li>';
+      if(d.finds.length)h+='<li><span class="hp">博物館</span><div class="hl">'+d.finds.map(function(f,k){return '<a data-hubfind="'+k+'" role="link" tabindex="0">'+esc(findTitle(f))+'</a>';}).join('')+'<span class="hn">館で見つける実物 '+d.finds.length+'点。写真は本文にある</span></div></li>';
+      h+='</ul>';
+      panel.innerHTML=h;panel.hidden=false;
+      [].slice.call(panel.querySelectorAll('[data-hubfind]')).forEach(function(a){
+        var f=d.finds[parseInt(a.dataset.hubfind,10)];
+        function go(){var det=f.closest('details');if(det)det.open=true;setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
+        a.addEventListener('click',go);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+      });
+    }
+    select(0);
+  })();
+
+  /* ---- 深度の計器：いまどの部か、年表では何年か ---- */
+  (function(){
+    var el=document.getElementById('rail-now');if(!el)return;
+    var SHORT={p1:'時間',p2:'空間',p3:'文明',p4:'神',p5:'言語',p6:'年表',p7:'建築'};
+    var evs=[].slice.call(document.querySelectorAll('section[data-part="6"] .ev')),mus=document.getElementById('museum'),t=false,last='';
+    function yearOf(ev){var yr=ev.querySelector('.yr');if(!yr||!yr.firstChild)return '';return yr.firstChild.textContent.split('—')[0].trim();}
+    function upd(){
+      t=false;var y=window.scrollY+window.innerHeight*.4,cur=null,html;
+      PARTS.forEach(function(id){var r=partRange(id);if(y>=r.top&&y<r.bottom)cur=id;});
+      if(cur==='p6'){var yr='',sy=window.scrollY;for(var i=0;i<evs.length;i++){if(evs[i].hidden)continue;if(evs[i].getBoundingClientRect().top+sy<=y)yr=yearOf(evs[i]);}html='<b>年表</b>'+(yr?'<i>'+yr+'</i>':'');}
+      else if(cur)html='<b>'+SHORT[cur]+'</b>';
+      else if(mus&&y>=mus.offsetTop)html='<b>博物館</b>';
+      else html='深度';
+      if(html!==last){last=html;el.innerHTML=html;}
+    }
+    window.addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(upd);}},{passive:true});
+    upd();
   })();
 
   renderHero();
