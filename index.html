@@ -460,6 +460,14 @@
   .tracks.rg .h{color:var(--rgc)}
   .tracks.rg .c.span{background:color-mix(in srgb,var(--rgc) 10%,#FFFEFB);color:var(--ink)}
   .card .f{font-size:.92rem;margin:0;color:var(--body);line-height:1.8;max-width:none}
+  /* カードの問い ── 性格（標語）の下に「なぜ」を置き、節の終わりの答えへ誘う */
+  .card .cq{font-family:var(--mincho);font-feature-settings:"palt";font-size:1.02rem;line-height:1.85;color:var(--ink);
+    margin:.95rem 0 0;padding-top:.85rem;border-top:1px dashed var(--hairline);max-width:none}
+  .card .cq b{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.22em;color:var(--rgc,var(--tone-ink));margin-right:.65rem;vertical-align:.12em}
+  .card-go{display:inline-block;margin-top:.55rem;font-size:.84rem;color:var(--rgc,var(--tone-ink));text-decoration:none;
+    border-bottom:1px solid color-mix(in srgb,var(--rgc,var(--tone-ink)) 45%,transparent);padding-bottom:1px}
+  .card-go:hover{border-bottom-color:var(--rgc,var(--tone-ink))}
+  .card-note{display:inline-block;color:var(--muted);font-size:.76rem;margin:.55rem 0 0 .8rem}
 
   /* ---------- duration bars ---------- */
   .bar{margin-bottom:1.1rem}
@@ -636,6 +644,16 @@
   .qa-next b{display:block;font-size:.84rem;letter-spacing:.08em;margin-bottom:.3rem;font-weight:600}
   .qa-next span{display:block;font-family:var(--mincho);font-feature-settings:"palt";font-size:1rem;line-height:1.8}
   .qa-links{margin:1.1rem 0 0;font-size:.8rem;line-height:2.2;color:rgba(255,254,251,.68);max-width:none}
+  /* 地域ごとの答え ── 部の答え合わせより軽く、地域色の縁で */
+  .qa.ra{margin:2.4rem 0 3.2rem;background:var(--surface);border:1px solid var(--hairline);
+    border-left:4px solid var(--rgc,var(--hairline-strong));padding:22px 26px 20px}
+  .qa.ra:after{content:"A";color:var(--rgc,var(--depth-ink));opacity:.10}
+  .qa.ra .qa-label{color:var(--rgc,var(--depth-ink))}
+  .qa.ra .qa-label:before{background:var(--rgc,var(--depth-ink))}
+  .qa.ra .qa-q{font-size:.88rem;line-height:1.8;color:var(--muted);margin:0 0 .7rem;max-width:none}
+  .qa.ra .qa-text{font-size:1.04rem}
+  .ra-nav{display:flex;flex-wrap:wrap;gap:.35rem 1.5rem;margin:1.05rem 0 0;font-size:.82rem;max-width:none}
+  .ra-nav a{color:var(--rgc,var(--depth-ink));text-decoration-color:color-mix(in srgb,var(--rgc,var(--depth-ink)) 40%,transparent)}
   .qa-links>span{margin-right:.7rem;letter-spacing:.12em}
   .qa-links a{color:#FFFEFB;text-decoration-color:rgba(255,254,251,.35);margin-right:1.1rem;white-space:nowrap}
 
@@ -1528,7 +1546,7 @@
       <p class="qa-label">答え合わせ</p>
       <p class="qa-q">メソポタミアは今のイラク、アナトリアはトルコ、イラン高原はイラン。エジプトはエジプトのまま。五つの世界のうち四つが、五千年たった地図でもそのまま一つの国である。帝国が何度も上を通り過ぎたのに、なぜ切れ目は動かなかったのか。</p>
       <p class="qa-text">枠を作ったのが地形だからだ。山が高原と平野を分け、砂漠と海がナイルを一本道にし、砂漠が地中海東岸を細い廊下にした。帝国は通り過ぎるが、山と砂漠は動かない。人が線を引く時代になっても、引ける場所はもう決まっていた。残る一つ、地中海東岸だけは今も四つの国に割れている。大国が通り抜ける廊下には、昔から小国が並んでいた。</p>
-      <p class="qa-next"><a href="#p3"><b>次の問いへ ── 第三部 文明</b><span>支配者が何度も代わったメソポタミアと、三千年変わらなかったエジプト。この違いはどこから来るのか。</span></a></p>
+      <p class="qa-next"><a href="#p3"><b>次の問いへ ── 第三部 文明</b><span>性格の違う五つの世界が、一つの帝国の内側に入る日は来るのか。</span></a></p>
       <p class="qa-links"><span>つながり</span><a href="#p3-table">第三部 五地域を横に並べる</a><a href="#p7-material">第七部 素材は、土地の答案</a></p>
     </div>
   </div>
@@ -1544,7 +1562,7 @@
       <p class="sub">同じ「文明」という言葉で並べても、中身の段階がそろっていない。まずそこを分けておく。</p>
       <div class="qa q" data-qa="p3">
         <p class="qa-label">この部の問い</p>
-        <p class="qa-text">メソポタミアでは支配者が何度も入れ替わった。エジプトでは三千年、王朝が代わっても顔の描き方さえ変わらなかった。この違いはどこから来るのか。</p>
+        <p class="qa-text">性格の違う五つの世界が、一つの帝国の内側に入る日は来るのか。来るとすれば、いつ、誰の手で。</p>
         <p class="qa-note"><a href="#p3-end">答えは、この部の終わりに</a></p>
       </div>
     </div>
@@ -1554,32 +1572,43 @@
     <p>いっぽう「ヒッタイト帝国」「エジプト新王国」「アケメネス朝ペルシア」は、<strong>文字の記録が残る国家</strong>である。王の名も、支配の範囲も、条約の文面も分かる。</p>
     <p>この二つを同じ表に並べると、同じ種類のものが順に進化したように見えてしまう。<strong>呼び名が「文化」から「国家」に切り替わるのは前3000年前後で、文字が現れる時期と重なる。</strong>つまり呼び名が変わるのは、社会が変わったからというより、<strong>こちらから見えるものが変わったから</strong>でもある。</p>
 
-    <h3 class="blk">五つのキャラクター</h3>
+    <h3 id="p3-five" class="blk">五つのキャラクター ── 五つの問い</h3>
+    <p>五つの世界には、一つずつ問いがある。気になる問いを選んで、その世界の話へ飛べばいい。答えは、その節の終わりで待っている。</p>
     <div class="cards">
       <div class="card" style="--rgc:var(--rg-meso)">
         <h4 style="color:var(--rg-meso)">メソポタミア ── 都市が主役</h4>
         <p class="motto">中心はいくつも、王朝は入れ替わる</p>
         <p class="f">小さな都市国家がたくさん並び立ち、その上に帝国が何度も乗っては倒れる。土地は同じまま、支配者と言語だけが入れ替わっていく。</p>
+        <p class="cq"><b>問い</b>土地は同じなのに、なぜ支配者だけが何度も入れ替わったのか。</p>
+        <a class="card-go" href="#p3-meso">この世界の話へ →</a><span class="card-note">答えは、節の終わりに</span>
       </div>
       <div class="card" style="--rgc:var(--rg-egy)">
         <h4 style="color:var(--rg-egy)">エジプト ── 川が主役</h4>
         <p class="motto">早くまとまり、長く続く</p>
         <p class="f">ナイル一本の流域が、前3100年頃に早々と統一される。以後3000年、王朝が代わっても、言語も神々も文字も続く。</p>
+        <p class="cq"><b>問い</b>なぜ三千年、王朝が代わっても顔の描き方さえ変わらなかったのか。</p>
+        <a class="card-go" href="#p3-egy">この世界の話へ →</a><span class="card-note">答えは、節の終わりに</span>
       </div>
       <div class="card" style="--rgc:var(--rg-lev)">
         <h4 style="color:var(--rg-lev)">レヴァント ── 交易都市が主役</h4>
         <p class="motto">通り道、小国の集まり</p>
         <p class="f">大文明の交差点にあるため、逆に一つの巨大な国にまとまらない。かわりに、都市国家と交易と、アルファベットが生まれる。</p>
+        <p class="cq"><b>問い</b>三つの文明の交差点なのに、なぜ「レヴァント文明」という国は生まれなかったのか。</p>
+        <a class="card-go" href="#p3-lev">この世界の話へ →</a><span class="card-note">答えは、節の終わりに</span>
       </div>
       <div class="card" style="--rgc:var(--rg-ana)">
         <h4 style="color:var(--rg-ana)">アナトリア ── 高原の王国</h4>
         <p class="motto">最先端から、長い分立を経て、統合へ</p>
         <p class="f">農耕が始まったころは世界の最先端だった。しかしそのあと二千年以上、地域ごとにばらばらのまま。前2千年紀（前2000年からの千年）に、ヒッタイトが高原をまとめる。</p>
+        <p class="cq"><b>問い</b>農耕の最先端だった土地が、なぜそのあと二千年以上、ばらばらのままだったのか。</p>
+        <a class="card-go" href="#p3-ana">この世界の話へ →</a><span class="card-note">答えは、節の終わりに</span>
       </div>
       <div class="card" style="--rgc:var(--rg-irn)">
         <h4 style="color:var(--rg-irn)">イラン ── 山麓と高原</h4>
         <p class="motto">古い隣国が、最後に全部を呑む</p>
         <p class="f">ザグロス山脈のふもとは、農耕と牧畜が最も早く始まった土地の一つ。エラムは、メソポタミアと交易もし戦争もする、対等な隣国だった。そして最後に、ペルシアが五地域を一つにする。</p>
+        <p class="cq"><b>問い</b>最初からの隣人だったイランが、なぜ最後になって全部を呑んだのか。</p>
+        <a class="card-go" href="#p3-irn">この世界の話へ →</a><span class="card-note">答えは、節の終わりに</span>
       </div>
     </div>
 
@@ -1776,6 +1805,13 @@
     </details>
 
     <p>振り子は、ただ往復しているのではない。かといって、一回ごとに必ず大きくなるという法則でもない。<strong>長い目で見ると、一つの政治権力が束ねられる範囲そのものが広がっていく。</strong>その到達点がアケメネス朝である。第六部の年表で個々の事件に出会ったら、いまこのリズムのどこにいるのかを思い出すと、位置がつかみやすい。</p>
+
+    <div class="qa ra" id="p3-meso-a" style="--rgc:var(--rg-meso)">
+      <p class="qa-label">答え ── メソポタミア</p>
+      <p class="qa-q">土地は同じなのに、なぜ支配者だけが何度も入れ替わったのか。</p>
+      <p class="qa-text">都市が主役だからだ。ふだんは都市国家がばらばらに並び立ち、ときどき帝国がそれを束ね、崩れて、また分立に戻る。入れ替わるのは上に乗る王朝と言語で、文字も暦も神話も、シュメール以来の土台は引き継がれた。そして束ねられる範囲は、往復のたびに広がっていった。</p>
+      <p class="ra-nav"><a href="#p3-five">五つの問いへ戻る</a><a href="#p3-egy">次の世界へ ── エジプト</a></p>
+    </div>
 
     <h3 id="p3-egy" class="blk rg" style="--rgc:var(--rg-egy)">エジプト ── 南が「上」で、北が「下」</h3>
     <p>ナイル川は南から北へ流れる。だから<strong>上流の南が「上エジプト」、河口の北が「下エジプト」</strong>になる。地図の上下ではなく、川の上流と下流で呼ぶ。</p>
@@ -1996,6 +2032,13 @@
         </figure>
       </div>
     </details>
+
+    <div class="qa ra" id="p3-egy-a" style="--rgc:var(--rg-egy)">
+      <p class="qa-label">答え ── エジプト</p>
+      <p class="qa-q">なぜ三千年、王朝が代わっても顔の描き方さえ変わらなかったのか。</p>
+      <p class="qa-text">川が主役だからだ。ナイル一本の流域は前3100年頃に早々と統一され、砂漠と海に守られて、以後は統一がふつう、分裂は「中間期」と呼ばれる例外になった。動いたのは都の位置だけで、言語も神々も文字も、顔の描き方の約束ごとまで引き継がれた。</p>
+      <p class="ra-nav"><a href="#p3-five">五つの問いへ戻る</a><a href="#p3-lev">次の世界へ ── レヴァント</a></p>
+    </div>
 
     <h3 id="p3-lev" class="blk rg" style="--rgc:var(--rg-lev)">レヴァント ── 一つにならない</h3>
     <p>ここには「レヴァント文明」という一つの巨大な国ができない。エジプト、メソポタミア、アナトリアに三方を囲まれた細い通り道で、大国の干渉を受けやすい。それが、一つの大きな国が長く根づきにくかった理由の一つである。<strong>だが、定住と農耕の段階では、むしろここが先発地域だった。</strong>メソポタミア文明ができたあとに通り道として発展した、という順序ではない。</p>
@@ -2277,6 +2320,13 @@
 
     <p>まとめれば、<strong>メソポタミアは帝国を「作る側」、レヴァントは帝国と帝国に「挟まれる側」</strong>である。エジプト、ヒッタイト、アッシリア、バビロニア、ペルシア、ギリシア、ローマ。この小さな廊下に大国が順番に現れるのは偶然ではない。ここが、地中海とメソポタミアを結ぶ通路そのものだったからだ。</p>
 
+    <div class="qa ra" id="p3-lev-a" style="--rgc:var(--rg-lev)">
+      <p class="qa-label">答え ── レヴァント</p>
+      <p class="qa-q">三つの文明の交差点なのに、なぜ「レヴァント文明」という国は生まれなかったのか。</p>
+      <p class="qa-text">通り道だからだ。エジプト、メソポタミア、アナトリアに三方を囲まれた細い廊下を、大国が順番に通り抜け、この土地の山はいつもよその色で立った。そのかわり帝国が引いた谷間に小さな国々が育ち、海の交易とアルファベットを生んだ。「小さな単位の集まり」という性格は、西暦2000年の地図でも変わっていない。</p>
+      <p class="ra-nav"><a href="#p3-five">五つの問いへ戻る</a><a href="#p3-ana">次の世界へ ── アナトリア</a></p>
+    </div>
+
     <h3 id="p3-ana" class="blk rg" style="--rgc:var(--rg-ana)">アナトリア ── 分立から、ヒッタイトへ</h3>
     <div class="rows rg" style="--rgc:var(--rg-ana)">
       <div class="r"><div class="k">前9600頃</div><div class="v"><span class="star">★</span><b>ギョベクリ・テペ</b>（南東部）。世界の最先端がここにあった時期</div></div>
@@ -2423,6 +2473,13 @@
       </div>
     </details>
 
+    <div class="qa ra" id="p3-ana-a" style="--rgc:var(--rg-ana)">
+      <p class="qa-label">答え ── アナトリア</p>
+      <p class="qa-q">農耕の最先端だった土地が、なぜそのあと二千年以上、ばらばらのままだったのか。</p>
+      <p class="qa-text">山に囲まれた高原に、小王国が点々と並んでいたからだ。文字さえ、前1900年頃に東から来たアッシリア商人が持ち込んだ。例外はヒッタイトで、先住のハッティの地名も神の名も儀式も受け継いで束ね、この土地生まれの唯一の大国になった。崩壊のあとに後継者は現れず、アナトリアはオリエントとギリシアを結ぶ東西の橋に変わっていく。</p>
+      <p class="ra-nav"><a href="#p3-five">五つの問いへ戻る</a><a href="#p3-irn">次の世界へ ── イラン</a></p>
+    </div>
+
     <h3 id="p3-irn" class="blk rg" style="--rgc:var(--rg-irn)">イラン ── ザグロスから、ペルシアへ</h3>
     <p>「イラン高原」と一つにまとめると分かりにくい。<strong>最初の主役エラムは、高原の真ん中ではなく、南西のスーサ周辺の低地と、ザグロス山脈のふもと</strong>を中心とする。つまりメソポタミアのすぐ隣である。</p>
 
@@ -2519,6 +2576,13 @@
       <figcaption>イラン（同じ目盛り、前3100〜前330）。上段が高原、下段が低地（スーサ周辺）。低地のエラムは前3千年紀からの古参で、メソポタミアにとって最も古く、最も長く続いた強敵の一つだった。前646のスーサ攻略（赤い点線＝アッシリア）で大きく揺らいだのち、高原のペルシアが伸び、前550からの菫色の山になる。これまでの四枚の右端に現れていた菫色は、すべてこの山の続きである。</figcaption>
     </figure>
 
+    <div class="qa ra" id="p3-irn-a" style="--rgc:var(--rg-irn)">
+      <p class="qa-label">答え ── イラン</p>
+      <p class="qa-q">最初からの隣人だったイランが、なぜ最後になって全部を呑んだのか。</p>
+      <p class="qa-text">舞台が二つあったからだ。三千年のあいだ主役だったのは、スーサ周辺の低地にいたエラムで、平野と対等に付き合う古い隣国だった。高原は静かなままで、そこに北からイラン語を話す人々が定着したのは前7〜6世紀。エラムが揺らいで秩序が組み替わったとき、高原のペルシア人が低地の都市と書記の文化を引き継ぎ、四つの大国を25年で呑み込んだ。</p>
+      <p class="ra-nav"><a href="#p3-five">五つの問いへ戻る</a><a href="#p3-table">五地域を横に並べる</a><a href="#p3-end">この部の答え合わせへ</a></p>
+    </div>
+
     <p>五枚を通して見ると、「五つのキャラクター」がそのまま形になっている。<strong>メソポタミアは振り子、エジプトは統一がふつう、レヴァントはよその色の山、アナトリアは一つだけの山と橋、イランは最後に立つ山</strong>。冒頭のカードでは言葉だった性格が、同じ物差しの五枚では輪郭になる。</p>
 
     <h3 class="blk">前330からの続き ── 五地域のその後</h3>
@@ -2602,8 +2666,8 @@
     <p class="note">なぜ支配者が代わっても文化が残るのか。その答えは、第五部の言語の軸にある。</p>
     <div class="qa a" id="p3-end" data-qa-end="p3">
       <p class="qa-label">答え合わせ</p>
-      <p class="qa-q">メソポタミアでは支配者が何度も入れ替わった。エジプトでは三千年、王朝が代わっても顔の描き方さえ変わらなかった。この違いはどこから来るのか。</p>
-      <p class="qa-text">地形が性格を決めた。都市が主役のメソポタミアは、分裂と統一を振り子のように繰り返す。川一本のエジプトは、統一がふつうで分裂が例外。挟まれたレヴァントは自前の山を立てず、アナトリアは一度だけ山を立て、イランが最後に全部を呑んだ。</p>
+      <p class="qa-q">性格の違う五つの世界が、一つの帝国の内側に入る日は来るのか。来るとすれば、いつ、誰の手で。</p>
+      <p class="qa-text">来る。前525年、アケメネス朝ペルシアの手で。メディアが落ちた前550年でも、バビロンが開いた前539年でもなく、最後にエジプトが落ちた年である。一万年ばらばらに動いてきた五つの世界が、25年ほどで束ねられた。ただし一色に塗られても、五つの性格は消えなかった。</p>
       <p class="qa-next"><a href="#p4"><b>次の問いへ ── 第四部 神</b><span>なぜ征服者は、相手の神を壊さずに残したのか。</span></a></p>
       <p class="qa-links"><span>つながり</span><a href="#p3-rhythm">覇権のリズム</a><a href="#p3-table">五地域を横に並べる</a><a href="#p5">第五部 ── なぜ支配者が代わっても文化は残るのか</a></p>
     </div>
