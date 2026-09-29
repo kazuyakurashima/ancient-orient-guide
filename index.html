@@ -98,7 +98,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+Cuneiform&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+Cuneiform&display=swap" rel="stylesheet">
 <style>
   :root{
     /* Base ── 石灰岩とインク */
@@ -941,6 +941,21 @@
     .hero .qa.hero-q{margin:0 0 1.8rem;padding:18px 18px 16px}
     .hero .qa.hero-q .qa-text{font-size:1.02rem;line-height:1.85}
   }
+  /* ---- 問いと答えで読む ── 扉と問い、印をつけた図版、答えだけを残す ---- */
+  body.short main section[data-part]:not([data-part="museum"])>.wrap>:not(.opener):not(.qa):not([data-short]){display:none}
+  body.short main section[data-part]>.wrap>[data-short]{margin-top:1.6rem;margin-bottom:1.6rem}
+  body.short main section[data-part]>.wrap>.qa.a{margin-top:2.2rem}
+  body.short main section[data-part]>.wrap>.qa.ra{margin-top:1.6rem}
+  .short-bar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:60;
+    display:flex;align-items:center;gap:.8rem;width:max-content;max-width:calc(100vw - 32px);
+    background:var(--ink);color:var(--canvas);border-radius:var(--r-pill);padding:.5rem .5rem .5rem 1.1rem;
+    font-size:.84rem;line-height:1.3;box-shadow:0 10px 28px rgba(20,26,34,.22)}
+  .short-bar[hidden]{display:none}
+  .short-bar button{appearance:none;font:inherit;font-size:.82rem;font-weight:600;line-height:1.3;cursor:pointer;
+    padding:.5rem .9rem;border-radius:var(--r-pill);border:1px solid rgba(255,254,251,.35);
+    background:rgba(255,254,251,.12);color:var(--canvas)}
+  .short-bar button:hover{background:rgba(255,254,251,.22)}
+  .btn[aria-pressed="true"]{background:var(--tone-tint);border-color:var(--tone-ink);color:var(--tone-ink)}
   /* ---- 扉のラベル ── 透過をやめ、扉の色で読める濃さに ---- */
   .opener.lead .rule-label{color:var(--tone-deep);opacity:1}
 </style>
@@ -995,6 +1010,7 @@
       <a class="btn" href="#hub">五つの世界から入る</a>
       <a class="btn" href="#museum">博物館で見つける</a>
       <button class="btn" type="button" id="btn-draw">図版をひとつ引く</button>
+      <button class="btn" type="button" id="btn-short" aria-pressed="false">問いと答えで読む</button>
     </div>
     <p class="hero-progress" id="hero-progress" hidden></p>
     <div class="digest">
@@ -1036,7 +1052,7 @@
 
     <h3 class="blk">13万年 ── 間氷期から、間氷期へ</h3>
     <p>前回の暖かい時期から、いまの暖かい時期まで、氷期一周ぶんを見る。</p>
-    <figure class="chart">
+    <figure class="chart" data-short>
               <svg viewBox="-32 0 372 206" role="img" aria-label="13万年前から現在までの気温変化。縦軸は完新世の水準を0℃とした気温差で、最終氷期最盛期が約マイナス20℃。前回の間氷期エーミアンのあと氷期に落ち、約10万年にわたって数十年単位の激しい上下を繰り返し、最終氷期最盛期を経て完新世に入る。下段に人類の出来事を1から7の番号で示す。最下段に、ネアンデルタール人（4万年前まで）とサピエンス（全期間、6万年前からアフリカの外へ）の存在期間を帯で示す。">
                 <rect x="0" y="35" width="39" height="90" fill="#6E8FB6" opacity=".14"/>
                 <rect x="309.6" y="35" width="30.4" height="90" fill="#6E8FB6" opacity=".14"/>
@@ -1385,7 +1401,7 @@
     </div>
 
     <p>まず五つの世界。次に、人間の引いた線を消して自然だけを残した地形。そこに遺跡を重ね、最後に西暦2000年の国境を重ねる。つまみで一枚ずつ切り替わる。都市も国も、まず山と川と砂漠の隙間に置かれる。文明の配置は、ぜんぶこの地形への返事である。</p>
-    <div class="era p2m" id="p2-map" data-step="0">
+    <div class="era p2m" id="p2-map" data-short data-step="0">
       <div class="era-head"><span class="era-year" id="p2m-title">五つの世界</span><span class="era-step" id="p2m-step">1 / 4</span></div>
       <div class="era-stage" id="p2m-stage">
         <svg class="on" viewBox="0 0 340 250" role="img" aria-label="古代オリエントの模式地図。アナトリア、地中海東岸、メソポタミア、エジプト、イラン高原の五地域。">
@@ -1876,7 +1892,7 @@
 
     <h3 id="p3-meso" class="blk rg" style="--rgc:var(--rg-meso)">メソポタミア ── 南と北</h3>
 
-    <figure class="photo">
+    <figure class="photo" data-short>
       <img src="/img/02-tell-asmar-worshipper.jpg" width="760" height="1013" decoding="async"
            alt="石膏アラバスターの小さな立像。両手を胸の前で組み、貝と黒石で象嵌された大きな目を見開いている。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -1959,7 +1975,7 @@
     <h3 id="p3-rhythm" class="blk rg" style="--rgc:var(--rg-meso)">覇権のリズム ── 分裂と統一の繰り返し</h3>
     <p>南と北の歴史を縦に眺めると、覇権（はけん。ほかの国々を従える力）の一つのリズムが見えてくる。<strong>ふだんは、都市国家がばらばらに並び立っている。ときどき大帝国がそれを束ね、崩れて、また分立に戻る。</strong>この往復である。そして長い目で見ると、束ねられる範囲がしだいに大きくなっていく。</p>
 
-    <figure class="chart">
+    <figure class="chart" data-short>
       <svg viewBox="0 0 680 176" role="img" aria-label="前2334年から前330年までの統一期と分立期の交替">
         <rect x="40" y="12" width="16" height="8" rx="1.5" fill="#94421C"/>
         <text x="62" y="20" font-size="10.5" fill="#6E6A60">統一政権</text>
@@ -2005,7 +2021,7 @@
     </figure>
 
 
-    <figure class="photo wide">
+    <figure class="photo wide" data-short>
       <img src="/img/03-babylon-striding-lion.jpg" width="1200" height="520" decoding="async"
            alt="青い釉薬煉瓦の壁面パネル。黄と白のたてがみを持つライオンが左へ歩む姿がレリーフで表されている。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -2315,7 +2331,7 @@
     <p>メソポタミアでは、都市国家の並び立つ状態が長く続いた。エジプトでは、<strong>国家ができるごく早い段階、前3100年頃に、上下エジプトを束ねる統一王権（一人の王が国全体を治める力）が立つ</strong>。分裂しても「中間期」と呼ばれ、統一が正常で分裂が異常という前提が保たれる。外から支配者が入っても、エジプト語も神々も「ファラオ」という考え方も途切れない。ここが最大の違いだ。</p>
 
 
-    <figure class="photo">
+    <figure class="photo" data-short>
       <img src="/img/05-egyptian-relief-head.jpg" width="1200" height="900" decoding="async"
            alt="石灰岩の浮彫の断片。横向きの男性の頭部で、黒い巻き毛のかつらをかぶり、肌は赤茶色に彩色されている。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -2630,7 +2646,7 @@
     <p>まとめれば、<strong>メソポタミアは帝国を「作る側」、レヴァントは帝国と帝国に「挟まれる側」</strong>である。エジプト、ヒッタイト、アッシリア、バビロニア、ペルシア、ギリシア、ローマ。この小さな廊下に大国が順番に現れるのは偶然ではない。ここが、地中海とメソポタミアを結ぶ通路そのものだったからだ。</p>
 
 
-    <figure class="photo" data-find="06-peacock-mosaic">
+    <figure class="photo" data-find="06-peacock-mosaic" data-short>
       <img src="/img/06-peacock-mosaic.jpg" width="1000" height="1007" decoding="async"
            alt="小さな石片を並べて描かれた孔雀のモザイク。金属の枠に収められ、下に展示の解説札が置かれている。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -2695,7 +2711,7 @@
       </div>
     </div>
 
-    <figure class="chart">
+    <figure class="chart" data-short>
       <svg viewBox="0 0 680 158" role="img" aria-label="同じ目盛りに載せたアナトリアの政治史。長い分立ののち、ヒッタイトだけが在地の統一王国として立つ">
         <rect x="40" y="12" width="16" height="8" rx="1.5" fill="#22604A"/>
         <text x="62" y="20" font-size="10.5" fill="#6E6A60">ヒッタイト＝在地の統一</text>
@@ -2868,7 +2884,7 @@
 
     <p>エラムからペルシアへの移り変わりも、民族の交代劇として見ないほうがいい。ペルセポリスから大量に出土した帝国の行政文書（役所の記録）では、<strong>エラム語が使われ続けた</strong>。低地の古い都市と書記（文字を書く専門の役人）の文化を、新しく来た高原の支配層が引き継いで、帝国を運営した。メソポタミアで見た「土台は受け継がれ、支配層だけが入れ替わる」という型が、ここでも繰り返される。</p>
 
-    <figure class="chart">
+    <figure class="chart" data-short>
       <svg viewBox="0 0 680 158" role="img" aria-label="同じ目盛りに載せたイランの政治史。低地のエラムが長く続き、最後に高原のペルシアが全域を呑む">
         <rect x="40" y="12" width="16" height="8" rx="1.5" fill="#C4B8D6"/>
         <text x="62" y="20" font-size="10.5" fill="#6E6A60">エラム・メディア（在地の王国）</text>
@@ -3107,7 +3123,7 @@
       <div class="r"><div class="k">③ 誰が神に近づけるか</div><div class="v">全員か、神官だけか、王だけか。<b>聖域の境界と、内部の仕切り方に出る。</b></div></div>
     </div>
     <p>答えの違いは、最終的にこの三通りの形になる。</p>
-    <figure class="chart">
+    <figure class="chart" data-short>
       <svg viewBox="0 0 340 158" role="img" aria-label="ジッグラトのように高く積む形、エジプト神殿のように奥へ進むほど狭く暗くなる形、ペルシアのように屋外の聖所や祭壇を用いる形の比較図。">
         <line x1="8" y1="118" x2="100" y2="118" stroke="#827E74" stroke-width="1"/>
         <rect x="16" y="104" width="76" height="14" fill="#94421C" opacity=".75"/>
@@ -3141,7 +3157,7 @@
       <figcaption>ギリシアの歴史家ヘロドトスは、ペルシア人は神像も神殿も作らず、高い場所で天を祀ると書いた。外から見た記述なので、割り引いて読む必要はある。だが、宮殿は壮大なのに宗教建築が乏しいという発掘の傾向とは合っている。</figcaption>
     </figure>
 
-    <figure class="photo wide">
+    <figure class="photo wide" data-short>
       <img src="/img/10-ur-ziggurat.jpg" width="1100" height="825" decoding="async"
            alt="イラク南部に残るウルのジッグラト。日干煉瓦を段状に積み上げた巨大な基壇と、正面に伸びる長い階段。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -3275,7 +3291,7 @@
 
     <p>もう一つ、前提を確かめておく。都市の物語は前5000年頃のウバイド文化から始まる。だが<strong>最初のおよそ1700年間は、「何語を話していたか」を直接知る資料がない</strong>。文字が現れる（メソポタミアで前3300頃、エジプトで前3250頃）より前の言葉は、誰にも聞けないからだ。言葉の歴史が見えるのは、ここからである。</p>
 
-    <figure class="chart">
+    <figure class="chart" data-short>
       <svg viewBox="0 0 340 214" role="img" aria-label="上段: 楔形文字がシュメール語、アッカド語、ヒッタイト語、エラム語、フルリ語を書くのに使われ、アルファベットがフェニキア語、アラム語、ヘブライ語、ギリシア語を書いた。下段: 実際の時間軸では二つの文字は約千年共存し、楔形文字は西暦75年まで書かれた。">
         <rect x="0" y="14" width="120" height="24" fill="#2E5F9E"/>
         <text x="60" y="30" font-size="10.5" fill="#F7F5EF" text-anchor="middle" font-weight="600">楔形文字</text>
@@ -3348,7 +3364,7 @@
       <figcaption>楔形文字はメソポタミアから四方へ借りられ、青の圏は三つの語族（言語の大きな家族）にまたがる。ヒエログリフはナイルの外へほとんど出ない。そして<strong>アルファベットは、二つの大きな文字圏の隙間、つまり廊下の海岸</strong>で生まれ、海路で西へ（ギリシア文字）、陸路で東へ（アラム文字）広がった。文字の地図でも、廊下は乗り換え駅である。</figcaption>
     </figure>
 
-    <figure class="photo wide">
+    <figure class="photo wide" data-short>
       <img src="/img/12-cuneiform-tablet-barley.jpg" width="451" height="800" decoding="async"
            alt="手のひらに載るほどの粘土板。表面に楔形の刻みが格子状に並び、区画ごとに数量が記されている。"
            loading="lazy" onerror="this.closest('figure').classList.add('noimg')">
@@ -3428,7 +3444,7 @@
     <p>アケメネス朝の言葉の使い分けは、この軸の集大成といえる。<strong>王の碑文は三つの言語で併記</strong>（ベヒストゥーン碑文。古代ペルシア語、エラム語、バビロニア語）。<strong>ペルセポリスの行政の実務はエラム語</strong>。<strong>帝国全体の行政と通信はアラム語</strong>。ペルシア帝国は「ペルシア語の帝国」ではなく、用途ごとに言葉を使い分ける多言語の帝国だった。</p>
 
     <p>この軸は、年表の最後の二点で効いてくる。<strong>テル・レヘシュ</strong>の1〜2世紀の村は、アラム語を中心に、ヘブライ語やギリシア語も重なる多言語の世界だった。<strong>パルミラ</strong>の碑文は、アラム語（パルミラ方言）とギリシア語の二言語で刻まれている。三千年かけて、粘土板の楔形文字は、皮や石に書くアルファベットへゆっくり主役を譲った。ただし一斉に交代したのではない。バビロニアの神殿では、<strong>西暦1世紀まで楔形文字が書かれ続けた</strong>（年の記された最後の粘土板は西暦75年）。<strong>建物の材料が変わったのと同じように、記録の材料も変わっている。</strong></p>
-    <p><strong>王朝も、言語も、文字も入れ替わる。それでも文化は、乗り換えながら生き続ける。</strong>五地域の五千年をつないでいるのは、民族や帝国ではなく、この受け継ぎの仕組みである。</p>
+    <p data-short><strong>王朝も、言語も、文字も入れ替わる。それでも文化は、乗り換えながら生き続ける。</strong>五地域の五千年をつないでいるのは、民族や帝国ではなく、この受け継ぎの仕組みである。</p>
     <div class="qa a" id="p5-end" data-qa-end="p5">
       <p class="qa-label">答え合わせ</p>
       <p class="qa-q">アッカド帝国になったのに、なぜシュメールの文化は消えなかったのか。</p>
@@ -3453,8 +3469,8 @@
       </div>
     </div>
 
-    <div class="bar"><b>約6,000年 ── 最初期の巨大建築から、最初の都市まで</b><i style="width:100%"></i></div>
-    <div class="bar b2"><b>約5,500年 ── 最初の都市から、今日まで</b><i style="width:92%"></i></div>
+    <div class="bar" data-short><b>約6,000年 ── 最初期の巨大建築から、最初の都市まで</b><i style="width:100%"></i></div>
+    <div class="bar b2" data-short><b>約5,500年 ── 最初の都市から、今日まで</b><i style="width:92%"></i></div>
     <p style="margin-top:1.2rem">人類は、都市を思いつくまでに、都市とともに過ごした全期間より長い時間をかけた。ギョベクリ・テペの石柱を建てた人々は、都市を一度も見ずに死んでいる。</p>
   </div>
 </section>
@@ -3759,7 +3775,7 @@
       </div>
     </div>
 
-    <figure class="chart map">
+    <figure class="chart map" data-short>
       <svg viewBox="0 0 340 280" role="img" aria-label="最初の村は山麓の弧に、最初の都市は南メソポタミアの沖積平野に生まれた。">
         <defs><marker id="map-settlement-arw-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#26251E"/></marker><marker id="map-settlement-arw-lev" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#2E5F9E"/></marker><marker id="map-settlement-arw-ana" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#22604A"/></marker><marker id="map-settlement-arw-irn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#59418C"/></marker><marker id="map-settlement-arw-egy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#7A5C0E"/></marker><marker id="map-settlement-arw-meso" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#94421C"/></marker><marker id="map-settlement-arw-rome" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#7A3B3B"/></marker></defs><g transform="translate(0,0)"><text x="0" y="12" font-size="11.5" font-weight="600" fill="#26251E">村は山麓に、都市は平野に</text><text x="0" y="24" font-size="8.5" fill="#6E6A60">同じ地図の上で、約6000年ぶんの移動</text><g transform="translate(0,30) scale(0.94)"><rect x="0" y="0" width="340" height="250" rx="6" fill="#F1EEE6"/>
         <path d="M0,52 L58,56 L96,74 L120,82 L120,128 L84,131 L40,121 L0,110 Z" fill="#C9D8EA"/>
@@ -3986,6 +4002,7 @@
 </section>
 
 </main>
+<div class="short-bar" id="short-bar" hidden><span>問いと答えだけを表示中</span><button type="button" id="btn-short-off">全部を読む</button></div>
 
 <section data-part="end" data-tone="peach" id="about">
   <div class="wrap">
@@ -4005,7 +4022,7 @@
   <div class="wrap">
     写真の出典と利用条件は、各図版のキャプションに記した（The Metropolitan Museum of Art のオープンアクセス、Wikimedia Commons）。「撮影」と記した写真は、2026年9月3日に古代オリエント博物館で作成者が撮ったもの。<br>
     「何年前」は西暦2000年を起点とした概数（紀元前の年数＋2000）。学術上の「BP」は1950年起点なので、厳密には50年ずれる。古代史の年代は、中年代記（メソポタミア史で広く使われる年代の組み方）と博物館の表記に合わせた。気候の年代は、氷床コアと海底コアの標準的な年代による。地図は模式図で、海岸線と地域の境界は簡略化した。神と都市の対応や、言語の系統には諸説がある。4200年前と3200年前の乾燥と社会の変動の関係は仮説であり、決着していない。<br>
-    2026年8月31日作成。9月3日に文章を整理し、特別展の会期後も読めるように改めた。同日、会場で撮った写真を六点加えた。
+    2026年8月31日作成。9月3日に文章を整理し、特別展の会期後も読めるように改めた。同日、会場で撮った写真を六点加えた。9月29日、冒頭に写真と問いを置き、第三部の年代の表を「参照」に移し、「問いと答えで読む」を足した。読了の印は答え合わせが画面に入ると付き、「問いと答えで読む」で進んだときも同じである。
   </div>
 </footer>
 
@@ -4383,7 +4400,7 @@ function cloneSvgForDisplay(source,prefix){
       li.classList.toggle('found',cb.checked);
       cb.addEventListener('change',function(){st.finds[key]=cb.checked;li.classList.toggle('found',cb.checked);save();renderHero();renderCount();});
       th.addEventListener('click',function(){img.click();});
-      function goto(){if(det)det.open=true;setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
+      function goto(){if(det)det.open=true;if(window.aogShortOff)window.aogShortOff();setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
       a.addEventListener('click',goto);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();goto();}});
       finds.appendChild(li);
     });
@@ -4701,7 +4718,7 @@ function cloneSvgForDisplay(source,prefix){
       panel.innerHTML=h;panel.hidden=false;
       [].slice.call(panel.querySelectorAll('[data-hubfind]')).forEach(function(a){
         var f=d.finds[parseInt(a.dataset.hubfind,10)];
-        function go(){var det=f.closest('details');if(det)det.open=true;setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
+        function go(){var det=f.closest('details');if(det)det.open=true;if(window.aogShortOff)window.aogShortOff();setTimeout(function(){f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});},30);}
         a.addEventListener('click',go);a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
       });
     }
@@ -4754,6 +4771,8 @@ function cloneSvgForDisplay(source,prefix){
     if(!el) return;
     // 飛び先を包む折りたたみを、外側までさかのぼって開く
     for(var d=el.closest('details'); d; d=d.parentElement&&d.parentElement.closest('details')){ d.open=true; }
+    // 「問いと答えで読む」で隠れている先へ飛ぶときは、全部を表示に戻す
+    if(document.body.classList.contains('short')&&!el.offsetParent&&window.aogShortOff)window.aogShortOff();
     var pad=parseInt(getComputedStyle(root).scrollPaddingTop,10)||0,
         y=Math.max(0,el.getBoundingClientRect().top+window.scrollY-pad);
     if(Math.abs(window.scrollY-y)<2) return;  // すでに合っていれば触らない
@@ -4768,6 +4787,30 @@ function cloneSvgForDisplay(source,prefix){
 })();
 </script>
 <!-- Vercel Web Analytics（Cookieなし。ページビューと参照元だけ） -->
+<script>
+(function(){
+  /* ---- 問いと答えで読む ── 各部の扉と問い、印をつけた図版、答え合わせだけを表示する短縮ルート。選択は保存しない ---- */
+  var body=document.body,btn=document.getElementById('btn-short'),bar=document.getElementById('short-bar'),off=document.getElementById('btn-short-off');
+  if(!btn||!bar||!off)return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sel='main section[data-part]:not([data-part="museum"])>.wrap>.opener,main section[data-part]:not([data-part="museum"])>.wrap>.qa,main section[data-part]:not([data-part="museum"])>.wrap>[data-short]';
+  var chars=0;[].slice.call(document.querySelectorAll(sel)).forEach(function(el){var c=el.cloneNode(true);c.querySelectorAll('svg,script,details').forEach(function(x){x.remove();});chars+=c.textContent.replace(/\s+/g,'').length;});
+  var min=Math.max(1,Math.round(chars/450));
+  btn.textContent='問いと答えで読む ── 約'+min+'分';
+  function set(on){body.classList.toggle('short',on);bar.hidden=!on;btn.setAttribute('aria-pressed',on?'true':'false');}
+  btn.addEventListener('click',function(){
+    if(body.classList.contains('short')){set(false);return;}
+    set(true);var t=document.getElementById('p1');if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth'});
+  });
+  off.addEventListener('click',function(){set(false);});
+  window.aogShortOff=function(){if(body.classList.contains('short'))set(false);};
+  /* 隠れている先へ飛ぶ操作（本文中のリンク、上部ナビ、URL の #）は、全部を表示に戻してから */
+  function hidden(id){var el=id&&document.getElementById(id);return !!(el&&!el.offsetParent);}
+  document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"],[data-go]');if(!a||!body.classList.contains('short'))return;
+    var id=a.getAttribute('data-go')||(a.getAttribute('href')||'').slice(1);if(hidden(id))set(false);},true);
+  window.addEventListener('hashchange',function(){if(body.classList.contains('short')&&hidden(location.hash.slice(1)))set(false);});
+})();
+</script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
