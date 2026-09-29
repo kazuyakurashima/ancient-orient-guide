@@ -911,7 +911,7 @@
   }
   /* ---- 冒頭の一枚と、一つの問い ---- */
   .hero{--depth-ink:var(--sand-deep)}
-  .hero-open{display:grid;grid-template-columns:1fr;gap:1.1rem;margin:0 0 3rem}
+  .hero-open{display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem;margin:0 0 2.6rem}
   .hero-fig{margin:0}
   .hero-fig img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
     border-radius:var(--r-media);background:var(--surface-soft)}
@@ -919,14 +919,27 @@
   .hero-fig.noimg img{display:none}
   .hero .qa.hero-q{margin-top:0;align-self:center;background:var(--surface);border:1px solid var(--hairline)}
   .hero .qa.hero-q .qa-note a{margin-right:1.1rem;white-space:nowrap}
+  .hero .lede{margin-top:0}
   @media (min-width:48rem){
-    .hero-open{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.5rem;align-items:center;margin-bottom:3.4rem}
+    .hero-open{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.5rem;align-items:center;margin-bottom:3.2rem}
   }
   @media (max-width:47.99rem){
-    .hero-fig{width:100vw;margin-left:-24px}
-    .hero-fig img{border-radius:0;aspect-ratio:3/2}
-    .hero-fig figcaption{padding:0 24px}
+    /* 狭い画面では写真を先頭に。見出し、問い、lede の順。問いまでが最初の一画面に入るように詰める */
+    .hero{padding-top:40px}
+    .hero .wrap{display:flex;flex-direction:column}
+    .hero-open{display:contents}
+    .hero-fig{order:-1;position:relative;width:100vw;margin:0 0 1.3rem calc(50% - 50vw)}
+    .hero-fig img{border-radius:0;aspect-ratio:2/1;object-position:50% 40%}
+    .hero-fig figcaption{position:absolute;left:0;right:0;bottom:0;margin:0;padding:1.8rem 24px .55rem;
+      color:#F1EDE3;font-size:.72rem;line-height:1.5;
+      background:linear-gradient(to top,rgba(20,26,34,.78) 30%,rgba(20,26,34,0))}
+    .hero .eyebrow{margin-bottom:1rem}
+    .hero h1{margin-bottom:1rem}
+    .hero .qa.hero-q{margin:0 0 1.8rem;padding:18px 18px 16px}
+    .hero .qa.hero-q .qa-text{font-size:1.02rem;line-height:1.85}
   }
+  /* ---- 扉のラベル ── 透過をやめ、扉の色で読める濃さに ---- */
+  .opener.lead .rule-label{color:var(--tone-deep);opacity:1}
 </style>
 </head>
 <body data-mode="all">
@@ -955,7 +968,6 @@
   <div class="wrap">
     <p class="eyebrow">古代オリエント博物館を楽しむための読み物</p>
     <h1>古代オリエントを、<span class="l2">立体で読む。</span></h1>
-    <p class="lede"><span class="axes">時間・空間・文明・神・言語・建築。</span>六つの見方を重ねると、五つの世界の一万年が、立体に見えてくる。</p>
     <div class="hero-open">
       <figure class="hero-fig">
         <img src="/img/05-egyptian-relief-head.jpg" width="1200" height="900" decoding="async" fetchpriority="high"
@@ -965,10 +977,11 @@
       </figure>
       <div class="qa q hero-q">
         <p class="qa-label">まず、一つの問い</p>
-        <p class="qa-text">顔は横向きなのに、目だけは正面を向いている。この描き方の約束は、王朝が代わっても、およそ三千年変わらなかった。なぜか。</p>
+        <p class="qa-text">顔は横向きなのに、目だけは正面を向いている。この描き方の約束は、王朝が代わっても、細部を変えながらおよそ三千年受け継がれた。なぜか。</p>
         <p class="qa-note"><a href="#p3-egy">答えは、第三部 エジプトの節に</a><a href="#p3-egy-a">答えだけ見る</a></p>
       </div>
     </div>
+    <p class="lede"><span class="axes">時間・空間・文明・神・言語・建築。</span>六つの見方を重ねると、五つの世界の一万年が、立体に見えてくる。</p>
     <div class="thesis">
       <p>文明のすべては、ひとつの暖かい時期のなかで起きた。そしてその内側では、五つの世界が同時に、別々に動いていた。</p>
     </div>
@@ -1763,7 +1776,7 @@
     <p>それぞれの土地で、どんな文明が生まれ、消えていったか。それは<a href="#p3">第三部</a>に置いた。ここでは先に、五つの世界の上を国がどう通り過ぎていったかを、四つの時点で見ておく。</p>
 
     <h3 id="p2-maps" class="blk">六つの時代の地図 ── 前3000から西暦2000まで</h3>
-    <p>五地域全体を六つの時点で止めて見る。前3000、前2000、前1000、紀元前後の四つと、参考に西暦1000と2000。つまみを動かすと、続けて眺められる。塗りの濃さは国家のまとまり具合で、濃いほど一つの政権、点線は都市国家（一つの都市とその周りだけで成り立つ小さな国）や小国の群れ。同じ六つの時点の拡大図は、第三部の各地域の冒頭にもある。</p>
+    <p>五地域全体を六つの時点で止めて見る。前3000、前2000、前1000、紀元前後の四つと、参考に西暦1000と2000。つまみを動かすと、続けて眺められる。塗りの濃さは国家のまとまり具合で、濃いほど一つの政権、点線は都市国家（一つの都市とその周りだけの小さな国）や小国の群れ。同じ六つの時点の拡大図は、第三部の各地域の冒頭にもある。</p>
     <div class="era" id="era-map" hidden>
       <div class="era-head"><span class="era-year" id="era-year">前3000頃</span><span class="era-step" id="era-step">1 / 6</span></div>
       <div class="era-stage" id="era-stage"></div>
@@ -1940,7 +1953,7 @@
     </details>
 
     <h3 id="p3-rhythm" class="blk rg" style="--rgc:var(--rg-meso)">覇権のリズム ── 分裂と統一の繰り返し</h3>
-    <p>上の表を縦に眺めると、一つのリズムが見えてくる。ここで言う覇権（はけん）は、ほかの国々を従える力のことだ。<strong>ふだんは、都市国家がばらばらに並び立っている。ときどき大帝国がそれを束ね、崩れて、また分立に戻る。</strong>この往復である。そして長い目で見ると、束ねられる範囲がしだいに大きくなっていく。</p>
+    <p>上の表を縦に眺めると、覇権（はけん。ほかの国々を従える力）の一つのリズムが見えてくる。<strong>ふだんは、都市国家がばらばらに並び立っている。ときどき大帝国がそれを束ね、崩れて、また分立に戻る。</strong>この往復である。そして長い目で見ると、束ねられる範囲がしだいに大きくなっていく。</p>
 
     <figure class="chart">
       <svg viewBox="0 0 680 176" role="img" aria-label="前2334年から前330年までの統一期と分立期の交替">
@@ -3614,7 +3627,7 @@
         <p class="yr">前1274<span class="ago">約3300年前</span></p>
         <h3>カデシュの戦い ── 廊下の取り合い</h3>
         <p class="tags"><span class="chip c-egy">エジプト</span><span class="chip c-ana">ヒッタイト</span><span class="chip c-lev">戦場はシリア</span></p>
-        <p class="d">エジプトのラムセス2世とヒッタイトが、シリアのカデシュで衝突。争われていたのは、レヴァントという廊下そのもの。当時は南のカナンがエジプト新王国、北シリアがヒッタイトの勢力圏だった。勝敗はつかず、のちに世界最古級の、国と国との平和条約が結ばれる。</p>
+        <p class="d">エジプトのラムセス2世とヒッタイトが、シリアのカデシュで衝突。争われていたのは、レヴァントという廊下そのもの。当時は南のカナンがエジプト新王国、北シリアがヒッタイトの勢力圏（支配や影響がおよぶ範囲）だった。勝敗はつかず、のちに世界最古級の、国と国との平和条約が結ばれる。</p>
       </li>
 
       <li class="ev" data-kind="exhibit" style="--gap:11px">
@@ -4190,9 +4203,14 @@ function cloneSvgForDisplay(source,prefix){
   var resumeBtn=document.getElementById('btn-resume');
   if(resumeBtn)resumeBtn.addEventListener('click',function(){
     if(!st.last)return;
-    var y=st.last.y;
-    if(typeof y!=='number'){var t=document.getElementById(st.last.id);
-      if(t)y=Math.max(0,t.getBoundingClientRect().top+window.scrollY-(parseInt(getComputedStyle(document.documentElement).scrollPaddingTop,10)||0));}
+    /* 部の先頭からの相対位置で戻る。冒頭や前の部が伸び縮みしても、読んでいた文章の位置がずれない。
+       相対位置のない古い記録は、その部の先頭へ */
+    var l=st.last,y=null;
+    if(l.id&&partEls[l.id]&&typeof l.rel==='number'){y=Math.max(0,partRange(l.id).top+l.rel);}
+    else{var t=document.getElementById(l.id);
+      if(t)y=Math.max(0,t.getBoundingClientRect().top+window.scrollY-(parseInt(getComputedStyle(document.documentElement).scrollPaddingTop,10)||0));
+      else if(typeof l.y==='number')y=l.y;}
+    if(y===null)return;
     window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
   });
 
@@ -4210,7 +4228,7 @@ function cloneSvgForDisplay(source,prefix){
         if(p>(rec.p||0)){rec.p=Math.round(p*100)/100;dirty=true;}
       }
     });
-    if(cur){var l=st.last;if(!l||l.id!==cur||Math.abs((l.y||0)-y)>200){st.last={id:cur,y:Math.max(0,Math.round(y))};dirty=true;}}
+    if(cur){var l=st.last;if(!l||l.id!==cur||Math.abs((l.y||0)-y)>200){st.last={id:cur,y:Math.max(0,Math.round(y)),rel:Math.round(y-partRange(cur).top)};dirty=true;}}
     var now=Date.now();
     if(dirty&&now-lastSave>1200){lastSave=now;dirty=false;save();renderHero();}
   }
