@@ -43,7 +43,7 @@
  "inLanguage": "ja",
  "image": "https://ancient-orient-guide.vercel.app/og.png",
  "datePublished": "2026-08-31",
- "dateModified": "2026-09-29",
+ "dateModified": "2026-09-30",
  "author": {
   "@type": "Person",
   "name": "倉島一也",
@@ -956,6 +956,10 @@
     background:rgba(255,254,251,.12);color:var(--canvas)}
   .short-bar button:hover{background:rgba(255,254,251,.22)}
   .btn[aria-pressed="true"]{background:var(--tone-tint);border-color:var(--tone-ink);color:var(--tone-ink)}
+  button.opener-short{font:inherit;font-size:.78rem;letter-spacing:.06em;background:transparent;cursor:pointer;margin-left:.5rem}
+  button.opener-short:hover,button.opener-short[aria-pressed="true"]{background:color-mix(in srgb,var(--depth-ink) 12%,transparent)}
+  /* 明朝で 700 を指定していた要素。要求するウェイトを 400/600 に絞ったので、600 と明示する */
+  .hub-tile b,.hub-head b{font-weight:600}
   /* ---- 扉のラベル ── 透過をやめ、扉の色で読める濃さに ---- */
   .opener.lead .rule-label{color:var(--tone-deep);opacity:1}
 </style>
@@ -3444,7 +3448,7 @@
     <p>アケメネス朝の言葉の使い分けは、この軸の集大成といえる。<strong>王の碑文は三つの言語で併記</strong>（ベヒストゥーン碑文。古代ペルシア語、エラム語、バビロニア語）。<strong>ペルセポリスの行政の実務はエラム語</strong>。<strong>帝国全体の行政と通信はアラム語</strong>。ペルシア帝国は「ペルシア語の帝国」ではなく、用途ごとに言葉を使い分ける多言語の帝国だった。</p>
 
     <p>この軸は、年表の最後の二点で効いてくる。<strong>テル・レヘシュ</strong>の1〜2世紀の村は、アラム語を中心に、ヘブライ語やギリシア語も重なる多言語の世界だった。<strong>パルミラ</strong>の碑文は、アラム語（パルミラ方言）とギリシア語の二言語で刻まれている。三千年かけて、粘土板の楔形文字は、皮や石に書くアルファベットへゆっくり主役を譲った。ただし一斉に交代したのではない。バビロニアの神殿では、<strong>西暦1世紀まで楔形文字が書かれ続けた</strong>（年の記された最後の粘土板は西暦75年）。<strong>建物の材料が変わったのと同じように、記録の材料も変わっている。</strong></p>
-    <p data-short><strong>王朝も、言語も、文字も入れ替わる。それでも文化は、乗り換えながら生き続ける。</strong>五地域の五千年をつないでいるのは、民族や帝国ではなく、この受け継ぎの仕組みである。</p>
+    <p><strong>王朝も、言語も、文字も入れ替わる。それでも文化は、乗り換えながら生き続ける。</strong>五地域の五千年をつないでいるのは、民族や帝国ではなく、この受け継ぎの仕組みである。</p>
     <div class="qa a" id="p5-end" data-qa-end="p5">
       <p class="qa-label">答え合わせ</p>
       <p class="qa-q">アッカド帝国になったのに、なぜシュメールの文化は消えなかったのか。</p>
@@ -3471,7 +3475,7 @@
 
     <div class="bar" data-short><b>約6,000年 ── 最初期の巨大建築から、最初の都市まで</b><i style="width:100%"></i></div>
     <div class="bar b2" data-short><b>約5,500年 ── 最初の都市から、今日まで</b><i style="width:92%"></i></div>
-    <p style="margin-top:1.2rem">人類は、都市を思いつくまでに、都市とともに過ごした全期間より長い時間をかけた。ギョベクリ・テペの石柱を建てた人々は、都市を一度も見ずに死んでいる。</p>
+    <p style="margin-top:1.2rem" data-short>人類は、都市を思いつくまでに、都市とともに過ごした全期間より長い時間をかけた。ギョベクリ・テペの石柱を建てた人々は、都市を一度も見ずに死んでいる。</p>
   </div>
 </section>
 
@@ -4039,6 +4043,8 @@
   function go(el){
     var t=document.getElementById(el.dataset.go);
     if(!t) return;
+    // 「問いと答えで読む」で隠れている先なら、全部の表示に戻してから飛ぶ
+    if(document.body.classList.contains('short')&&!t.offsetParent&&window.aogShortOff)window.aogShortOff();
     var smooth=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     t.scrollIntoView({behavior:smooth?'smooth':'auto',block:'start'});
   }
@@ -4266,7 +4272,8 @@ function cloneSvgForDisplay(source,prefix){
         if(p>(rec.p||0)){rec.p=Math.round(p*100)/100;dirty=true;}
       }
     });
-    if(cur){var l=st.last;if(!l||l.id!==cur||Math.abs((l.y||0)-y)>200){st.last={id:cur,y:Math.max(0,Math.round(y)),rel:Math.round(y-partRange(cur).top),v:LAYOUT};dirty=true;}}
+    /* 「問いと答えで読む」の表示中は、位置が通常表示と対応しないので保存しない */
+    if(cur&&!document.body.classList.contains('short')){var l=st.last;if(!l||l.id!==cur||Math.abs((l.y||0)-y)>200){st.last={id:cur,y:Math.max(0,Math.round(y)),rel:Math.round(y-partRange(cur).top),v:LAYOUT};dirty=true;}}
     var now=Date.now();
     if(dirty&&now-lastSave>1200){lastSave=now;dirty=false;save();renderHero();}
   }
@@ -4734,7 +4741,7 @@ function cloneSvgForDisplay(source,prefix){
     function upd(){
       t=false;var y=window.scrollY+window.innerHeight*.4,cur=null,html;
       PARTS.forEach(function(id){var r=partRange(id);if(y>=r.top&&y<r.bottom)cur=id;});
-      if(cur==='p6'){var yr='',sy=window.scrollY;for(var i=0;i<evs.length;i++){if(evs[i].hidden)continue;if(evs[i].getBoundingClientRect().top+sy<=y)yr=yearOf(evs[i]);}html='<b>年表</b>'+(yr?'<i>'+yr+'</i>':'');}
+      if(cur==='p6'){var yr='',sy=window.scrollY;for(var i=0;i<evs.length;i++){if(evs[i].hidden||!evs[i].offsetParent)continue;if(evs[i].getBoundingClientRect().top+sy<=y)yr=yearOf(evs[i]);}html='<b>年表</b>'+(yr?'<i>'+yr+'</i>':'');}
       else if(cur)html='<b>'+SHORT[cur]+'</b>';
       else if(mus&&y>=mus.offsetTop)html='<b>博物館</b>';
       else html='深度';
@@ -4790,25 +4797,34 @@ function cloneSvgForDisplay(source,prefix){
 <script>
 (function(){
   /* ---- 問いと答えで読む ── 各部の扉と問い、印をつけた図版、答え合わせだけを表示する短縮ルート。選択は保存しない ---- */
-  var body=document.body,btn=document.getElementById('btn-short'),bar=document.getElementById('short-bar'),off=document.getElementById('btn-short-off');
+  var body=document.body,btn=document.getElementById('btn-short'),bar=document.getElementById('short-bar'),off=document.getElementById('btn-short-off'),tog=[];
   if(!btn||!bar||!off)return;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var sel='main section[data-part]:not([data-part="museum"])>.wrap>.opener,main section[data-part]:not([data-part="museum"])>.wrap>.qa,main section[data-part]:not([data-part="museum"])>.wrap>[data-short]';
   var chars=0;[].slice.call(document.querySelectorAll(sel)).forEach(function(el){var c=el.cloneNode(true);c.querySelectorAll('svg,script,details').forEach(function(x){x.remove();});chars+=c.textContent.replace(/\s+/g,'').length;});
   var min=Math.max(1,Math.round(chars/450));
   btn.textContent='問いと答えで読む ── 約'+min+'分';
-  function set(on){body.classList.toggle('short',on);bar.hidden=!on;btn.setAttribute('aria-pressed',on?'true':'false');}
+  function set(on){body.classList.toggle('short',on);bar.hidden=!on;btn.setAttribute('aria-pressed',on?'true':'false');
+    tog.forEach(function(b){b.textContent=on?'全部を読む':'問いと答えで読む';b.setAttribute('aria-pressed',on?'true':'false');});}
   btn.addEventListener('click',function(){
     if(body.classList.contains('short')){set(false);return;}
     set(true);var t=document.getElementById('p1');if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth'});
   });
   off.addEventListener('click',function(){set(false);});
   window.aogShortOff=function(){if(body.classList.contains('short'))set(false);};
+  /* 各部の扉にも切り替えを置く（所要時間の札の隣） */
+  [].slice.call(document.querySelectorAll('main section[data-part]:not([data-part="museum"]) .opener.lead')).forEach(function(op){
+    var b=document.createElement('button');b.type='button';b.className='opener-time opener-short';b.textContent='問いと答えで読む';b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){set(!body.classList.contains('short'));});
+    var pill=op.querySelector('.opener-time');if(pill)pill.insertAdjacentElement('afterend',b);else op.appendChild(b);tog.push(b);
+  });
   /* 隠れている先へ飛ぶ操作（本文中のリンク、上部ナビ、URL の #）は、全部を表示に戻してから */
   function hidden(id){var el=id&&document.getElementById(id);return !!(el&&!el.offsetParent);}
   document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"],[data-go]');if(!a||!body.classList.contains('short'))return;
     var id=a.getAttribute('data-go')||(a.getAttribute('href')||'').slice(1);if(hidden(id))set(false);},true);
-  window.addEventListener('hashchange',function(){if(body.classList.contains('short')&&hidden(location.hash.slice(1)))set(false);});
+  window.addEventListener('hashchange',function(){var id=location.hash.slice(1);if(body.classList.contains('short')&&hidden(id)){set(false);
+    var el=document.getElementById(id),pad=parseInt(getComputedStyle(document.documentElement).scrollPaddingTop,10)||0;
+    window.scrollTo(0,Math.max(0,el.getBoundingClientRect().top+window.scrollY-pad));}});
 })();
 </script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
