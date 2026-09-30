@@ -4803,7 +4803,7 @@ function cloneSvgForDisplay(source,prefix){
   var sel='main section[data-part]:not([data-part="museum"])>.wrap>.opener,main section[data-part]:not([data-part="museum"])>.wrap>.qa,main section[data-part]:not([data-part="museum"])>.wrap>[data-short]';
   var chars=0;[].slice.call(document.querySelectorAll(sel)).forEach(function(el){var c=el.cloneNode(true);c.querySelectorAll('svg,script,details').forEach(function(x){x.remove();});chars+=c.textContent.replace(/\s+/g,'').length;});
   var min=Math.max(1,Math.round(chars/450));
-  btn.textContent='問いと答えで読む ── 約'+min+'分';
+  btn.textContent='問いと答えで読む ── 七部で約'+min+'分';
   function set(on){body.classList.toggle('short',on);bar.hidden=!on;btn.setAttribute('aria-pressed',on?'true':'false');
     tog.forEach(function(b){b.textContent=on?'全部を読む':'問いと答えで読む';b.setAttribute('aria-pressed',on?'true':'false');});}
   btn.addEventListener('click',function(){
